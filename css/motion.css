@@ -1,135 +1,162 @@
 /* ==========================================================================
-   motion.css — ALL @keyframes, reveal states, filter transition. Loaded LAST.
-   The prefers-reduced-motion block at the bottom of this file is what makes
-   every animation above it safe; it ships in the same file on purpose.
+   motion.css — every transition, keyframe and reveal state. Loaded last.
+
+   THE LOAD-BEARING RULE OF THIS SITE
+   ---------------------------------
+   Every hidden-until-revealed state is scoped to `html.js`. The `.js` class
+   is added by a short inline script in <head>. If JavaScript is off, blocked,
+   or fails to load, `.js` is never added (or is removed again by the guard in
+   that same script) and none of the rules below apply — so every element is
+   simply visible, in its final state. Content cannot go missing.
    ========================================================================== */
 
-/* ---------------------------------------------------------- THE FAIL-OPEN RULE
-   Most important rule in the build. `.js` is only ever added by the inline
-   <head> script. If JS is disabled, `.js` is never added, this selector never
-   matches, and `.reveal` elements are simply never hidden — there is no code
-   path where content goes invisible because an IntersectionObserver failed
-   to fire. */
-html.js .reveal { opacity: 0; transform: translateY(16px); }
+/* ---------------------------------------------------------- section reveal */
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+}
 html.js .reveal.is-in {
   opacity: 1;
   transform: none;
-  transition: opacity var(--t-slow) var(--ease-out) calc(var(--i, 0) * 70ms),
-              transform var(--t-slow) var(--ease-out) calc(var(--i, 0) * 70ms);
+  transition: opacity var(--dur-3) var(--ease-out),
+              transform var(--dur-3) var(--ease-out);
 }
 
-/* h2 underline rule draws in step with its ancestor .reveal */
-.reveal h2::after {
-  transition: transform var(--t-rule) var(--ease-emph) calc(var(--i, 0) * 70ms + 120ms);
-}
-.reveal.is-in h2::after { transform: scaleX(1); }
+/* Staggered children: the eye follows one thing arriving after another. */
+html.js .reveal[data-i="1"].is-in { transition-delay: 60ms; }
+html.js .reveal[data-i="2"].is-in { transition-delay: 120ms; }
+html.js .reveal[data-i="3"].is-in { transition-delay: 180ms; }
+html.js .reveal[data-i="4"].is-in { transition-delay: 240ms; }
+html.js .reveal[data-i="5"].is-in { transition-delay: 300ms; }
+html.js .reveal[data-i="6"].is-in { transition-delay: 360ms; }
 
-/* --------------------------------------------------------- masthead hairline */
-@keyframes draw-hairline {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
-}
-.masthead__hairline {
-  animation: draw-hairline var(--t-rule) var(--ease-emph) 120ms both;
-}
-
-/* ------------------------------------------------------------- cover stagger
-   CSS-only, no IntersectionObserver — the cover is above the fold at load,
-   so it always animates immediately regardless of scroll position. */
-@keyframes cover-in {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: none; }
-}
-html.js .cover [style*="--i"] {
+/* ------------------------------------------------------------ hero on load */
+html.js .hero-in {
   opacity: 0;
-  animation: cover-in var(--t-slow) var(--ease-out) both;
-  animation-delay: calc(var(--i, 0) * 60ms);
+  transform: translateY(12px);
+  animation: rise var(--dur-3) var(--ease-out) forwards;
+}
+html.js .hero-in[data-i="1"] { animation-delay: 40ms; }
+html.js .hero-in[data-i="2"] { animation-delay: 100ms; }
+html.js .hero-in[data-i="3"] { animation-delay: 160ms; }
+html.js .hero-in[data-i="4"] { animation-delay: 220ms; }
+html.js .hero-in[data-i="5"] { animation-delay: 280ms; }
+html.js .hero-in[data-i="6"] { animation-delay: 340ms; }
+
+@keyframes rise {
+  to { opacity: 1; transform: none; }
 }
 
-/* ------------------------------------------------------------------ KPI tile
-   entrance shares the generic .reveal rules above (same IntersectionObserver
-   trigger as the counters); .kpi__num itself never has a CSS transition —
-   the count-up is driven frame-by-frame by app.js so it stays exact. */
-.kpi__num { font-variant-numeric: tabular-nums; }
-
-/* --------------------------------------------------------------- card hover
-   Keyboard (:focus-visible) gets the identical treatment as pointer hover —
-   see .ev-card:hover, .ev-card:focus-within and .kpi-tile__link in
-   components.css for the shared transition declarations. */
-.ev-card, .kpi-tile__link, .btn {
-  transition-duration: var(--t-fast);
-  transition-timing-function: var(--ease-out);
+/* The plate arrives from slightly further away — it is the heaviest object. */
+html.js .plate-in {
+  opacity: 0;
+  transform: translateY(20px) scale(0.985);
+  animation: plate-rise 620ms var(--ease-out) 120ms forwards;
+}
+@keyframes plate-rise {
+  to { opacity: 1; transform: none; }
 }
 
-/* -------------------------------------------------------------- chip hover/check */
-.chip, input[type="radio"][name="tool"] + .chip {
-  transition-duration: var(--t-fast);
-  transition-timing-function: var(--ease-out);
+/* ------------------------------------------------------------- chart draw
+   Curves carry pathLength="1", so a dasharray of 1 is exactly the whole
+   path regardless of its real length. */
+html.js .c-curve,
+html.js .plate__art .p-curve {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+html.js .is-drawn .c-curve,
+html.js .plate-in .p-curve {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1200ms var(--ease-out) 120ms;
+}
+html.js .plate-in .p-curve {
+  transition: none;
+  animation: draw 1600ms var(--ease-out) 260ms forwards;
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+html.js .c-area,
+html.js .plate__art .p-area { opacity: 0; }
+html.js .is-drawn .c-area,
+html.js .plate-in .p-area {
+  opacity: 1;
+  transition: opacity 520ms var(--ease-out) 620ms;
 }
 
-/* --------------------------------------------------------- filter transition
-   display:none is required (not visibility/opacity) — it removes hidden
-   cards from the accessibility tree as well as layout, so screen readers
-   never announce a card the sighted user can't see. */
-.ev-card {
-  transition: opacity var(--t-base) var(--ease-out),
-              transform var(--t-base) var(--ease-out),
-              display var(--t-base) allow-discrete;
-}
-@starting-style {
-  .ev-card { opacity: 0; transform: translateY(6px); }
-}
-
-/* ------------------------------------------------------- valuation output pulse */
-@keyframes valuation-pulse {
-  from { background: color-mix(in srgb, var(--accent) 28%, var(--paper-2)); }
-  to   { background: var(--paper-2); }
-}
-.valuation.is-pulse .valuation__outputs {
-  animation: valuation-pulse 220ms var(--ease-out);
-}
-
-/* ------------------------------------------------------------- masthead condense */
-.masthead__inner {
-  transition: min-height 200ms var(--ease-out);
-}
-
-/* ---------------------------------------------------------- smooth anchor scroll
-   scroll-behavior + scroll-padding-top live in base.css (html selector);
-   listed here in the inventory for completeness only. */
-
-/* ----------------------------------------------------------- read-progress rule
-   Pure CSS scroll-driven animation, zero JS. No-ops (rule stays static) on
-   browsers without `animation-timeline: scroll()` support, e.g. Firefox. */
-.progress-rule {
-  position: fixed;
-  top: 0; left: 0;
-  height: 3px;
-  width: 100%;
-  background: var(--accent);
-  transform-origin: left;
+/* Bars grow from their baseline, in order, lightest first. */
+html.js .c-bar {
   transform: scaleX(0);
-  z-index: 1000;
-  animation: progress-scale auto linear;
-  animation-timeline: scroll(root);
+  transform-box: fill-box;
+  transform-origin: left center;
 }
-@keyframes progress-scale {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
+html.js .is-drawn .c-bar {
+  transform: none;
+  transition: transform 720ms var(--ease-out);
+}
+html.js .is-drawn .c-bar-1 { transition-delay: 80ms; }
+html.js .is-drawn .c-bar-2 { transition-delay: 200ms; }
+html.js .is-drawn .c-bar-3 { transition-delay: 320ms; }
+
+/* Annotations land after the data they annotate. */
+html.js .c-late { opacity: 0; }
+html.js .is-drawn .c-late {
+  opacity: 1;
+  transition: opacity 380ms var(--ease-out) 900ms;
 }
 
-/* ========================================================================
-   prefers-reduced-motion contract — ONE block, bottom of file.
-   ======================================================================== */
+/* -------------------------------------------------------------- KPI glyphs */
+html.js .glyph .g-fill {
+  transform: scaleX(0);
+  transform-box: fill-box;
+  transform-origin: left center;
+}
+html.js .is-in .glyph .g-fill {
+  transform: none;
+  transition: transform 700ms var(--ease-out) 220ms;
+}
+html.js .glyph .g-unit { opacity: 0; }
+html.js .is-in .glyph .g-unit {
+  opacity: 1;
+  transition: opacity 260ms var(--ease-out);
+}
+html.js .is-in .glyph .g-unit:nth-of-type(2)  { transition-delay: 240ms; }
+html.js .is-in .glyph .g-unit:nth-of-type(3)  { transition-delay: 280ms; }
+html.js .is-in .glyph .g-unit:nth-of-type(4)  { transition-delay: 320ms; }
+html.js .is-in .glyph .g-unit:nth-of-type(5)  { transition-delay: 360ms; }
+html.js .is-in .glyph .g-unit:nth-of-type(6)  { transition-delay: 400ms; }
+html.js .is-in .glyph .g-unit:nth-of-type(7)  { transition-delay: 440ms; }
+html.js .is-in .glyph .g-unit:nth-of-type(8)  { transition-delay: 480ms; }
+html.js .is-in .glyph .g-unit:nth-of-type(9)  { transition-delay: 520ms; }
+html.js .is-in .glyph .g-unit:nth-of-type(10) { transition-delay: 560ms; }
+html.js .is-in .glyph .g-unit:nth-of-type(11) { transition-delay: 600ms; }
+
+/* ======================================================================
+   REDUCED MOTION — one block, and it wins.
+   Everything jumps straight to its finished state. Nothing moves, nothing
+   counts, nothing draws. (js/app.js also stops the number counters.)
+   ====================================================================== */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
+    animation-duration: 1ms !important;
     animation-delay: 0ms !important;
-    transition-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
     transition-delay: 0ms !important;
     scroll-behavior: auto !important;
   }
-  html.js .reveal { opacity: 1 !important; transform: none !important; }
-  .progress-rule { display: none; }
+  html.js .reveal,
+  html.js .hero-in,
+  html.js .plate-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  html.js .c-curve,
+  html.js .plate__art .p-curve { stroke-dashoffset: 0 !important; }
+  html.js .c-area,
+  html.js .plate__art .p-area,
+  html.js .c-late,
+  html.js .glyph .g-unit { opacity: 1 !important; }
+  html.js .c-bar,
+  html.js .glyph .g-fill { transform: none !important; }
 }

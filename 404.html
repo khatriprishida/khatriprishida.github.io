@@ -1,49 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Not Under Coverage — Prishida Khatri</title>
-<meta name="description" content="This page isn't under coverage.">
+<title>Page not found — Prishida Khatri</title>
+<meta name="description" content="That page does not exist on this site.">
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#FAF9F7">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script>document.documentElement.classList.add('js');</script>
-<script>try{var t=localStorage.getItem('pkha-theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/charts.css">
 <link rel="stylesheet" href="css/motion.css">
-<style>
-  .notfound { min-height: calc(100vh - var(--masthead-h)); display: grid; place-items: center; padding-block: var(--sp-9); }
-  .notfound__inner { text-align: center; max-width: 32rem; }
-</style>
+<link rel="stylesheet" href="css/print.css" media="print">
 </head>
+
 <body>
 
-<a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">Skip to main content</a>
 
 <header class="masthead">
-  <div class="wrap masthead__inner">
-    <a class="masthead__word mono" href="index.html">PKHA<span class="sr-only"> — Prishida Khatri, Financial Analyst</span></a>
+  <div class="wrap masthead__in">
+    <a class="masthead__id" href="index.html">
+      <span class="masthead__name">Prishida Khatri</span>
+      <span class="masthead__role">Financial Analyst</span>
+    </a>
+    <a class="btn btn--primary btn--sm" href="index.html">Back to the site</a>
   </div>
-  <div class="masthead__hairline" aria-hidden="true"></div>
 </header>
 
-<main id="main" class="notfound">
-  <div class="wrap notfound__inner">
-    <p class="eyebrow">404</p>
-    <h1>This page isn&rsquo;t under coverage.</h1>
-    <p>The page you&rsquo;re looking for doesn&rsquo;t exist. Head back to the report.</p>
-    <p><a class="btn btn--primary" href="index.html">Back to the report</a></p>
+<main id="main" class="wrap notfound">
+  <div class="notfound__in">
+    <p class="notfound__code num">404</p>
+    <h1>That page does not exist.</h1>
+    <p>
+      The address you followed is not part of this site. Everything lives on
+      one page — profile, analysis, experience, skills and contact.
+    </p>
+    <p class="hero__actions">
+      <a class="btn btn--primary" href="index.html">Go to the main page</a>
+      <a class="btn btn--ghost" href="mailto:khatriprishida@gmail.com">khatriprishida@gmail.com</a>
+    </p>
   </div>
 </main>
 
 <footer class="site-footer">
-  <div class="wrap site-footer__inner">
-    <p class="mono">PKHA</p>
-    <p>&copy; 2026 Prishida Khatri.</p>
-    <a href="index.html">Home</a>
+  <div class="wrap site-footer__in">
+    <p>&copy; 2026 Prishida Khatri</p>
+    <p><a href="index.html">Home</a></p>
+    <p class="site-footer__note">Hand-built in HTML, CSS and SVG. No trackers.</p>
   </div>
 </footer>
 

@@ -1,13 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="PK monogram">
-  <style>
-    .plate { fill: #E3EFE7; }
-    .mono  { fill: #0F5132; }
-    @media (prefers-color-scheme: dark) {
-      .plate { fill: #12271D; }
-      .mono  { fill: #5FD39A; }
-    }
-  </style>
-  <rect class="plate" x="0" y="0" width="64" height="64" rx="12"/>
-  <text class="mono" x="32" y="42" text-anchor="middle"
-        font-family="Georgia, 'Times New Roman', serif" font-size="30" font-weight="600">PK</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Prishida Khatri">
+  <!-- Same ink-blue plate as the hero, with the valuation curve behind the
+       initials. Colours match css/tokens.css. -->
+  <rect width="64" height="64" rx="10" fill="#0E2437"/>
+  <path d="M0 52 L8 51 L16 50 L24 48 L32 45 L40 41 L48 35 L56 26 L64 13"
+        fill="none" stroke="#8FB4D4" stroke-width="2.5" stroke-linecap="round" opacity="0.55"/>
+  <text x="32" y="43" text-anchor="middle" fill="#E8EDF2"
+        font-family="Iowan Old Style, Palatino, Georgia, serif"
+        font-size="30" font-weight="600">PK</text>
 </svg>

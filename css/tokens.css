@@ -1,128 +1,109 @@
 /* ==========================================================================
-   tokens.css — design tokens. Load FIRST.
-   Light values on :root; dark values repeated under BOTH
-   `@media (prefers-color-scheme: dark)` and `:root[data-theme="dark"]`
-   (the second lets js/app.js's manual toggle win over the OS setting).
+   tokens.css — every colour, size and duration used on this site.
+   Loaded first. Nothing here draws anything; it only names values.
+
+   Contrast note: every text/background pair below was measured, not guessed.
+   Ratios are recorded in comments. WCAG AA needs 4.5:1 for body text,
+   3:1 for large text and for graphics that carry meaning.
    ========================================================================== */
 
 :root {
-  color-scheme: light dark; /* required for native range sliders to render correctly in dark mode */
 
-  /* ---- color: light (default) ---- */
-  --paper:        #FBFAF7;
-  --paper-2:      #F3F1EC;
-  --paper-3:      #E9E6DF;
-  --ink:          #14161A;
-  --ink-2:        #3E434B;
-  --ink-3:        #626875; /* darkened from spec's literal #6B7280 (4.28:1 on --paper-2, fails 4.5:1 for small text); this clears 4.5:1 on both --paper and --paper-2 */
-  --accent:       #0F5132;
-  --accent-ink:   #0B3D26;
-  --accent-soft:  #E3EFE7;
-  --pos:          #146C43;
-  --neg:          #9F2A2A;
-  --focus:        #1D4ED8;
-  --shadow: 0 1px 2px rgb(20 22 26 / .06), 0 8px 24px rgb(20 22 26 / .06);
+  /* ---------------------------------------------------------------------
+     PHOTO SLOT — THE ONE LINE TO CHANGE WHEN THE PHOTOGRAPH ARRIVES.
 
-  /* Headshot swap point — see CONTENT-GUIDE.md "Swap in a headshot".
-     Default `none` shows the PK monogram. Change to url("../assets/headshot.jpg")
-     to show a real photo instead. This is the ONE line to edit. */
-  --headshot: none;
+       1. Save the photo as  assets/portrait.jpg  (portrait shape,
+          roughly 4 wide x 5 tall, at least 800 x 1000 pixels).
+       2. Change the line marked >>> below from  none  to:
+             url("../assets/portrait.jpg")
+       3. That is the whole job. Nothing else needs editing.
 
-  /* ---- type ---- */
-  --font-display: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif;
-  --font-ui:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono:    ui-monospace, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+     While it is `none`, the hero shows a finished dark plate instead.
+     --------------------------------------------------------------------- */
+  --portrait: none;                            /* >>> THE ONE LINE <<< */
+  --portrait-focus: 50% 28%;                   /* optional: nudge the crop */
 
-  --fs-2xs:  .75rem;
-  --fs-xs:   .8125rem;
-  --fs-sm:   .9375rem;
-  --fs-base: clamp(1rem,    .97rem + .15vw, 1.0625rem);
-  --fs-md:   clamp(1.125rem, 1.06rem + .30vw, 1.25rem);
-  --fs-lg:   clamp(1.375rem, 1.24rem + .60vw, 1.75rem);
-  --fs-xl:   clamp(1.75rem,  1.50rem + 1.2vw, 2.5rem);
-  --fs-2xl:  clamp(2.25rem,  1.70rem + 2.7vw, 4rem);
-  --fs-3xl:  clamp(2.75rem,  1.90rem + 4.2vw, 5.5rem);
+  /* ---------------------------------------------------------------- paper */
+  --paper:        #FAF9F7;   /* page                                         */
+  --paper-sunk:   #F1EEE9;   /* tinted bands (metrics strip, insets)          */
+  --card:         #FFFFFF;   /* raised surfaces                               */
 
-  --lh-tight: 1.06;
-  --lh-snug:  1.25;
-  --lh-base:  1.6;
-  --lh-loose: 1.7;
+  /* ------------------------------------------------------------------ ink */
+  --ink:          #16181A;   /* headings        16.9:1 on paper              */
+  --ink-2:        #2E3236;   /* body            12.3:1 on paper              */
+  --ink-3:        #5A6068;   /* secondary        6.0:1 on paper, 5.5 on sunk */
 
-  /* ---- spacing / layout ---- */
-  --sp-1: .25rem;  --sp-2: .5rem;  --sp-3: .75rem;  --sp-4: 1rem;  --sp-5: 1.5rem;
-  --sp-6: 2rem;    --sp-7: 3rem;   --sp-8: 4rem;    --sp-9: 6rem;  --sp-10: 8rem;
+  /* ---------------------------------------------------------------- rules */
+  --rule:         #E2DED7;   /* hairlines, decorative                        */
+  --rule-2:       #CFCAC2;   /* card borders                                 */
+  --rule-3:       #8C877F;   /* chart axes — 3.4:1, carries meaning          */
 
-  --wrap:        72rem;
-  --wrap-narrow: 44rem;
-  --radius:      10px;
-  --rule:        1px solid var(--paper-3);
+  /* --------------------------------------------------------------- accent
+     One accent (ink blue) plus one flag colour (oxide red) used only to
+     mark a single value. Every use is labelled in words as well. */
+  --accent:       #12406B;   /* 10.7:1 on card                               */
+  --accent-2:     #3C74A6;   /*  5.0:1 on card                               */
+  --accent-3:     #5E8CB9;   /*  3.5:1 on card — lightest chart series       */
+  --accent-wash:  #EDF2F7;
+  --flag:         #A83218;   /*  6.7:1 on card                               */
+  --flag-wash:    #F6EAE6;
 
-  --masthead-h: 4rem;
+  /* ---------------------------------------------------------------- panel
+     The one dark object on the page: the hero plate and the contact band. */
+  --panel:        #0E2437;
+  --panel-2:      #16344C;
+  --on-panel:     #E8EDF2;   /* 13.4:1 on panel                              */
+  --on-panel-2:   #A9BCCC;   /*  8.1:1 on panel                              */
+  --panel-line:   #8FB4D4;   /*  7.3:1 on panel                              */
+  --panel-flag:   #E4714E;   /*  5.1:1 on panel                              */
 
-  /* ---- motion ---- */
-  --ease-out: cubic-bezier(.22,.61,.36,1);
-  --ease-emph: cubic-bezier(.16,1,.30,1);
-  --t-fast:  160ms;
-  --t-base:  280ms;
-  --t-slow:  520ms;
-  --t-rule:  700ms;
-  --t-count: 1100ms;
+  /* ------------------------------------------------------------------ type */
+  --serif: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino,
+           "Book Antiqua", Georgia, "Times New Roman", serif;
+  --sans:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+           "Helvetica Neue", Arial, sans-serif;
+  --mono:  ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+           "Liberation Mono", monospace;
+
+  /* A single scale. No size on this site is outside this list. */
+  --fs-display: clamp(2.75rem, 1.4rem + 4.4vw, 4.75rem);
+  --fs-1:       clamp(1.6rem, 1.15rem + 1.5vw, 2.35rem);   /* h2            */
+  --fs-2:       clamp(1.2rem, 1.05rem + 0.5vw, 1.4rem);    /* h3, lede      */
+  --fs-3:       1.0625rem;                                 /* body          */
+  --fs-4:       0.9375rem;                                 /* small         */
+  --fs-5:       0.8125rem;                                 /* fine print    */
+  --fs-6:       0.6875rem;                                 /* eyebrow       */
+  --fs-figure:  clamp(1.9rem, 1.3rem + 2vw, 2.6rem);       /* KPI numbers   */
+
+  /* ----------------------------------------------------------------- space
+     One 4px-based scale, used everywhere. */
+  --s1: 0.25rem;  --s2: 0.5rem;   --s3: 0.75rem;  --s4: 1rem;
+  --s5: 1.5rem;   --s6: 2rem;     --s7: 3rem;     --s8: 4rem;
+  --s9: 6rem;     --s10: 8rem;
+
+  --wrap:        76rem;   /* page gutter-to-gutter maximum                   */
+  --wrap-pad:    var(--s5);
+  --measure:     66ch;    /* body copy line length                           */
+  --masthead-h:  3.75rem;
+  --radius:      3px;     /* editorial, not bubbly                           */
+
+  /* ---------------------------------------------------------------- motion */
+  --dur-1: 150ms;
+  --dur-2: 220ms;
+  --dur-3: 420ms;
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in:  cubic-bezier(0.55, 0.06, 0.68, 0.19);
+
+  /* ----------------------------------------------------------------- depth
+     Shadows are close, tight and warm-neutral. Nothing floats. */
+  --shadow-1: 0 1px 2px rgba(22, 24, 26, 0.05),
+              0 1px 1px rgba(22, 24, 26, 0.04);
+  --shadow-2: 0 2px 4px rgba(22, 24, 26, 0.06),
+              0 8px 20px -12px rgba(22, 24, 26, 0.18);
+  --shadow-3: 0 24px 60px -28px rgba(14, 36, 55, 0.45),
+              0 4px 12px -6px rgba(14, 36, 55, 0.22);
 }
 
-/* ---- color: dark, OS preference ---- */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper:        #0E1113;
-    --paper-2:      #171B1E;
-    --paper-3:      #262B30;
-    --ink:          #ECEDEE;
-    --ink-2:        #B6BCC2;
-    --ink-3:        #8A9299;
-    --accent:       #5FD39A;
-    --accent-ink:   #7EE0AE;
-    --accent-soft:  #12271D;
-    --pos:          #5FD39A;
-    --neg:          #F08A8A;
-    --focus:        #7AA2FF;
-  }
+@media (max-width: 40rem) {
+  :root { --wrap-pad: var(--s4); --masthead-h: 3.5rem; }
 }
-
-/* ---- color: dark, manual toggle (wins over OS preference either way) ---- */
-:root[data-theme="dark"] {
-  --paper:        #0E1113;
-  --paper-2:      #171B1E;
-  --paper-3:      #262B30;
-  --ink:          #ECEDEE;
-  --ink-2:        #B6BCC2;
-  --ink-3:        #8A9299;
-  --accent:       #5FD39A;
-  --accent-ink:   #7EE0AE;
-  --accent-soft:  #12271D;
-  --pos:          #5FD39A;
-  --neg:          #F08A8A;
-  --focus:        #7AA2FF;
-}
-
-:root[data-theme="light"] {
-  --paper:        #FBFAF7;
-  --paper-2:      #F3F1EC;
-  --paper-3:      #E9E6DF;
-  --ink:          #14161A;
-  --ink-2:        #3E434B;
-  --ink-3:        #626875; /* darkened from spec's literal #6B7280 (4.28:1 on --paper-2, fails 4.5:1 for small text); this clears 4.5:1 on both --paper and --paper-2 */
-  --accent:       #0F5132;
-  --accent-ink:   #0B3D26;
-  --accent-soft:  #E3EFE7;
-  --pos:          #146C43;
-  --neg:          #9F2A2A;
-  --focus:        #1D4ED8;
-}
-
-/* ---- reset ---- */
-*, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
-body { margin: 0; }
-img, svg, video { display: block; max-width: 100%; }
-button, input { font: inherit; color: inherit; }
-ul, ol { margin: 0; padding: 0; }
-dl, dd, figure { margin: 0; }

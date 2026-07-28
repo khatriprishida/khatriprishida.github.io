@@ -1,0 +1,171 @@
+/* ==========================================================================
+   print.css — loaded with media="print".
+
+   Target: a clean, one-column, black-on-white CV of about three pages.
+   Charts, the portrait plate and every piece of decoration come off. The
+   data tables stay, because those are the numbers.
+   ========================================================================== */
+
+@page { margin: 14mm 14mm; }
+
+html, body {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  font-size: 9.5pt;
+  line-height: 1.38;
+}
+
+/* ---------------------------------------------------------------- removed */
+.masthead,
+.skip-link,
+.plate,
+.figure__plot,
+.figure__head,
+.hero__actions,
+.contact__actions,
+.contact__lede,
+.sec-head__standfirst,
+.figure__legend,
+.site-footer,
+.glyph,
+.unitchart svg {
+  display: none !important;
+}
+
+.print-only { display: block !important; }
+
+/* ------------------------------------------------------------- flattened */
+* {
+  box-shadow: none !important;
+  text-shadow: none !important;
+  transition: none !important;
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+  float: none !important;
+}
+
+.band, .band--sunk, .contact,
+.project, .role, .cert, .edu, .figure-tile, .project__head, .edu__head {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  border-color: #BBBBBB !important;
+}
+
+.wrap { max-width: none; padding-inline: 0; }
+.band { padding-block: 0 !important; margin-top: 5mm; }
+.band + .band { border-top: 0; }
+
+h1, h2, h3, h4, .contact h2, .figure-tile__value, .edu__school {
+  color: #000000 !important;
+}
+h1 { font-size: 21pt; line-height: 1.02; margin-bottom: 2mm; }
+h2 { font-size: 12.5pt; margin-bottom: 1.5mm; max-width: none !important; }
+h3 { font-size: 10.5pt; margin-bottom: 1mm; }
+h4 { font-size: 9.5pt; }
+
+p { margin-bottom: 2mm; }
+
+.eyebrow, .contact .eyebrow { color: #444444 !important; letter-spacing: 0.07em; }
+.sec-head { margin-bottom: 3mm; }
+.sec-head__kicker { margin-bottom: 1.5mm; }
+.sec-head__kicker::after { background: #BBBBBB !important; }
+
+a { color: #000000 !important; text-decoration: none; }
+
+/* --------------------------------------------------------- one column, tight */
+.hero__grid, .profile__grid, .projects, .projects__pair,
+.experience__grid, .skills__grid, .certs__grid, .contact__grid,
+.project__body, .project__body--split, .figure {
+  display: block !important;
+}
+
+.hero { padding-block: 0 !important; }
+.hero__eyebrow { margin-bottom: 1mm; }
+.hero__lede {
+  font-family: inherit;
+  font-size: 10.5pt;
+  line-height: 1.4;
+  max-width: none;
+  margin-bottom: 3mm;
+}
+.hero__facts { padding-block: 2mm; margin-bottom: 3mm; column-count: 2; column-gap: 8mm; }
+.hero__facts > div { border-left: 0 !important; padding-inline: 0 !important; break-inside: avoid; }
+.hero__seeking { border-left: 2px solid #000000; margin-bottom: 2mm; }
+.print-only { font-size: 9.5pt; margin-bottom: 3mm; }
+
+/* Headline figures: a compact three-across strip, no rules, no glyphs. */
+.figures { display: block !important; border: 0 !important; background: none !important; }
+.figure-tile {
+  display: inline-block !important;
+  width: 32%;
+  vertical-align: top;
+  padding: 0 3mm 2.5mm 0 !important;
+  break-inside: avoid;
+}
+.figure-tile__label { min-height: 0 !important; }
+.figure-tile__value { font-size: 14pt; margin: 0.5mm 0; }
+.figure-tile__note { padding-top: 0.5mm; }
+
+/* Profile */
+.profile__lead { font-size: 9.5pt; line-height: 1.4; max-width: none; }
+.profile__lead p:first-child::first-letter {
+  font-size: inherit !important;
+  font-family: inherit !important;
+  line-height: inherit !important;
+  font-weight: inherit !important;
+  color: #000000 !important;
+  padding: 0 !important;
+}
+.targets { margin-top: 3mm; padding-top: 2mm; }
+.targets li span { padding: 0.5mm 1.5mm; font-size: 9pt; }
+
+.edu { margin-top: 3mm; break-inside: avoid; }
+.edu__head { padding: 0 0 1mm !important; border-bottom: 0 !important; }
+.edu__item { padding: 1.5mm 0 !important; }
+.edu__school { font-size: 10.5pt; }
+.edu__mark { background: none !important; padding: 0 !important; }
+
+/* Projects */
+.project { border: 0 !important; border-top: 1px solid #BBBBBB !important;
+           margin-bottom: 3mm; break-inside: avoid; }
+.project__head { padding: 1.5mm 0 0 !important; border-bottom: 0 !important; }
+.project__body { padding: 0 0 2mm !important; }
+.project__prose { font-size: 9.5pt; }
+.keyfacts { margin-top: 2mm; border: 0 !important; background: none !important; }
+.keyfacts > div { display: inline-block; padding: 0 6mm 0 0 !important; }
+.keyfacts dd.is-flagged { color: #000000 !important; }
+.methods { margin-top: 1.5mm; }
+.methods li span { padding: 0 1mm; font-size: 8.5pt; background: none !important; }
+
+.figure__note { font-size: 8.5pt; margin-top: 2mm; }
+.datatable { font-size: 8pt; margin-top: 2mm; }
+.datatable th, .datatable td { padding: 0.8mm 1.5mm; }
+.datatable tr.is-base th, .datatable tr.is-base td {
+  background: #EEEEEE !important; color: #000000 !important;
+}
+
+/* Experience */
+.role { border: 0 !important; border-top: 2px solid #000000 !important;
+        padding: 2mm 0 0 !important; margin-bottom: 3mm; break-inside: avoid; }
+.role li::before { background: #000000 !important; }
+.role li { margin-bottom: 1.5mm; }
+
+/* Skills */
+.skillset { break-inside: avoid; margin-bottom: 3mm; padding-top: 2mm; }
+.skillset__count { display: none; }
+.skillset li { padding: 0.7mm 0; border-color: #DDDDDD !important; }
+.skillset li::before { background: #000000 !important; }
+.certs { margin-top: 3mm; padding-top: 2mm; }
+.cert { border: 0 !important; padding: 0 0 1.5mm !important; display: block !important;
+        width: 48%; vertical-align: top; }
+.certs__grid > .cert { display: inline-block !important; }
+.cert__n { display: none; }
+
+/* Contact */
+.contact__list { margin-top: 2mm; }
+.contact__row { border-color: #BBBBBB !important; padding: 1mm 0;
+                grid-template-columns: 22mm minmax(0, 1fr); }
+.contact__row dt, .contact__row dd, .contact__row a { color: #000000 !important; }
+
+h2, h3 { page-break-after: avoid; break-after: avoid; }

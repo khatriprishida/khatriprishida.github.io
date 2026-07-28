@@ -1,200 +1,156 @@
 /* ==========================================================================
-   app.js — reveal-on-scroll, KPI counters, filter status/counts/clear,
-   masthead sentinel, theme toggle.
+   app.js — enhancement only. Nothing here creates content.
 
-   The entire body runs inside one try/catch. If anything throws, the catch
-   strips `.js` from <html>, which turns off every `.reveal`/`.js-only`
-   CSS rule at once and restores the full no-JS presentation. A thrown
-   error here can never blank the page.
+   Everything the page says is already in index.html. This file adds four
+   things and nothing else:
+
+     1. reveal-on-scroll for sections and cards
+     2. draw-on-scroll for the SVG charts
+     3. counting animation on the six headline numbers
+     4. sticky-masthead shadow + "you are here" marking in the nav
+
+   The whole body runs inside one try/catch. If anything throws, the catch
+   removes `.js` from <html>, which switches off every reveal rule in
+   css/motion.css at once and leaves the page in its plain, fully visible
+   state. There is no failure mode where content stays hidden.
    ========================================================================== */
 (function () {
   'use strict';
+
   try {
     var html = document.documentElement;
 
-    var RM = window.matchMedia
+    /* Tell the guard timer in <head> that this file parsed and ran. */
+    html.setAttribute('data-app-ready', '');
+
+    var reduced = window.matchMedia
       ? window.matchMedia('(prefers-reduced-motion: reduce)')
-      : { matches: false, addEventListener: function () {} };
+      : { matches: false };
 
-    /* ---------------------------------------------------------- reveal IO */
-    function createObserver(threshold, rootMargin, onEnter) {
-      return new IntersectionObserver(function (entries, obs) {
+    var canObserve = 'IntersectionObserver' in window;
+
+    /* ------------------------------------------------------------ helper */
+    function observe(nodes, options, onEnter) {
+      if (!nodes.length) return;
+      if (!canObserve) {
+        // No IntersectionObserver: show everything at once, animate nothing.
+        Array.prototype.forEach.call(nodes, onEnter);
+        return;
+      }
+      var io = new IntersectionObserver(function (entries, self) {
         entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            onEnter(entry.target);
-            obs.unobserve(entry.target);
-          }
+          if (!entry.isIntersecting) return;
+          self.unobserve(entry.target);
+          onEnter(entry.target);
         });
-      }, { threshold: threshold, rootMargin: rootMargin || '0px' });
+      }, options);
+      Array.prototype.forEach.call(nodes, function (n) { io.observe(n); });
     }
 
-    var sectionEls = document.querySelectorAll('section.reveal');
-    var kpiEls = document.querySelectorAll('.kpi-tile.reveal');
+    /* --------------------------------------------------- 1. section reveal */
+    observe(
+      document.querySelectorAll('.reveal'),
+      { threshold: 0.08, rootMargin: '0px 0px -8% 0px' },
+      function (el) { el.classList.add('is-in'); }
+    );
 
-    if ('IntersectionObserver' in window) {
-      var sectionObserver = createObserver(0.15, '0px 0px -10% 0px', function (el) {
-        el.classList.add('is-in');
-      });
-      sectionEls.forEach(function (el) { sectionObserver.observe(el); });
+    /* ------------------------------------------------------ 2. chart draw */
+    observe(
+      document.querySelectorAll('[data-draw]'),
+      { threshold: 0.25, rootMargin: '0px 0px -5% 0px' },
+      function (el) { el.classList.add('is-drawn'); }
+    );
 
-      var kpiObserver = createObserver(0.4, '0px', function (el) {
-        el.classList.add('is-in');
-        startCounter(el.querySelector('[data-count]'));
-      });
-      kpiEls.forEach(function (el) { kpiObserver.observe(el); });
-    } else {
-      // No IO support: reveal everything immediately, no animation, no
-      // counter — the static numbers already in the HTML are correct.
-      sectionEls.forEach(function (el) { el.classList.add('is-in'); });
-      kpiEls.forEach(function (el) { el.classList.add('is-in'); });
-    }
+    /* --------------------------------------------------- 3. number counters
+       The finished value is the static text already in the HTML. We copy it
+       into a screen-reader-only twin first, hide the animating span from
+       assistive technology, then count up and land back on the exact same
+       string. Nothing can end up showing a wrong number. */
+    function count(span) {
+      if (!span || span.hasAttribute('data-counted')) return;
+      span.setAttribute('data-counted', '');
 
-    /* ------------------------------------------------------- KPI counters
-       Final value ships as static text; we read it, mirror it for AT, hide
-       the animating span from AT, then count up to the exact same text. */
-    function startCounter(span) {
-      if (!span || span.dataset.counted) return;
-      span.dataset.counted = '1';
+      var final = span.textContent;
+      var host = span.closest('.figure-tile__value') || span;
 
-      var raw = span.textContent.trim();
+      var twin = document.createElement('span');
+      twin.className = 'sr-only';
+      twin.textContent = host.textContent;
+      host.insertAdjacentElement('afterend', twin);
+      host.setAttribute('aria-hidden', 'true');
 
-      // Duplicate the true, final value for screen readers before animating.
-      var mirror = document.createElement('span');
-      mirror.className = 'sr-only';
-      mirror.textContent = raw;
-      span.insertAdjacentElement('afterend', mirror);
-      span.setAttribute('aria-hidden', 'true');
+      if (reduced.matches) return;
 
-      if (RM.matches) return; // leave final text in place, animate nothing
+      var target = parseFloat(final.replace(/,/g, ''));
+      if (!isFinite(target)) return;
+      var decimals = (final.split('.')[1] || '').length;
 
-      var match = raw.match(/^([^\d]*)([\d.,]+)(.*)$/);
-      if (!match) return;
-      var prefix = match[1] || '';
-      var numStr = match[2].replace(/,/g, '');
-      var suffix = match[3] || '';
-      var target = parseFloat(numStr);
-      if (!Number.isFinite(target)) return;
-      var decimals = (numStr.split('.')[1] || '').length;
+      var duration = 900;
+      var t0 = null;
 
-      var duration = 1100;
-      var start = null;
+      function ease(t) { return 1 - Math.pow(1 - t, 3); }
 
-      function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
-
-      function frame(ts) {
-        if (start === null) start = ts;
-        var elapsed = ts - start;
-        var progress = Math.min(elapsed / duration, 1);
-        var value = target * easeOutCubic(progress);
-        span.textContent = prefix + value.toFixed(decimals) + suffix;
-        if (progress < 1) {
+      function frame(now) {
+        if (t0 === null) t0 = now;
+        var p = Math.min((now - t0) / duration, 1);
+        span.textContent = (target * ease(p)).toFixed(decimals);
+        if (p < 1) {
           requestAnimationFrame(frame);
         } else {
-          span.textContent = raw; // land exactly on the shipped static text
+          span.textContent = final;   // land exactly on the shipped text
         }
       }
       requestAnimationFrame(frame);
     }
 
-    /* -------------------------------------------------------------- filter */
-    var TOOL_NAMES = { powerbi: 'Power BI', sql: 'SQL', r: 'R', excel: 'Excel' };
-    var toolRadios = document.querySelectorAll('input[name="tool"]');
-    var filterStatus = document.getElementById('filter-status');
-    var filterClear = document.getElementById('filter-clear');
-    var coverageCards = document.querySelectorAll('#coverage .ev-card');
-
-    function currentToolKey() {
-      var checked = document.querySelector('input[name="tool"]:checked');
-      if (!checked) return 'all';
-      return checked.id.replace('tool-', '');
-    }
-
-    function updateFilterStatus() {
-      if (!filterStatus) return;
-      var key = currentToolKey();
-      if (key === 'all') {
-        filterStatus.textContent = 'Showing all coverage items.';
-        if (filterClear) filterClear.hidden = true;
-        return;
+    observe(
+      document.querySelectorAll('.figure-tile'),
+      { threshold: 0.5 },
+      function (el) {
+        el.classList.add('is-in');
+        count(el.querySelector('[data-count]'));
       }
-      var total = coverageCards.length;
-      var visible = 0;
-      coverageCards.forEach(function (card) {
-        if (getComputedStyle(card).display !== 'none') visible++;
-      });
-      filterStatus.textContent =
-        'Showing ' + visible + ' of ' + total + ' coverage items tagged ' +
-        (TOOL_NAMES[key] || key) + '.';
-      if (filterClear) filterClear.hidden = false;
-    }
+    );
 
-    toolRadios.forEach(function (radio) {
-      radio.addEventListener('change', updateFilterStatus);
-    });
-
-    if (filterClear) {
-      filterClear.addEventListener('click', function () {
-        var allRadio = document.getElementById('tool-all');
-        if (allRadio) {
-          allRadio.checked = true;
-          updateFilterStatus();
-          allRadio.focus();
-        }
-      });
-    }
-
-    // Chip counts — computed from the DOM, never hard-coded.
-    Object.keys(TOOL_NAMES).forEach(function (tool) {
-      var count = 0;
-      coverageCards.forEach(function (card) {
-        var list = (card.getAttribute('data-tools') || '').split(/\s+/).filter(Boolean);
-        if (list.indexOf(tool) !== -1) count++;
-      });
-      var el = document.querySelector('.chip__n[data-count-for="' + tool + '"]');
-      if (el) el.textContent = ' (' + count + ')';
-    });
-
-    updateFilterStatus(); // every page load starts at "All" — never persisted
-
-    /* ------------------------------------------------------- masthead sentinel */
-    var sentinel = document.querySelector('[data-masthead-sentinel]');
+    /* --------------------------------------------------- 4a. sticky masthead */
     var masthead = document.querySelector('[data-masthead]');
-    if (sentinel && masthead && 'IntersectionObserver' in window) {
-      var mastheadObserver = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          masthead.classList.toggle('is-condensed', !entry.isIntersecting);
-        });
-      }, { threshold: 0 });
-      mastheadObserver.observe(sentinel);
+    var sentinel = document.querySelector('[data-sentinel]');
+    if (masthead && sentinel && canObserve) {
+      new IntersectionObserver(function (entries) {
+        masthead.classList.toggle('is-stuck', !entries[0].isIntersecting);
+      }, { threshold: 0 }).observe(sentinel);
     }
 
-    /* ------------------------------------------------------------ theme toggle */
-    var themeToggle = document.getElementById('theme-toggle');
-    if (themeToggle) {
-      var prefersDark = window.matchMedia
-        ? window.matchMedia('(prefers-color-scheme: dark)')
-        : { matches: false };
-
-      function effectiveTheme() {
-        return html.dataset.theme || (prefersDark.matches ? 'dark' : 'light');
-      }
-      function syncPressed() {
-        themeToggle.setAttribute('aria-pressed', effectiveTheme() === 'dark' ? 'true' : 'false');
-      }
-      syncPressed();
-      themeToggle.addEventListener('click', function () {
-        var next = effectiveTheme() === 'dark' ? 'light' : 'dark';
-        html.dataset.theme = next;
-        try { localStorage.setItem('pkha-theme', next); } catch (e) {}
-        syncPressed();
+    /* --------------------------------------------------- 4b. you-are-here nav */
+    var links = document.querySelectorAll('.masthead__nav a[href^="#"]');
+    if (links.length && canObserve) {
+      var byId = {};
+      var sections = [];
+      Array.prototype.forEach.call(links, function (link) {
+        var id = link.getAttribute('href').slice(1);
+        var section = document.getElementById(id);
+        if (!section) return;
+        byId[id] = link;
+        sections.push(section);
       });
-    }
 
-    /* --------------------------------------------- re-evaluate reduced motion
-       If the OS setting changes live (no reload), stop pretending — future
-       counters just skip animating too (past ones have already landed on
-       their static text, which is harmless either way). */
-    RM.addEventListener && RM.addEventListener('change', function () { /* no-op: read live via RM.matches above */ });
+      var visible = {};
+      var navIO = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          visible[entry.target.id] = entry.isIntersecting;
+        });
+        var current = null;
+        for (var i = 0; i < sections.length; i++) {
+          if (visible[sections[i].id]) { current = sections[i].id; break; }
+        }
+        Array.prototype.forEach.call(links, function (link) {
+          link.removeAttribute('aria-current');
+        });
+        if (current && byId[current]) byId[current].setAttribute('aria-current', 'true');
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+
+      sections.forEach(function (s) { navIO.observe(s); });
+    }
 
   } catch (err) {
     document.documentElement.classList.remove('js');

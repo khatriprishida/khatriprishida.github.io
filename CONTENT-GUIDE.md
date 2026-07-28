@@ -1,138 +1,166 @@
-# Editing this site — a plain-English guide
+# How to edit this site
 
-You do **not** need to know how to code to update this website. Everything
-lives in one file, `index.html`, and it's organized so you can find the part
-you want to change by searching (Ctrl+F / Cmd+F) for comments that look like
-this:
+Written for someone who does not write code. You will not break anything by
+changing words. Take a copy of the file first if that makes you happier.
 
+Everything you are likely to want to change lives in **`index.html`**, inside
+regions marked like this:
+
+```html
+<!-- ==== EDIT: EXPERIENCE =================================== -->
+   … change what is in here …
+<!-- ==== /EDIT ============================================== -->
 ```
-<!-- ===== ADD A NEW JOB HERE: copy one <article class="ev-card"> block ===== -->
-```
 
-Open `index.html` in any plain text editor (TextEdit on a Mac — set it to
-"Plain Text" mode first; Notepad on Windows; or a free code editor like
-[VS Code](https://code.visualstudio.com/)). **Do not use Microsoft Word** —
-it will corrupt the file.
+Only change the words *between* the `>` and `<` symbols. Leave the tags
+(`<p>`, `<li>`, `<h3>` and so on) exactly where they are.
 
-After you save a change, open `index.html` by double-clicking it to preview
-in your browser before it goes live.
+Three characters have to be written the long way inside HTML:
+
+| You want | Type this |
+|---|---|
+| `&` | `&amp;` |
+| `<` | `&lt;` |
+| `>` | `&gt;` |
+
+That is why the file says `FP&amp;A` rather than `FP&A`.
 
 ---
 
-## Add a new job
+## Adding your photograph
 
-1. Search for `ADD A NEW JOB HERE`.
-2. Copy one whole block, from `<article class="ev-card"...` down to the
-   matching `</article>`.
-3. Paste it right before `</div>` at the end of that section.
-4. Edit the text inside:
-   - `<h4>` — the job title.
-   - The line with the company, city and dates.
-   - Each `<li>` — one bullet point per accomplishment.
-5. Give your new `<article>` a unique `id="job-something"` (lowercase, no
-   spaces, e.g. `id="job-newcompany"`) if you want a Key Metric tile to be
-   able to link to it later.
-6. Leave `data-tools=""` empty unless the résumé bullet explicitly names a
-   tool (Power BI, SQL, R, or Excel) — see "Tagging a card with a tool"
-   below.
+See **section 1 of `README.md`**. It is one line in `css/tokens.css`, and the
+line is labelled `>>> THE ONE LINE <<<` so it is hard to miss.
 
-## Add a new academic project
+---
 
-Search for `ADD A NEW PROJECT HERE` and follow the same copy/paste steps as
-above, inside the "Analytical Projects" section.
+## The editable regions, one by one
 
-## Add a new certification
+### `EDIT: HERO TEXT`
+Your name, the sentence under it, the four facts (Degree / Grade / Toolkit /
+Focus), the three buttons and the "Open to" line.
 
-Search for `ADD A NEW CERT HERE`. Certification cards are short — just a
-title (`<h4>`) and an issuer line (`<p class="ev-card__meta">`).
+If you change your email address, change it in **three** places: the button
+here, the Contact section at the bottom, and the `"email"` line inside the
+`<script type="application/ld+json">` block at the top of the file (that one
+is for search engines).
 
-## Add or edit a degree (Education)
+### `EDIT: THE SIX HEADLINE NUMBERS`
+The strip of big numbers under the hero.
 
-Search for `ADD/EDIT A DEGREE HERE`. Each `<article class="ev-card">` in
-that section is one degree.
-
-### The "TODO: add dates" boxes
-
-Both degrees currently show an amber **TODO: add dates** box because the
-exact start/end dates weren't in the source résumé. To fill them in, find:
+Each tile looks like this:
 
 ```html
-<p class="ev-card__meta"><span class="todo">TODO: add dates</span></p>
+<p class="figure-tile__label">Graduate GPA</p>
+<p class="figure-tile__value"><span class="num" data-count>3.90</span><span class="unit">/4.00</span></p>
+<svg class="glyph" …> … </svg>
+<p class="figure-tile__note">MBA, Financial Analysis</p>
 ```
 
-and replace the whole line with your dates, e.g.:
+* **label** — the small grey caption.
+* **value** — the big number. Change the number between `data-count>` and
+  `</span>`. It counts up on screen by itself; you do not have to do anything
+  to make that happen.
+* **unit** — the small suffix (`%`, `/4.00`). Delete this whole `<span>` if
+  there isn't one.
+* **glyph** — the small blue bar or row of blocks. Leave it alone unless the
+  number it illustrates has changed; if it has, see "the small blue glyphs"
+  below.
+* **note** — the grey line at the bottom that says where the number came from.
+
+### `EDIT: SUMMARY`
+The three-paragraph profile, and the four "Roles in view" chips beneath it.
+To add a chip, copy one whole line:
 
 ```html
-<p class="ev-card__meta">August 2023 &ndash; May 2025</p>
+<li><span>Financial Analyst</span></li>
 ```
 
-(`&ndash;` is just a long dash "–"; you can also use a plain hyphen.)
+### `EDIT: EDUCATION`
+The two schools. Dates are deliberately not shown; `README.md` section 2
+shows exactly what to paste in if you want to add them.
 
-## Add or remove a skill
+### `EDIT: PROJECT 01` … `PROJECT 04`
+Each project has a title, one or two paragraphs, a row of key figures, and a
+row of small tool labels.
 
-Search for `ADD/EDIT A SKILL HERE`. Each skill is one line:
+Projects 01 and 02 also have a chart. **The chart numbers are drawn by hand
+in the SVG.** If a project figure changes, the chart will not follow it
+automatically — ask whoever built this to redraw it, or delete the whole
+`<figure class="figure"> … </figure>` block and keep just the words and the
+key figures. Deleting a chart breaks nothing else.
+
+To add a tool label, copy one line:
 
 ```html
-<li class="chip">SQL</li>
+<li><span>Power BI</span></li>
 ```
 
-Add a new `<li class="chip">...</li>` line inside the right group
-(Technical / Data & Financial Analysis / Business), or delete a line to
-remove a skill.
+### `EDIT: EXPERIENCE`
+The two jobs. Each has an employer, a location, dates, a job title and a list
+of bullet points. To add a bullet, copy one whole `<li>…</li>` line. To add a
+whole new job, copy an entire `<article class="role"> … </article>` block and
+change the words inside it.
 
-## Tagging a card with a tool (for the Coverage filter)
+### `EDIT: SKILLS`
+Three groups. Each item is one `<li>…</li>` line. If you add or remove items,
+also update the small count underneath the group heading — the line that says
+`<span class="num">7</span> tools`.
 
-The "Filter by tool" chips in the Coverage section (Power BI / SQL / R /
-Excel) work by reading the `data-tools` attribute on each
-`<article class="ev-card" data-tools="...">`. This lists which tools that
-specific project, job, or certification explicitly used.
+### `EDIT: CERTIFICATIONS`
+Four cards. To add a fifth, copy a whole `<li class="cert"> … </li>` block and
+change the number, the name and the issuer. Also add it to the
+`"hasCredential"` list at the top of the file if you want search engines to
+know about it.
 
-**Rule: only tag a tool if the text on the card actually says it.** Don't
-guess or add a tool because it seems related — an empty `data-tools=""` is
-fine and correct if the card doesn't name a specific tool.
+### `EDIT: CONTACT`
+Email, LinkedIn, location and the résumé link.
 
-To tag a card with more than one tool, separate them with spaces inside the
-quotes, e.g. `data-tools="excel powerbi"`.
+---
 
-If you ever add a **brand-new tool** (not Power BI/SQL/R/Excel), you also
-need a developer to add a matching filter chip and CSS rule — see
-`README.md`.
+## Replacing the résumé PDF
 
-## Swap in a headshot
+Save the new file over `assets/Resume-Prishida-Khatri.pdf`, keeping **exactly
+that filename**. Several links point at it.
 
-Right now the site shows a "PK" monogram instead of a photo — this is a
-deliberate, finished design, not a placeholder. To swap in a real photo:
+If the file size changes noticeably, update the label. Search `index.html`
+for `73 KB` — it appears three times.
 
-1. Add your photo file to the `assets/` folder, e.g. `assets/headshot.jpg`.
-2. Open `css/tokens.css` and find this line near the top:
-   ```css
-   --headshot: none;
-   ```
-3. Change it to:
-   ```css
-   --headshot: url("../assets/headshot.jpg");
-   ```
-4. Save. That's the **only** line you need to change — the photo will
-   appear automatically, cropped to fit the same frame the monogram used.
+---
 
-## Updating your résumé PDF
+## The small blue glyphs
 
-The résumé link depends on the file being named exactly
-`Resume-Prishida-Khatri.pdf` inside the `assets/` folder. If you replace it
-with a newer version, **keep the exact same filename** — otherwise the
-"View résumé" and "Download résumé" buttons will break. If the file size
-changes meaningfully, you can update the `(PDF, 73 KB)` text next to both
-résumé links in `index.html` (search for `73 KB`) to match the new size.
+There are three kinds, and all of them are just coloured rectangles:
 
-## A rule that protects you: every number must come from your résumé
+* **A filled bar** (used for the GPA) — one grey rectangle for the total and
+  one blue rectangle on top for the part achieved. The blue one's `width` out
+  of `120` is the proportion: `117` out of `120` is 3.90 out of 4.00.
+* **A row of blocks** (used for counts) — one block per thing. Eleven blocks
+  means eleven securities. Add or remove a `<rect …>` line to change the
+  count.
+* **Two stacked bars** (used for the two percentages) — the shorter bar is
+  the "before", the longer one is the "after".
 
-This whole site is built around the idea that every statistic — the GPA,
-the percentages, the security counts — is something a recruiter could look
-up in your résumé or transcript and confirm. When adding new content, keep
-that rule: don't add a number you can't point to in your own materials.
+If a number changes and you cannot face editing the glyph, delete the whole
+`<svg class="glyph"> … </svg>` block. The tile still works and still looks
+tidy without it.
 
-## The one thing you should never do
+---
 
-**Never add a phone number anywhere on this site** — not in the visible
-text, not in a comment, nowhere. This was a deliberate decision to avoid
-unwanted calls; email and LinkedIn are the contact methods by design.
+## Things not to change
+
+* Any filename inside `assets/`.
+* The `<script type="application/ld+json">` block at the top — except the
+  values inside quote marks, if a fact changes.
+* Anything in `css/` or `js/`, apart from the one photograph line in
+  `css/tokens.css`.
+* **Never add a phone number.** The site is built deliberately without one.
+
+---
+
+## Checking your work
+
+Save the file, then open `index.html` in a browser and reload
+(<kbd>⌘R</kbd> or <kbd>Ctrl</kbd>+<kbd>R</kbd>). If something looks wrong,
+undo your change and it comes straight back — nothing here is clever enough
+to break in a way that a plain undo will not fix.
