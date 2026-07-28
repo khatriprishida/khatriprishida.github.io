@@ -1,0 +1,128 @@
+/* ==========================================================================
+   tokens.css — design tokens. Load FIRST.
+   Light values on :root; dark values repeated under BOTH
+   `@media (prefers-color-scheme: dark)` and `:root[data-theme="dark"]`
+   (the second lets js/app.js's manual toggle win over the OS setting).
+   ========================================================================== */
+
+:root {
+  color-scheme: light dark; /* required for native range sliders to render correctly in dark mode */
+
+  /* ---- color: light (default) ---- */
+  --paper:        #FBFAF7;
+  --paper-2:      #F3F1EC;
+  --paper-3:      #E9E6DF;
+  --ink:          #14161A;
+  --ink-2:        #3E434B;
+  --ink-3:        #626875; /* darkened from spec's literal #6B7280 (4.28:1 on --paper-2, fails 4.5:1 for small text); this clears 4.5:1 on both --paper and --paper-2 */
+  --accent:       #0F5132;
+  --accent-ink:   #0B3D26;
+  --accent-soft:  #E3EFE7;
+  --pos:          #146C43;
+  --neg:          #9F2A2A;
+  --focus:        #1D4ED8;
+  --shadow: 0 1px 2px rgb(20 22 26 / .06), 0 8px 24px rgb(20 22 26 / .06);
+
+  /* Headshot swap point — see CONTENT-GUIDE.md "Swap in a headshot".
+     Default `none` shows the PK monogram. Change to url("../assets/headshot.jpg")
+     to show a real photo instead. This is the ONE line to edit. */
+  --headshot: none;
+
+  /* ---- type ---- */
+  --font-display: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif;
+  --font-ui:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono:    ui-monospace, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+
+  --fs-2xs:  .75rem;
+  --fs-xs:   .8125rem;
+  --fs-sm:   .9375rem;
+  --fs-base: clamp(1rem,    .97rem + .15vw, 1.0625rem);
+  --fs-md:   clamp(1.125rem, 1.06rem + .30vw, 1.25rem);
+  --fs-lg:   clamp(1.375rem, 1.24rem + .60vw, 1.75rem);
+  --fs-xl:   clamp(1.75rem,  1.50rem + 1.2vw, 2.5rem);
+  --fs-2xl:  clamp(2.25rem,  1.70rem + 2.7vw, 4rem);
+  --fs-3xl:  clamp(2.75rem,  1.90rem + 4.2vw, 5.5rem);
+
+  --lh-tight: 1.06;
+  --lh-snug:  1.25;
+  --lh-base:  1.6;
+  --lh-loose: 1.7;
+
+  /* ---- spacing / layout ---- */
+  --sp-1: .25rem;  --sp-2: .5rem;  --sp-3: .75rem;  --sp-4: 1rem;  --sp-5: 1.5rem;
+  --sp-6: 2rem;    --sp-7: 3rem;   --sp-8: 4rem;    --sp-9: 6rem;  --sp-10: 8rem;
+
+  --wrap:        72rem;
+  --wrap-narrow: 44rem;
+  --radius:      10px;
+  --rule:        1px solid var(--paper-3);
+
+  --masthead-h: 4rem;
+
+  /* ---- motion ---- */
+  --ease-out: cubic-bezier(.22,.61,.36,1);
+  --ease-emph: cubic-bezier(.16,1,.30,1);
+  --t-fast:  160ms;
+  --t-base:  280ms;
+  --t-slow:  520ms;
+  --t-rule:  700ms;
+  --t-count: 1100ms;
+}
+
+/* ---- color: dark, OS preference ---- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper:        #0E1113;
+    --paper-2:      #171B1E;
+    --paper-3:      #262B30;
+    --ink:          #ECEDEE;
+    --ink-2:        #B6BCC2;
+    --ink-3:        #8A9299;
+    --accent:       #5FD39A;
+    --accent-ink:   #7EE0AE;
+    --accent-soft:  #12271D;
+    --pos:          #5FD39A;
+    --neg:          #F08A8A;
+    --focus:        #7AA2FF;
+  }
+}
+
+/* ---- color: dark, manual toggle (wins over OS preference either way) ---- */
+:root[data-theme="dark"] {
+  --paper:        #0E1113;
+  --paper-2:      #171B1E;
+  --paper-3:      #262B30;
+  --ink:          #ECEDEE;
+  --ink-2:        #B6BCC2;
+  --ink-3:        #8A9299;
+  --accent:       #5FD39A;
+  --accent-ink:   #7EE0AE;
+  --accent-soft:  #12271D;
+  --pos:          #5FD39A;
+  --neg:          #F08A8A;
+  --focus:        #7AA2FF;
+}
+
+:root[data-theme="light"] {
+  --paper:        #FBFAF7;
+  --paper-2:      #F3F1EC;
+  --paper-3:      #E9E6DF;
+  --ink:          #14161A;
+  --ink-2:        #3E434B;
+  --ink-3:        #626875; /* darkened from spec's literal #6B7280 (4.28:1 on --paper-2, fails 4.5:1 for small text); this clears 4.5:1 on both --paper and --paper-2 */
+  --accent:       #0F5132;
+  --accent-ink:   #0B3D26;
+  --accent-soft:  #E3EFE7;
+  --pos:          #146C43;
+  --neg:          #9F2A2A;
+  --focus:        #1D4ED8;
+}
+
+/* ---- reset ---- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; }
+img, svg, video { display: block; max-width: 100%; }
+button, input { font: inherit; color: inherit; }
+ul, ol { margin: 0; padding: 0; }
+dl, dd, figure { margin: 0; }

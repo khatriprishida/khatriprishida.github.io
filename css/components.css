@@ -1,0 +1,539 @@
+/* ==========================================================================
+   components.css — masthead, cover, rating, byline, KPI, chips + filter,
+   ev-card, valuation widget, footer.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------- masthead */
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter: saturate(140%) blur(8px);
+  -webkit-backdrop-filter: saturate(140%) blur(8px);
+}
+
+.masthead__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  min-height: var(--masthead-h);
+  padding-block: var(--sp-3);
+}
+
+.masthead__word {
+  flex: 0 0 auto;
+  font-weight: 700;
+  font-size: var(--fs-md);
+  letter-spacing: .04em;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.masthead .chip--rating { flex: 0 0 auto; }
+
+.masthead__nav {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--sp-4);
+  overflow-x: auto;
+  margin-inline-start: auto;
+  scrollbar-width: none;
+  /* Flex items default to a content-based automatic minimum size, which
+     would force this row (and the whole masthead, and the page) wider than
+     the viewport on narrow screens instead of letting it scroll internally.
+     min-width:0 opts back into the documented overflow-x:auto shrink. */
+  min-width: 0;
+}
+.masthead__nav::-webkit-scrollbar { display: none; }
+.masthead__nav a {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--ink-2);
+  white-space: nowrap;
+  padding: var(--sp-2) 0;
+}
+.masthead__nav a:hover { color: var(--accent); }
+
+.theme-toggle {
+  flex: 0 0 auto;
+  appearance: none;
+  border: var(--rule);
+  background: var(--paper-2);
+  border-radius: 999px;
+  width: 2.75rem;
+  height: 2.75rem;
+  min-width: 44px;
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+  flex: 0 0 auto;
+}
+.theme-toggle:hover { border-color: var(--accent); }
+
+.masthead__hairline {
+  height: 1px;
+  background: var(--accent);
+  transform-origin: left;
+}
+
+.masthead-sentinel {
+  position: absolute;
+  top: 0;
+  height: 1px;
+  width: 1px;
+}
+
+/* condensed state, toggled by app.js via IO on the sentinel */
+.masthead.is-condensed .masthead__inner {
+  min-height: calc(var(--masthead-h) * .75);
+}
+
+/* --------------------------------------------------------------- eyebrow / rule under h2 */
+.reveal > .wrap > h2,
+.reveal h2 {
+  position: relative;
+  padding-bottom: var(--sp-3);
+  display: inline-block;
+}
+.reveal h2::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+/* -------------------------------------------------------------------- cover */
+.cover { padding-block: clamp(4rem, 12vw, var(--sp-10)); }
+
+.cover__grid {
+  display: grid;
+  gap: var(--sp-7);
+  align-items: start;
+}
+
+.cover__ticker {
+  font-size: var(--fs-sm);
+  color: var(--ink-3);
+  letter-spacing: .06em;
+  margin-bottom: var(--sp-4);
+}
+
+.chip--rating {
+  display: inline-flex;
+  align-items: center;
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  border: 1px solid var(--accent-soft);
+  border-radius: 999px;
+  padding: .2em .85em;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: var(--fs-2xs);
+  letter-spacing: .08em;
+}
+
+.rating {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--sp-2) var(--sp-4);
+  margin: var(--sp-5) 0 var(--sp-6);
+  padding: var(--sp-5);
+  background: var(--paper-2);
+  border: var(--rule);
+  border-radius: var(--radius);
+}
+.rating__row { display: contents; }
+.rating dt {
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  color: var(--ink-3);
+  padding-top: .15em;
+}
+.rating dd {
+  font-size: var(--fs-sm);
+  color: var(--ink);
+}
+
+.cover__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+  min-height: 44px;
+  padding: .7em 1.2em;
+  border-radius: var(--radius);
+  border: 1px solid var(--paper-3);
+  background: var(--paper-2);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  text-decoration: none;
+  transition: border-color var(--t-fast) var(--ease-out), transform var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out);
+}
+.btn:hover { border-color: var(--accent); transform: translateY(-1px); }
+.btn--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--paper);
+}
+.btn--primary:hover { background: var(--accent-ink); border-color: var(--accent-ink); }
+.btn--ghost {
+  background: transparent;
+}
+
+/* -------------------------------------------------------------------- byline plate */
+.cover__byline { max-width: 20rem; }
+
+.byline__plate {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: var(--paper-2);
+  border: 1px solid var(--accent-soft);
+  border-radius: var(--radius);
+  display: grid;
+  place-items: center;
+}
+.byline__plate::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--headshot) center 20% / cover no-repeat;
+}
+.byline__mono {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 8vw, 5.5rem);
+  color: var(--accent);
+  line-height: 1;
+}
+.byline__caption {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------- KPI */
+.kpi-grid {
+  list-style: none;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-3);
+}
+@media (min-width: 640px) {
+  .kpi-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1024px) {
+  .kpi-grid { grid-template-columns: repeat(6, 1fr); }
+}
+
+.kpi-tile { }
+.kpi-tile__link {
+  display: block;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--paper-2);
+  border: var(--rule);
+  border-radius: var(--radius);
+  padding: var(--sp-4);
+  min-height: 44px;
+  transition: border-color var(--t-fast) var(--ease-out), transform var(--t-fast) var(--ease-out), box-shadow var(--t-fast) var(--ease-out);
+}
+.kpi-tile__link:hover,
+.kpi-tile__link:focus-visible {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.kpi__num {
+  display: block;
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  color: var(--accent);
+  min-width: 4ch;
+  line-height: var(--lh-tight);
+}
+.kpi__label {
+  display: block;
+  margin-top: var(--sp-1);
+  font-size: var(--fs-xs);
+  color: var(--ink-2);
+}
+
+/* ------------------------------------------------------------------ thesis */
+.thesis__lead {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  line-height: var(--lh-loose);
+  color: var(--ink);
+  margin-bottom: var(--sp-7);
+}
+
+.thesis__pillars { margin-top: var(--sp-6); }
+.pillar h3 { font-size: var(--fs-md); margin-bottom: var(--sp-2); }
+.pillar p { font-size: var(--fs-sm); color: var(--ink-2); margin: 0; }
+
+/* --------------------------------------------------------------------- ev-list / ev-card */
+.ev-list, .ev-grid { margin-top: var(--sp-6); }
+
+.ev-group + .ev-group { margin-top: var(--sp-8); }
+.ev-group h3 { margin-bottom: 0; }
+
+.ev-card {
+  background: var(--paper-2);
+  border: var(--rule);
+  border-radius: var(--radius);
+  padding: var(--sp-5);
+  /* opacity/transform/display transition + @starting-style for the filter's
+     appear animation lives in motion.css (filter transition, item #9) */
+}
+.ev-card:hover,
+.ev-card:focus-within {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+.ev-card__kicker {
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  color: var(--ink-3);
+  margin-bottom: var(--sp-2);
+}
+.ev-card h3, .ev-card h4 { margin-bottom: var(--sp-2); }
+.ev-card__meta {
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+}
+.ev-card ul {
+  list-style: disc;
+  padding-left: 1.2em;
+  margin: var(--sp-2) 0 0;
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+}
+.ev-card ul li + li { margin-top: var(--sp-1); }
+.ev-card p:last-child { margin-bottom: 0; }
+
+/* -------------------------------------------------------------- coverage intro */
+.coverage__intro {
+  max-width: var(--wrap-narrow);
+  color: var(--ink-2);
+}
+
+/* ------------------------------------------------------------- chip / filter */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: .35em 1em;
+  border-radius: 999px;
+  border: 1px solid var(--paper-3);
+  background: var(--paper);
+  color: var(--ink-2);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color var(--t-fast), background var(--t-fast), color var(--t-fast), transform var(--t-fast);
+}
+li.chip { cursor: default; }
+.chip:hover { border-color: var(--accent); }
+
+.chip-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: var(--sp-3);
+}
+
+.filter { border: 0; padding: 0; margin: var(--sp-6) 0 var(--sp-3); }
+.filter__label {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  color: var(--ink-3);
+  margin-bottom: var(--sp-3);
+}
+.filter__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+.filter__option { display: inline-flex; }
+
+/* input is visually hidden (.sr-only); style the label as the chip */
+input[type="radio"][name="tool"] + .chip {
+  transition: border-color var(--t-fast), background var(--t-fast), color var(--t-fast);
+}
+input[type="radio"][name="tool"]:checked + .chip {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--paper);
+}
+/* focus ring on the label — easy to forget, and forgetting it makes the
+   control invisible to keyboard users */
+input[type="radio"][name="tool"]:focus-visible + .chip {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.chip__n {
+  margin-left: .5em;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  opacity: .75;
+}
+
+.filter__status {
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+  margin: 0 0 var(--sp-2);
+}
+.filter__clear {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  min-height: 44px;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: var(--fs-xs);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ===== FILTER — 8 :has() rules, one pair per tool. To add a tool: add its
+   radio+label in index.html, tag cards with data-tools, then add its
+   matching pair here. See README.md.
+   Scoped to `#coverage` deliberately: `.ev-card` is reused outside the
+   filter region (Education), and an unscoped rule would also match — and
+   incorrectly hide — every `.ev-card` on the page whenever any non-"All"
+   chip is checked, not just the ones inside the filtered evidence grid. ===== */
+#coverage:has(#tool-powerbi:checked) .ev-card:not([data-tools~="powerbi"]) { display: none; }
+#coverage:has(#tool-powerbi:checked) .ev-group:not(:has(.ev-card[data-tools~="powerbi"])) { display: none; }
+
+#coverage:has(#tool-sql:checked) .ev-card:not([data-tools~="sql"]) { display: none; }
+#coverage:has(#tool-sql:checked) .ev-group:not(:has(.ev-card[data-tools~="sql"])) { display: none; }
+
+#coverage:has(#tool-r:checked) .ev-card:not([data-tools~="r"]) { display: none; }
+#coverage:has(#tool-r:checked) .ev-group:not(:has(.ev-card[data-tools~="r"])) { display: none; }
+
+#coverage:has(#tool-excel:checked) .ev-card:not([data-tools~="excel"]) { display: none; }
+#coverage:has(#tool-excel:checked) .ev-group:not(:has(.ev-card[data-tools~="excel"])) { display: none; }
+/* #tool-all has NO rule — default state, no-:has() fallback and JS-off
+   fallback are all the same state: everything visible. */
+
+/* ------------------------------------------------------------- valuation widget */
+.valuation__badge {
+  margin-top: var(--sp-5);
+  padding: var(--sp-4);
+  border: 1px dashed var(--ink-3);
+  border-radius: var(--radius);
+  font-size: var(--fs-xs);
+  color: var(--ink-2);
+}
+.valuation__badge-title {
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: var(--sp-2);
+}
+.valuation__badge p:last-child { margin-bottom: 0; }
+
+.valuation {
+  margin-top: var(--sp-4);
+  padding: var(--sp-5);
+  border: var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper);
+}
+.valuation__caption {
+  font-size: var(--fs-xs);
+  color: var(--ink-2);
+  margin-bottom: var(--sp-4);
+}
+.valuation__controls {
+  display: grid;
+  gap: var(--sp-4);
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  margin-bottom: var(--sp-4);
+}
+.valuation__field label {
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  margin-bottom: var(--sp-2);
+}
+.valuation__field input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+  min-height: 44px;
+}
+.valuation__field output {
+  display: block;
+  margin-top: var(--sp-1);
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+}
+.valuation__outputs {
+  display: grid;
+  gap: var(--sp-3);
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  padding: var(--sp-4);
+  background: var(--paper-2);
+  border-radius: var(--radius);
+  margin-bottom: var(--sp-4);
+}
+.valuation__stat-label {
+  display: block;
+  font-size: var(--fs-2xs);
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: var(--sp-1);
+}
+.valuation__outputs output {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+}
+.valuation__upside.is-pos { color: var(--pos); }
+.valuation__upside.is-neg { color: var(--neg); }
+.valuation__upside.is-undefined { color: var(--ink-3); }
+
+.valuation.is-pulse .valuation__outputs { background: color-mix(in srgb, var(--accent) 12%, var(--paper-2)); }
+
+/* ---------------------------------------------------------------- footer */
+.site-footer {
+  border-top: var(--rule);
+  padding-block: var(--sp-6);
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+}
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  justify-content: space-between;
+  align-items: center;
+}
+.site-footer a { color: var(--ink-2); }

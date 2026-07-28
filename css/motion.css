@@ -1,0 +1,135 @@
+/* ==========================================================================
+   motion.css — ALL @keyframes, reveal states, filter transition. Loaded LAST.
+   The prefers-reduced-motion block at the bottom of this file is what makes
+   every animation above it safe; it ships in the same file on purpose.
+   ========================================================================== */
+
+/* ---------------------------------------------------------- THE FAIL-OPEN RULE
+   Most important rule in the build. `.js` is only ever added by the inline
+   <head> script. If JS is disabled, `.js` is never added, this selector never
+   matches, and `.reveal` elements are simply never hidden — there is no code
+   path where content goes invisible because an IntersectionObserver failed
+   to fire. */
+html.js .reveal { opacity: 0; transform: translateY(16px); }
+html.js .reveal.is-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity var(--t-slow) var(--ease-out) calc(var(--i, 0) * 70ms),
+              transform var(--t-slow) var(--ease-out) calc(var(--i, 0) * 70ms);
+}
+
+/* h2 underline rule draws in step with its ancestor .reveal */
+.reveal h2::after {
+  transition: transform var(--t-rule) var(--ease-emph) calc(var(--i, 0) * 70ms + 120ms);
+}
+.reveal.is-in h2::after { transform: scaleX(1); }
+
+/* --------------------------------------------------------- masthead hairline */
+@keyframes draw-hairline {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+.masthead__hairline {
+  animation: draw-hairline var(--t-rule) var(--ease-emph) 120ms both;
+}
+
+/* ------------------------------------------------------------- cover stagger
+   CSS-only, no IntersectionObserver — the cover is above the fold at load,
+   so it always animates immediately regardless of scroll position. */
+@keyframes cover-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+html.js .cover [style*="--i"] {
+  opacity: 0;
+  animation: cover-in var(--t-slow) var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+
+/* ------------------------------------------------------------------ KPI tile
+   entrance shares the generic .reveal rules above (same IntersectionObserver
+   trigger as the counters); .kpi__num itself never has a CSS transition —
+   the count-up is driven frame-by-frame by app.js so it stays exact. */
+.kpi__num { font-variant-numeric: tabular-nums; }
+
+/* --------------------------------------------------------------- card hover
+   Keyboard (:focus-visible) gets the identical treatment as pointer hover —
+   see .ev-card:hover, .ev-card:focus-within and .kpi-tile__link in
+   components.css for the shared transition declarations. */
+.ev-card, .kpi-tile__link, .btn {
+  transition-duration: var(--t-fast);
+  transition-timing-function: var(--ease-out);
+}
+
+/* -------------------------------------------------------------- chip hover/check */
+.chip, input[type="radio"][name="tool"] + .chip {
+  transition-duration: var(--t-fast);
+  transition-timing-function: var(--ease-out);
+}
+
+/* --------------------------------------------------------- filter transition
+   display:none is required (not visibility/opacity) — it removes hidden
+   cards from the accessibility tree as well as layout, so screen readers
+   never announce a card the sighted user can't see. */
+.ev-card {
+  transition: opacity var(--t-base) var(--ease-out),
+              transform var(--t-base) var(--ease-out),
+              display var(--t-base) allow-discrete;
+}
+@starting-style {
+  .ev-card { opacity: 0; transform: translateY(6px); }
+}
+
+/* ------------------------------------------------------- valuation output pulse */
+@keyframes valuation-pulse {
+  from { background: color-mix(in srgb, var(--accent) 28%, var(--paper-2)); }
+  to   { background: var(--paper-2); }
+}
+.valuation.is-pulse .valuation__outputs {
+  animation: valuation-pulse 220ms var(--ease-out);
+}
+
+/* ------------------------------------------------------------- masthead condense */
+.masthead__inner {
+  transition: min-height 200ms var(--ease-out);
+}
+
+/* ---------------------------------------------------------- smooth anchor scroll
+   scroll-behavior + scroll-padding-top live in base.css (html selector);
+   listed here in the inventory for completeness only. */
+
+/* ----------------------------------------------------------- read-progress rule
+   Pure CSS scroll-driven animation, zero JS. No-ops (rule stays static) on
+   browsers without `animation-timeline: scroll()` support, e.g. Firefox. */
+.progress-rule {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 100%;
+  background: var(--accent);
+  transform-origin: left;
+  transform: scaleX(0);
+  z-index: 1000;
+  animation: progress-scale auto linear;
+  animation-timeline: scroll(root);
+}
+@keyframes progress-scale {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ========================================================================
+   prefers-reduced-motion contract — ONE block, bottom of file.
+   ======================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: .01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+  html.js .reveal { opacity: 1 !important; transform: none !important; }
+  .progress-rule { display: none; }
+}

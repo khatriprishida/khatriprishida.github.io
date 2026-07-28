@@ -1,0 +1,154 @@
+/* ==========================================================================
+   base.css — element defaults, typography, layout primitives, utilities.
+   ========================================================================== */
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--masthead-h);
+}
+
+body {
+  font-family: var(--font-ui);
+  font-size: var(--fs-base);
+  line-height: var(--lh-base);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: var(--lh-tight);
+  color: var(--ink);
+  text-wrap: balance;
+  hyphens: none;
+  margin: 0 0 var(--sp-3);
+}
+
+h2 { font-family: var(--font-display); }
+
+h1 { font-size: var(--fs-3xl); }
+h2 { font-size: var(--fs-xl); }
+h3 { font-size: var(--fs-lg); font-family: var(--font-display); }
+h4 { font-size: var(--fs-md); font-family: var(--font-ui); font-weight: 700; }
+
+p { margin: 0 0 var(--sp-4); text-wrap: pretty; hyphens: none; }
+
+a { color: inherit; text-decoration-color: var(--paper-3); text-underline-offset: .18em; }
+a:hover { text-decoration-color: currentColor; }
+
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.eyebrow {
+  font-family: var(--font-ui);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  color: var(--ink-3);
+  margin: 0 0 var(--sp-2);
+}
+
+/* ---- layout primitives ---- */
+.wrap {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--sp-5);
+}
+
+.prose {
+  max-width: var(--wrap-narrow);
+}
+
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--sp-5);
+}
+
+section {
+  padding-block: clamp(3rem, 8vw, 7rem);
+}
+
+/* ---- utilities ---- */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Fail-open pairing for content that should only ever appear once JS is
+   confirmed running. With JS disabled, html never gets the .js class, so
+   this rule never applies and .js-only content stays hidden — which is
+   correct, because it is content that requires JS to function (e.g. the
+   valuation widget). Nothing content-bearing-without-JS uses this class. */
+.js-only { display: none; }
+html.js .js-only { display: block; }
+
+.skip-link {
+  position: absolute;
+  top: -3rem;
+  left: var(--sp-3);
+  z-index: 1000;
+  background: var(--ink);
+  color: var(--paper);
+  padding: var(--sp-2) var(--sp-4);
+  border-radius: var(--radius);
+  transition: top var(--t-fast) var(--ease-out);
+}
+.skip-link:focus {
+  top: var(--sp-3);
+}
+
+.todo {
+  display: inline-block;
+  color: #92400E;
+  background: #FEF3C7;
+  border: 2px solid #D97706;
+  border-radius: 4px;
+  padding: .05em .5em;
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+/* ---- focus ---- */
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---- print ---- */
+@media print {
+  :root {
+    --paper: #FFFFFF;
+    --paper-2: #FFFFFF;
+    --paper-3: #CCCCCC;
+    --ink: #000000;
+    --ink-2: #222222;
+    --ink-3: #444444;
+    --accent: #0F5132;
+  }
+  .masthead, .masthead-sentinel, .theme-toggle, .filter, .filter__status,
+  .filter__clear, .progress-rule, .valuation, .kpi-tile__link::after,
+  .skip-link { display: none !important; }
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: .8em;
+    color: #444;
+  }
+  a[href^="#"]::after { content: ""; }
+  .ev-card, section { break-inside: avoid; }
+}

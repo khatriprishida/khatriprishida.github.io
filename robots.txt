@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://khatriprishida.github.io/sitemap.xml

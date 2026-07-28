@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<!--
+  POST-RENAME EDIT LIST — if this repo is ever renamed away from
+  khatriprishida.github.io, update the absolute URLs in:
+    - <link rel="canonical">
+    - <meta property="og:url">
+    - <meta property="og:image"> and <meta property="og:image:secure_url"> (if added)
+    - <meta name="twitter:image">
+    - JSON-LD "url" and "image" fields (bottom of <head>)
+    - sitemap.xml (<loc>)
+    - robots.txt (Sitemap: line)
+  Everything else on the site (all internal <a href>, <link>, <script src>) is
+  relative and needs no change.
+-->
+
+<title>Prishida Khatri — Financial Analyst | FP&amp;A, Business Intelligence, Valuation</title>
+<meta name="description" content="Prishida Khatri — Financial Analyst with an MBA in Financial Analysis (GPA 3.90). FP&amp;A, budgeting, forecasting, financial modeling, valuation and business intelligence, presented as an equity-research-style portfolio.">
+<meta name="author" content="Prishida Khatri">
+
+<meta name="theme-color" content="#FBFAF7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1113" media="(prefers-color-scheme: dark)">
+
+<link rel="canonical" href="https://khatriprishida.github.io/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="Prishida Khatri — PKHA Coverage">
+<meta property="og:title" content="Prishida Khatri — Financial Analyst | FP&amp;A, Business Intelligence, Valuation">
+<meta property="og:description" content="MBA in Financial Analysis (GPA 3.90). FP&amp;A, budgeting, forecasting, financial modeling, valuation, business intelligence and data analytics, presented as an equity-research-style portfolio.">
+<meta property="og:url" content="https://khatriprishida.github.io/">
+<meta property="og:image" content="https://khatriprishida.github.io/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="PKHA — Prishida Khatri, Financial Analyst · FP&amp;A · Business Intelligence">
+<meta property="og:locale" content="en_US">
+<meta property="profile:first_name" content="Prishida">
+<meta property="profile:last_name" content="Khatri">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Prishida Khatri — Financial Analyst | FP&amp;A, Business Intelligence, Valuation">
+<meta name="twitter:description" content="MBA in Financial Analysis (GPA 3.90). FP&amp;A, budgeting, forecasting, financial modeling, valuation, business intelligence and data analytics.">
+<meta name="twitter:image" content="https://khatriprishida.github.io/assets/og-image.png">
+<meta name="twitter:image:alt" content="PKHA — Prishida Khatri, Financial Analyst · FP&amp;A · Business Intelligence">
+
+<!-- Icons -->
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<!-- No-FOUC: mark JS available, restore saved theme, before any CSS paints.
+     pkhaJsFail() is wired as an onerror handler on both deferred <script>
+     tags below: it closes the one gap the in-script try/catch can't cover
+     — a script that fails to LOAD at all (404, network failure, deleted
+     file) never gets a chance to run its own catch block. Either failure
+     mode ends the same way: `.js` comes off <html> and the full no-JS
+     presentation (nothing hidden) takes over. -->
+<script>document.documentElement.classList.add('js');</script>
+<script>function pkhaJsFail(){document.documentElement.classList.remove('js');}</script>
+<script>try{var t=localStorage.getItem('pkha-theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/motion.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Prishida Khatri",
+  "givenName": "Prishida",
+  "familyName": "Khatri",
+  "jobTitle": "Financial Analyst",
+  "description": "Financial Analyst with an MBA in Financial Analysis (GPA 3.90). FP&A, budgeting, forecasting, financial modeling, valuation, business intelligence and data analytics.",
+  "email": "mailto:khatriprishida@gmail.com",
+  "url": "https://khatriprishida.github.io/",
+  "image": "https://khatriprishida.github.io/assets/og-image.png",
+  "sameAs": [
+    "https://www.linkedin.com/in/prishida-khatri-791a711b1/"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "West Haven",
+    "addressRegion": "CT",
+    "addressCountry": "US"
+  },
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "University of New Haven" },
+    { "@type": "CollegeOrUniversity", "name": "Islington College" }
+  ],
+  "hasCredential": [
+    { "@type": "EducationalOccupationalCredential", "credentialCategory": "degree", "name": "Master of Business Administration, Financial Analysis", "recognizedBy": { "@type": "CollegeOrUniversity", "name": "University of New Haven" } },
+    { "@type": "EducationalOccupationalCredential", "credentialCategory": "degree", "name": "Bachelor of Business Administration", "recognizedBy": { "@type": "CollegeOrUniversity", "name": "Islington College" } },
+    { "@type": "EducationalOccupationalCredential", "credentialCategory": "certificate", "name": "SQL Essential Training", "recognizedBy": { "@type": "Organization", "name": "LinkedIn Learning" } },
+    { "@type": "EducationalOccupationalCredential", "credentialCategory": "certificate", "name": "Learning Excel 2019", "recognizedBy": { "@type": "Organization", "name": "LinkedIn Learning" } },
+    { "@type": "EducationalOccupationalCredential", "credentialCategory": "certificate", "name": "R for Data Science: Analysis and Visualization", "recognizedBy": { "@type": "Organization", "name": "LinkedIn Learning" } },
+    { "@type": "EducationalOccupationalCredential", "credentialCategory": "certificate", "name": "Introduction to Social Media Marketing", "recognizedBy": { "@type": "Organization", "name": "Coursera" } }
+  ],
+  "knowsAbout": [
+    "FP&A", "Budgeting and Forecasting", "Financial Modeling", "Equity Valuation",
+    "Financial Statement Analysis", "Ratio Analysis", "Investment Analysis",
+    "Variance Analysis", "Business Intelligence", "KPI Reporting",
+    "Dashboard Development", "Data Analytics", "Statistical Analysis", "Excel",
+    "Power Pivot", "Power Query", "SQL", "Power BI", "DAX", "Data Modeling", "R",
+    "ggplot2", "dplyr", "SPSS", "Data Visualization"
+  ]
+}
+</script>
+</head>
+<body>
+
+<div class="progress-rule" aria-hidden="true"></div>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="masthead-sentinel" aria-hidden="true" data-masthead-sentinel></div>
+
+<header class="masthead" data-masthead>
+  <div class="wrap masthead__inner">
+    <a class="masthead__word mono" href="#top">PKHA<span class="sr-only"> — Prishida Khatri, Financial Analyst</span></a>
+    <span class="chip chip--rating" aria-hidden="true">BUY</span>
+    <nav class="masthead__nav" aria-label="Sections">
+      <a href="#metrics">Metrics</a>
+      <a href="#thesis">Thesis</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Capabilities</a>
+      <a href="#coverage">Coverage</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button type="button" class="theme-toggle js-only" id="theme-toggle" aria-pressed="false">
+      <span aria-hidden="true">◐</span><span class="sr-only">Toggle dark mode</span>
+    </button>
+  </div>
+  <div class="masthead__hairline" aria-hidden="true"></div>
+</header>
+
+<main id="main">
+
+  <!-- ============================================================= -->
+  <!-- 1. COVER -->
+  <!-- ============================================================= -->
+  <section id="top" class="cover" aria-labelledby="cover-heading">
+    <div class="wrap cover__grid">
+      <div class="cover__lead">
+        <p class="eyebrow" style="--i:0">Equity Research &middot; Initiating Coverage</p>
+        <h1 id="cover-heading" style="--i:1">Prishida Khatri</h1>
+        <p class="cover__ticker mono" style="--i:2">PKHA</p>
+        <dl class="rating" style="--i:3">
+          <div class="rating__row">
+            <dt>Ticker</dt><dd class="mono">PKHA</dd>
+          </div>
+          <div class="rating__row">
+            <dt>Rating</dt><dd>BUY &middot; Initiating Coverage</dd>
+          </div>
+          <div class="rating__row">
+            <dt>Coverage</dt><dd>Financial Analyst &middot; FP&amp;A Analyst &middot; Business Intelligence &middot; Corporate Finance</dd>
+          </div>
+          <div class="rating__row">
+            <dt>Analyst</dt><dd>Prishida Khatri, MBA &mdash; Financial Analysis</dd>
+          </div>
+          <div class="rating__row">
+            <dt>Location</dt><dd>West Haven, Connecticut</dd>
+          </div>
+        </dl>
+        <div class="cover__actions" style="--i:5">
+          <a class="btn btn--primary" href="assets/Resume-Prishida-Khatri.pdf">View r&eacute;sum&eacute; <span class="mono">(PDF, 73 KB)</span></a>
+          <a class="btn" href="mailto:khatriprishida@gmail.com">khatriprishida@gmail.com</a>
+          <a class="btn" href="https://www.linkedin.com/in/prishida-khatri-791a711b1/" target="_blank" rel="noopener">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a>
+        </div>
+      </div>
+      <div class="cover__byline" style="--i:4">
+        <div class="byline__plate" role="img" aria-label="Prishida Khatri">
+          <span class="byline__mono" aria-hidden="true">PK</span>
+        </div>
+        <p class="byline__caption">Prishida Khatri, MBA &mdash; Analyst of record.</p>
+        <!-- ===== TO ADD A REAL PHOTO: see CONTENT-GUIDE.md, "Swap in a headshot" ===== -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- 2. KEY METRICS -->
+  <!-- ============================================================= -->
+  <section id="metrics" class="metrics reveal" aria-labelledby="metrics-heading">
+    <div class="wrap">
+      <p class="eyebrow">Key Metrics</p>
+      <h2 id="metrics-heading">At a Glance</h2>
+      <ul class="kpi-grid grid-auto">
+        <li class="kpi-tile reveal" style="--i:0">
+          <a class="kpi-tile__link" href="#education">
+            <span class="kpi__num mono" data-count>3.90</span>
+            <span class="kpi__label">GPA (MBA)</span>
+          </a>
+        </li>
+        <li class="kpi-tile reveal" style="--i:1">
+          <a class="kpi-tile__link" href="#projects">
+            <span class="kpi__num mono" data-count>4</span>
+            <span class="kpi__label">Analytical Projects</span>
+          </a>
+        </li>
+        <li class="kpi-tile reveal" style="--i:2">
+          <a class="kpi-tile__link" href="#proj-portfolio">
+            <span class="kpi__num mono" data-count>11</span>
+            <span class="kpi__label">Securities Analyzed</span>
+          </a>
+        </li>
+        <li class="kpi-tile reveal" style="--i:3">
+          <a class="kpi-tile__link" href="#certifications">
+            <span class="kpi__num mono" data-count>4</span>
+            <span class="kpi__label">Certifications</span>
+          </a>
+        </li>
+        <li class="kpi-tile reveal" style="--i:4">
+          <a class="kpi-tile__link" href="#proj-valuation">
+            <span class="kpi__num mono" data-count>25%</span>
+            <span class="kpi__label">Modeled Upside (AMZN)</span>
+          </a>
+        </li>
+        <li class="kpi-tile reveal" style="--i:5">
+          <a class="kpi-tile__link" href="#job-strii">
+            <span class="kpi__num mono" data-count>50%</span>
+            <span class="kpi__label">Sales Growth Delivered</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- 3. INVESTMENT THESIS -->
+  <!-- ============================================================= -->
+  <section id="thesis" class="thesis reveal" aria-labelledby="thesis-heading">
+    <div class="wrap prose">
+      <p class="eyebrow">Investment Thesis</p>
+      <h2 id="thesis-heading">Summary</h2>
+      <p class="thesis__lead">Financial Analyst with an MBA in Financial Analysis (GPA 3.90) and a strong foundation in FP&amp;A, budgeting, forecasting, financial modeling, valuation, business intelligence, and data analytics. Proficient in Advanced Excel (VLOOKUP, Power Pivot, Power Query, pivot tables), SQL, Power BI, and R to transform financial and operational data into actionable insights. Experienced in KPI reporting, dashboard development, financial statement analysis, investment analysis, variance analysis, and cross-functional collaboration.</p>
+
+      <div class="thesis__pillars grid-auto">
+        <div class="pillar">
+          <h3>Financial Planning &amp; Analysis</h3>
+          <p>MBA-level grounding in FP&amp;A, budgeting, forecasting, financial modeling and valuation &mdash; applied to real company analysis, not theory alone.</p>
+        </div>
+        <div class="pillar">
+          <h3>Business Intelligence &amp; Data</h3>
+          <p>Advanced Excel, SQL, Power BI and R used to transform financial and operational data into dashboards, KPI reporting and actionable insight.</p>
+        </div>
+        <div class="pillar">
+          <h3>Analysis to Decision</h3>
+          <p>Financial statement analysis, investment analysis, variance analysis and cross-functional collaboration that connect the model to the decision.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- 4. EDUCATION -->
+  <!-- ===== ADD/EDIT A DEGREE HERE: copy one <article class="ev-card"> block below ===== -->
+  <!-- ============================================================= -->
+  <section id="education" class="education reveal" aria-labelledby="education-heading">
+    <div class="wrap">
+      <p class="eyebrow">Education</p>
+      <h2 id="education-heading">Education</h2>
+      <div class="ev-list grid-auto">
+
+        <article class="ev-card">
+          <p class="ev-card__kicker">MBA, Financial Analysis</p>
+          <h3>University of New Haven</h3>
+          <p>Master of Business Administration, Financial Analysis &mdash; GPA <span class="mono">3.90</span></p>
+          <p class="ev-card__meta"><span class="todo">TODO: add dates</span></p>
+        </article>
+
+        <article class="ev-card">
+          <p class="ev-card__kicker">Undergraduate</p>
+          <h3>Islington College</h3>
+          <p>Bachelor of Business Administration &mdash; First Class Honors</p>
+          <p class="ev-card__meta"><span class="todo">TODO: add dates</span></p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- 5. CAPABILITIES -->
+  <!-- ===== ADD/EDIT A SKILL HERE: add or remove an <li> inside the matching group ===== -->
+  <!-- ============================================================= -->
+  <section id="skills" class="skills reveal" aria-labelledby="skills-heading">
+    <div class="wrap">
+      <p class="eyebrow">Capabilities</p>
+      <h2 id="skills-heading">Capabilities</h2>
+
+      <div class="skills__groups grid-auto">
+        <div class="skill-group">
+          <h3>Technical</h3>
+          <ul class="chip-list">
+            <li class="chip">Microsoft Office</li>
+            <li class="chip">Microsoft Excel (Pivot Table, Power Pivot, VLOOKUP, Data Analysis ToolPak)</li>
+            <li class="chip">SQL</li>
+            <li class="chip">Power BI (DAX and Data Modeling)</li>
+            <li class="chip">Data Visualization</li>
+            <li class="chip">R (ggplot2, dplyr)</li>
+            <li class="chip">SPSS</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Data &amp; Financial Analysis</h3>
+          <ul class="chip-list">
+            <li class="chip">Budgeting and Forecasting</li>
+            <li class="chip">Financial Statement Analysis</li>
+            <li class="chip">Investment Analysis</li>
+            <li class="chip">Financial Planning and Analysis</li>
+            <li class="chip">Ratio Analysis</li>
+            <li class="chip">Equity Valuation</li>
+            <li class="chip">Statistical Analysis</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Business</h3>
+          <ul class="chip-list">
+            <li class="chip">Documentation and Reporting</li>
+            <li class="chip">Multitasking Abilities</li>
+            <li class="chip">Data Entry and Management</li>
+            <li class="chip">Cross-functional Collaboration</li>
+            <li class="chip">Operations Management</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- 6. COVERAGE (evidence: projects, experience, certifications) -->
+  <!-- ============================================================= -->
+  <section id="coverage" class="coverage reveal" aria-labelledby="coverage-heading">
+    <div class="wrap">
+      <p class="eyebrow">Coverage</p>
+      <h2 id="coverage-heading">Coverage</h2>
+      <p class="coverage__intro">Analytical projects, professional experience and certifications &mdash; the underlying evidence for the rating above. Filter by tool to see where each is used; every filter starts on &ldquo;All.&rdquo;</p>
+
+      <!-- ===== FILTER — do not remove; adding a new tool requires editing js/app.js AND the 4 :has() rule pairs in css/components.css. See README.md ===== -->
+      <fieldset class="filter">
+        <legend class="sr-only">Filter coverage by tool</legend>
+        <span class="filter__label" aria-hidden="true">Filter by tool</span>
+        <div class="filter__chips">
+          <span class="filter__option">
+            <input class="sr-only" type="radio" name="tool" id="tool-all" checked>
+            <label class="chip" for="tool-all">All</label>
+          </span>
+          <span class="filter__option">
+            <input class="sr-only" type="radio" name="tool" id="tool-powerbi">
+            <label class="chip" for="tool-powerbi">Power BI<span class="chip__n js-only" data-count-for="powerbi"></span></label>
+          </span>
+          <span class="filter__option">
+            <input class="sr-only" type="radio" name="tool" id="tool-sql">
+            <label class="chip" for="tool-sql">SQL<span class="chip__n js-only" data-count-for="sql"></span></label>
+          </span>
+          <span class="filter__option">
+            <input class="sr-only" type="radio" name="tool" id="tool-r">
+            <label class="chip" for="tool-r">R<span class="chip__n js-only" data-count-for="r"></span></label>
+          </span>
+          <span class="filter__option">
+            <input class="sr-only" type="radio" name="tool" id="tool-excel">
+            <label class="chip" for="tool-excel">Excel<span class="chip__n js-only" data-count-for="excel"></span></label>
+          </span>
+        </div>
+      </fieldset>
+      <p class="filter__status" role="status" aria-live="polite" id="filter-status">Showing all coverage items.</p>
+      <button type="button" class="filter__clear" id="filter-clear" hidden>Clear filter</button>
+
+      <!-- ===== 6a. ANALYTICAL PROJECTS — ADD A NEW PROJECT HERE: copy one <article class="ev-card"> block ===== -->
+      <div class="ev-group" id="projects" aria-labelledby="projects-heading">
+        <h3 id="projects-heading">Analytical Projects</h3>
+        <div class="ev-grid grid-auto">
+
+          <article class="ev-card" id="proj-valuation" data-tools="">
+            <p class="ev-card__kicker">Academic Project</p>
+            <h4>Financial Statement Analysis and Company Valuation</h4>
+            <p>Comprehensive financial analysis of <strong>Lockheed Martin</strong> using liquidity and profitability ratios and growth metrics (EPS, ROE), with P&amp;L analysis across the income statement, balance sheet and cash flow statement. Evaluated performance and investment attractiveness through ratio analysis and historical trend assessment. Analyzed <strong>Amazon Inc.</strong> across key business segments, deriving an implied growth rate of <span class="mono">9.84%</span> and issuing a recommendation based on <span class="mono">25%</span> upside from a prior price of <span class="mono">$239.89</span>.</p>
+
+            <!-- ===== VALUATION WIDGET — independently deletable, see README.md ===== -->
+            <div class="valuation__badge">
+              <p class="valuation__badge-title">Illustrative model &mdash; not investment advice</p>
+              <p>Simplified Gordon Growth model built to demonstrate valuation mechanics. FCF&#8320; of $5.90/share is a normalized illustrative figure, not an Amazon financial disclosure. Prior price of $239.89 is the reference price used in the original coursework.</p>
+            </div>
+
+            <div class="valuation js-only" id="valuation">
+              <p class="valuation__caption">Single-stage Gordon Growth: <span class="mono">P&#8320; = FCF&#8320; &times; (1 + g) &divide; (r &minus; g)</span>. Note the sensitivity: at a 2.2pp spread, &plusmn;50bps on either input moves value by roughly a third.</p>
+
+              <div class="valuation__controls">
+                <div class="valuation__field">
+                  <label for="v-g">Implied growth rate (g)</label>
+                  <input type="range" id="v-g" name="v-g" min="4" max="11" step="0.01" value="9.84" list="v-g-ticks">
+                  <datalist id="v-g-ticks"><option value="9.84"></option></datalist>
+                  <output for="v-g" id="v-g-out" class="mono" aria-live="off">9.84%</output>
+                </div>
+                <div class="valuation__field">
+                  <label for="v-r">Cost of equity (r)</label>
+                  <input type="range" id="v-r" name="v-r" min="8" max="16" step="0.01" value="12.00" list="v-r-ticks">
+                  <datalist id="v-r-ticks"><option value="12.00"></option></datalist>
+                  <output for="v-r" id="v-r-out" class="mono" aria-live="off">12.00%</output>
+                </div>
+              </div>
+
+              <div class="valuation__outputs">
+                <div class="valuation__stat">
+                  <span class="valuation__stat-label">Implied value</span>
+                  <output for="v-g v-r" id="v-price" class="mono" aria-live="off">$299.87</output>
+                </div>
+                <div class="valuation__stat">
+                  <span class="valuation__stat-label">Vs. prior price ($239.89)</span>
+                  <output for="v-g v-r" id="v-upside" class="mono valuation__upside is-pos" aria-live="off">+25.0% upside</output>
+                </div>
+              </div>
+
+              <p class="valuation__status sr-only" role="status" aria-live="polite" id="v-status"></p>
+              <button type="button" class="btn btn--ghost" id="v-reset">Reset to base case</button>
+            </div>
+          </article>
+
+          <article class="ev-card" id="proj-portfolio" data-tools="excel powerbi">
+            <p class="ev-card__kicker">Academic Project</p>
+            <h4>Investment Portfolio Analysis</h4>
+            <p>Constructed Conservative, Moderate and Aggressive portfolios evaluated across <span class="mono">11</span> equity and fixed-income securities using historical return data, achieving portfolio projections of <span class="mono">4.45%</span>, <span class="mono">8.72%</span> and <span class="mono">28%</span> respectively. Applied Sharpe Ratio, Beta and CAGR to evaluate risk and return, with recommendations aligned to investor risk profiles.</p>
+            <p class="ev-card__meta">Tools: Advanced Excel (Power Pivot, Pivot Table, VLOOKUP), Power BI (dashboards, DAX).</p>
+          </article>
+
+          <article class="ev-card" id="proj-dataviz" data-tools="powerbi r excel">
+            <p class="ev-card__kicker">Academic Project</p>
+            <h4>Data Analysis and Data Visualization</h4>
+            <p>Designed and built interactive Power BI dashboards using DAX, Power Pivot and Power Query over large datasets. Analyzed business datasets to identify trends, relationships and performance drivers. Transformed data into insights through KPI tracking and performance reporting. Performed regression analysis, hypothesis testing and chi-square evaluations in R and Excel.</p>
+          </article>
+
+          <article class="ev-card" id="proj-budgeting" data-tools="">
+            <p class="ev-card__kicker">Academic Project</p>
+            <h4>Budgeting and Financial Planning</h4>
+            <p>Developed a comprehensive master budget applying FP&amp;A principles, including operating and cash budgets and projected financial statements. Evaluated financial performance and supported planning and control through forecasting and variance analysis.</p>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- ===== 6b. PROFESSIONAL EXPERIENCE — ADD A NEW JOB HERE: copy one <article class="ev-card"> block ===== -->
+      <div class="ev-group" id="experience" aria-labelledby="experience-heading">
+        <h3 id="experience-heading">Professional Experience</h3>
+        <div class="ev-grid grid-auto">
+
+          <article class="ev-card" id="job-strii" data-tools="">
+            <p class="ev-card__kicker">Professional Experience</p>
+            <h4>Operations &amp; Management</h4>
+            <p class="ev-card__meta">Strii Nepal, Kathmandu, Nepal &middot; <span class="mono">August 2022 &ndash; March 2023</span></p>
+            <ul>
+              <li>Managed sales, transaction, revenue, and operational datasets supporting business reporting and decision-making</li>
+              <li>Tracked budgets, inventory, and operating expenses while improving operational efficiency</li>
+              <li>Analyzed customer and sales metrics that contributed to a <span class="mono">50%</span> increase in sales, followers, and customer satisfaction</li>
+              <li>Collaborated across teams to optimize digital engagement and customer communications</li>
+            </ul>
+          </article>
+
+          <article class="ev-card" id="job-gyapu" data-tools="">
+            <p class="ev-card__kicker">Professional Experience</p>
+            <h4>Customer Service Representative Intern</h4>
+            <p class="ev-card__meta">Gyapu Nepal, Lalitpur, Nepal &middot; <span class="mono">May 2022 &ndash; August 2022</span></p>
+            <ul>
+              <li>Resolved customer inquiries across phone, email, and chat while maintaining accurate operational records</li>
+              <li>Supported reporting and cross-functional coordination to improve operational efficiency</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- ===== 6c. CERTIFICATIONS — ADD A NEW CERT HERE: copy one <article class="ev-card"> block ===== -->
+      <div class="ev-group" id="certifications" aria-labelledby="certifications-heading">
+        <h3 id="certifications-heading">Certifications</h3>
+        <div class="ev-grid grid-auto">
+
+          <article class="ev-card" data-tools="sql">
+            <p class="ev-card__kicker">Certification</p>
+            <h4>SQL Essential Training</h4>
+            <p class="ev-card__meta">LinkedIn Learning</p>
+          </article>
+
+          <article class="ev-card" data-tools="excel">
+            <p class="ev-card__kicker">Certification</p>
+            <h4>Learning Excel 2019</h4>
+            <p class="ev-card__meta">LinkedIn Learning</p>
+          </article>
+
+          <article class="ev-card" data-tools="r">
+            <p class="ev-card__kicker">Certification</p>
+            <h4>R for Data Science: Analysis and Visualization</h4>
+            <p class="ev-card__meta">LinkedIn Learning</p>
+          </article>
+
+          <article class="ev-card" data-tools="">
+            <p class="ev-card__kicker">Certification</p>
+            <h4>Introduction to Social Media Marketing</h4>
+            <p class="ev-card__meta">Coursera</p>
+          </article>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- 7. DISCLOSURES & CONTACT -->
+  <!-- ============================================================= -->
+  <section id="contact" class="contact reveal" aria-labelledby="contact-heading">
+    <div class="wrap prose">
+      <p class="eyebrow">Disclosures &amp; Contact</p>
+      <h2 id="contact-heading">Disclosures &amp; Contact</h2>
+      <p>This report is a self-published portfolio piece prepared by Prishida Khatri to summarize her own analytical work and professional background for prospective employers. It is not investment research, and nothing on this page is investment advice. Figures inside the valuation widget above are an illustrative academic exercise and are labeled as such where they appear. All other figures are drawn directly from Prishida Khatri&rsquo;s r&eacute;sum&eacute; and coursework.</p>
+      <p>The analyst owns 100% of the subject security.</p>
+
+      <dl class="contact__list">
+        <div class="rating__row">
+          <dt>Email</dt>
+          <dd><a href="mailto:khatriprishida@gmail.com">khatriprishida@gmail.com</a></dd>
+        </div>
+        <div class="rating__row">
+          <dt>LinkedIn</dt>
+          <dd><a href="https://www.linkedin.com/in/prishida-khatri-791a711b1/" target="_blank" rel="noopener">linkedin.com/in/prishida-khatri<span class="sr-only"> (opens in a new tab)</span></a></dd>
+        </div>
+        <div class="rating__row">
+          <dt>Location</dt>
+          <dd>West Haven, Connecticut</dd>
+        </div>
+        <div class="rating__row">
+          <dt>R&eacute;sum&eacute;</dt>
+          <dd><a href="assets/Resume-Prishida-Khatri.pdf">Download r&eacute;sum&eacute; <span class="mono">(PDF, 73 KB)</span></a></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <p class="mono">PKHA</p>
+    <p>&copy; 2026 Prishida Khatri. Self-published analyst-style portfolio.</p>
+    <a href="#top">Back to top</a>
+  </div>
+</footer>
+
+<script src="js/valuation.js" defer onerror="pkhaJsFail()"></script>
+<script src="js/app.js" defer onerror="pkhaJsFail()"></script>
+</body>
+</html>
