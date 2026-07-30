@@ -10,18 +10,21 @@
 :root {
 
   /* ---------------------------------------------------------------------
-     PHOTO SLOT — THE ONE LINE TO CHANGE WHEN THE PHOTOGRAPH ARRIVES.
+     PHOTO SLOT — the hero photograph.
 
-       1. Save the photo as  assets/portrait.jpg  (portrait shape,
-          roughly 4 wide x 5 tall, at least 800 x 1000 pixels).
-       2. Change the line marked >>> below from  none  to:
-             url("../assets/portrait.jpg")
-       3. That is the whole job. Nothing else needs editing.
+     The photograph now lives at assets/portrait.jpg, cut to exactly 4:5 by
+     tools/make-portrait.swift, which is the aspect .plate__frame is built
+     around. To replace it, drop a new original in and re-run:
 
-     While it is `none`, the hero shows a finished dark plate instead.
+         xcrun swift tools/make-portrait.swift assets/portrait-source.png
+
+     Set the line below back to `none` and the hero falls back to the dark
+     engraved plate — which is also what happens on its own if the JPEG is
+     ever missing, so the page never breaks.
      --------------------------------------------------------------------- */
-  --portrait: none;                            /* >>> THE ONE LINE <<< */
-  --portrait-focus: 50% 28%;                   /* optional: nudge the crop */
+  --portrait: url("../assets/portrait.jpg");   /* >>> THE ONE LINE <<< */
+  --portrait-focus: 50% 50%;                   /* pre-cropped to 4:5, so
+                                                  this has nothing to do */
 
   /* ---------------------------------------------------------------- paper */
   --paper:        #FAF9F7;   /* page                                         */

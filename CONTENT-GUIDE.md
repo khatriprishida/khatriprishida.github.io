@@ -27,10 +27,18 @@ That is why the file says `FP&amp;A` rather than `FP&A`.
 
 ---
 
-## Adding your photograph
+## Changing your photograph
 
-See **section 1 of `README.md`**. It is one line in `css/tokens.css`, and the
-line is labelled `>>> THE ONE LINE <<<` so it is hard to miss.
+The photo in the hero is `assets/portrait.jpg`. To swap it, save the new
+original as `assets/portrait-source.png` and run this from the repository
+root:
+
+```
+xcrun swift tools/make-portrait.swift assets/portrait-source.png
+```
+
+It crops and resizes for you, so you do not have to get the shape right
+yourself. See **section 1 of `README.md`** if you want to adjust the framing.
 
 ---
 

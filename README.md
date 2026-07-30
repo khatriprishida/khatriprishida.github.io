@@ -19,46 +19,52 @@ then open <http://localhost:8799/>. Any static file server does the same job.
 
 ---
 
-## 1. Adding the photograph — one line
+## 1. The photograph
 
-The hero is built around a portrait-shaped frame. Until a photograph exists,
-that frame shows a finished dark plate: an engraved border, a drawing taken
-from the Amazon valuation model, and a nameplate. It is meant to look
-deliberate on its own, and it does.
+The hero is built around a portrait-shaped frame, filled by
+`assets/portrait.jpg`.
 
-**To put the real photograph in:**
+**To replace it with a different photo:**
 
-1. Save the photo as `assets/portrait.jpg`.
-   Portrait shape, roughly **4 wide × 5 tall**, at least **800 × 1000 px**.
-2. Open `css/tokens.css`. Near the top, find the line marked
-   `>>> THE ONE LINE <<<`:
+1. Put the original anywhere — `assets/portrait-source.png` is the usual
+   spot. It is deliberately **not** committed (see `.gitignore`); only the
+   cropped JPEG ships.
+2. From the repository root, run:
 
-   ```css
-   --portrait: none;                            /* >>> THE ONE LINE <<< */
+   ```
+   xcrun swift tools/make-portrait.swift assets/portrait-source.png
    ```
 
-   change it to:
+   That cuts the original to exactly **4:5**, resizes it to 800 × 1000 and
+   writes `assets/portrait.jpg`. Nothing else needs editing.
 
-   ```css
-   --portrait: url("../assets/portrait.jpg");   /* >>> THE ONE LINE <<< */
-   ```
+3. If the framing is wrong, change the three fractions at the top of
+   `tools/make-portrait.swift` — `cropLeft`, `cropTop`, `cropWidth` — and run
+   it again. They are fractions of the original, not pixels, so they work at
+   any resolution. The height is always derived at 5/4 of the width, so the
+   output cannot come out at the wrong aspect ratio.
 
-3. Save. Done. The photograph now fills the frame edge to edge and covers
-   the drawing and the nameplate underneath it.
+Because the JPEG is already 4:5 — the same aspect as the frame — the browser
+does no cropping of its own, and `--portrait-focus` in `css/tokens.css` has
+nothing to do. It only matters if you hand-drop a differently shaped file in.
 
-Two optional extras:
-
-* If the face sits too high or too low in the crop, change
-  `--portrait-focus: 50% 28%;` on the next line. The first number is
-  left↔right, the second is top↕bottom. `50% 20%` moves the crop up.
-* Once the photo is in, the drawing behind it is dead weight. You can delete
-  the `<svg class="plate__art"> … </svg>` block in `index.html` if you like.
-  Nothing else references it.
+**The fallback.** Set `--portrait` back to `none` in `css/tokens.css` (the
+line is marked `>>> THE ONE LINE <<<`) and the frame returns to a finished
+dark plate: an engraved border, a drawing taken from the Amazon valuation
+model, and a nameplate. That is also what appears on its own if the JPEG ever
+goes missing, so the hero cannot break — which is why the
+`<svg class="plate__art">` block in `index.html` is still there and should
+stay.
 
 The mechanism: `.plate__frame::after` in `css/components.css` paints
 `var(--portrait)` as a full-bleed background layer on top of everything else
 in the frame. When the value is `none`, that layer paints nothing and the
 plate below shows through. No JavaScript is involved.
+
+Accessibility note: `.plate__frame` carries `role="img"` and an `aria-label`
+naming the photograph. `role="img"` makes it a leaf in the accessibility
+tree, so the drawing and nameplate underneath — both now covered — are
+correctly no longer announced.
 
 ---
 

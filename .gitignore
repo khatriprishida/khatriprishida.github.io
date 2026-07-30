@@ -1,0 +1,6 @@
+# The original, uncropped headshot. Only the cropped, resized
+# assets/portrait.jpg ships — see README.md section 1.
+assets/portrait-source.*
+
+# macOS
+.DS_Store
