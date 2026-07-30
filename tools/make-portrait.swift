@@ -5,7 +5,7 @@
 // photo slot in css/tokens.css points at.
 //
 //   Run from the repository root:
-//     xcrun swift tools/make-portrait.swift assets/portrait-source.png
+//     xcrun swift tools/make-portrait.swift assets/portrait-source.jpg
 //
 // Like tools/make-images.swift, this is NOT part of building the site. The
 // site is plain static files with no build step. This exists only so the
@@ -30,9 +30,9 @@ import AppKit
 // the aspect ratio .plate__frame in css/components.css is built around. That
 // means the photograph fills the frame with no further cropping by the
 // browser, and --portrait-focus in css/tokens.css has nothing left to do.
-let cropLeft  = 0.198   // left edge, measured from the left of the source
-let cropTop   = 0.118   // top edge, measured from the top of the source
-let cropWidth = 0.654   // width; height follows at 5/4 of it
+let cropLeft  = 0.1911  // left edge, measured from the left of the source
+let cropTop   = 0.1553  // top edge, measured from the top of the source
+let cropWidth = 0.6421  // width; height follows at 5/4 of it
 
 // --- output ----------------------------------------------------------------
 // The plate is roughly 380–440 px wide on screen, so 800 px is comfortably
@@ -43,7 +43,7 @@ let jpegQuality   = 0.92
 
 // --- read ------------------------------------------------------------------
 let args    = CommandLine.arguments
-let srcPath = args.count > 1 ? args[1] : "assets/portrait-source.png"
+let srcPath = args.count > 1 ? args[1] : "assets/portrait-source.jpg"
 let outPath = args.count > 2 ? args[2] : "assets/portrait.jpg"
 
 func die(_ message: String) -> Never {

@@ -26,13 +26,13 @@ The hero is built around a portrait-shaped frame, filled by
 
 **To replace it with a different photo:**
 
-1. Put the original anywhere — `assets/portrait-source.png` is the usual
+1. Put the original anywhere — `assets/portrait-source.jpg` is the usual
    spot. It is deliberately **not** committed (see `.gitignore`); only the
    cropped JPEG ships.
 2. From the repository root, run:
 
    ```
-   xcrun swift tools/make-portrait.swift assets/portrait-source.png
+   xcrun swift tools/make-portrait.swift assets/portrait-source.jpg
    ```
 
    That cuts the original to exactly **4:5**, resizes it to 800 × 1000 and
@@ -114,10 +114,12 @@ the pattern already used by the job dates in the Experience section:
 | `css/print.css` | `media="print"` only — the one-column CV |
 | `js/app.js` | `defer`. Reveal-on-scroll, chart draw-in, number counters, sticky masthead, nav highlighting. Enhancement only. |
 | `assets/Resume-Prishida-Khatri.pdf` | The CV. **Do not rename** — several links point at this exact filename. |
+| `assets/portrait.jpg` | The hero photograph, 800×1000 (4:5). Generated — see section 1. |
 | `assets/og-image.png` | 1200×630 social preview |
 | `assets/apple-touch-icon.png` | 180×180, opaque (touch icons must have no alpha channel) |
 | `assets/favicon.svg` | Ink-blue plate with the valuation curve and initials |
 | `tools/make-images.swift` | Regenerates the two PNGs above. Not part of the site. |
+| `tools/make-portrait.swift` | Crops an original headshot to `assets/portrait.jpg`. Not part of the site. |
 | `robots.txt`, `sitemap.xml`, `.nojekyll` | Standard hosting files |
 | `CONTENT-GUIDE.md` | Plain-English editing manual |
 
