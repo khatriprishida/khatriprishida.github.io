@@ -259,27 +259,22 @@
       <!-- ==================================================================
            THE PORTRAIT PLATE
 
-           The photograph (assets/portrait.jpg, painted by
-           .plate__frame::after) fills this frame edge to edge and covers
-           everything inside it.
-
-           Underneath it, and still deliberately here, is the fallback: an
+           There is no photograph yet, so this is a finished plate: an
            engraved dark frame carrying a drawing taken from the Amazon
-           valuation model, with a nameplate along the bottom. It shows if
-           --portrait is set back to `none` in css/tokens.css, and it shows
-           on its own if the JPEG ever goes missing — so the hero cannot
-           end up empty. Do not delete it.
+           valuation model, with a nameplate along the bottom.
 
-           role="img" on the frame makes it a leaf in the accessibility
-           tree. That gives the photograph a name and, at the same time,
-           stops screen readers announcing the drawing and the nameplate
-           now that both are covered up. See README.md section 1.
+           TO ADD THE PHOTOGRAPH: save it as assets/portrait.jpg and change
+           the single line marked ">>> THE ONE LINE <<<" near the top of
+           css/tokens.css. The photograph then fills this frame edge to
+           edge and covers the drawing and the nameplate. Nothing here
+           needs to be touched. (Optional tidy-up afterwards: delete the
+           <svg class="plate__art"> block below.)
            ================================================================== -->
       <div class="plate plate-in">
-        <div class="plate__frame" role="img"
-             aria-label="Prishida Khatri, photographed head and shoulders.">
+        <div class="plate__frame">
 
-          <svg class="plate__art" viewBox="0 0 400 500" aria-hidden="true">
+          <svg class="plate__art" viewBox="0 0 400 500" role="img"
+               aria-label="Decorative drawing taken from the Amazon valuation model: implied value per share rises steeply as the growth-rate assumption increases, marked at the 9.84 percent base case. The full chart, with figures, appears in Selected analysis below.">
             <g class="p-grid" fill="none">
               <line x1="0" y1="60"  x2="400" y2="60"/>
               <line x1="0" y1="120" x2="400" y2="120"/>

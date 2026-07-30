@@ -19,52 +19,46 @@ then open <http://localhost:8799/>. Any static file server does the same job.
 
 ---
 
-## 1. The photograph
+## 1. Adding the photograph — one line
 
-The hero is built around a portrait-shaped frame, filled by
-`assets/portrait.jpg`.
+The hero is built around a portrait-shaped frame. Until a photograph exists,
+that frame shows a finished dark plate: an engraved border, a drawing taken
+from the Amazon valuation model, and a nameplate. It is meant to look
+deliberate on its own, and it does.
 
-**To replace it with a different photo:**
+**To put the real photograph in:**
 
-1. Put the original anywhere — `assets/portrait-source.jpg` is the usual
-   spot. It is deliberately **not** committed (see `.gitignore`); only the
-   cropped JPEG ships.
-2. From the repository root, run:
+1. Save the photo as `assets/portrait.jpg`.
+   Portrait shape, roughly **4 wide × 5 tall**, at least **800 × 1000 px**.
+2. Open `css/tokens.css`. Near the top, find the line marked
+   `>>> THE ONE LINE <<<`:
 
+   ```css
+   --portrait: none;                            /* >>> THE ONE LINE <<< */
    ```
-   xcrun swift tools/make-portrait.swift assets/portrait-source.jpg
+
+   change it to:
+
+   ```css
+   --portrait: url("../assets/portrait.jpg");   /* >>> THE ONE LINE <<< */
    ```
 
-   That cuts the original to exactly **4:5**, resizes it to 800 × 1000 and
-   writes `assets/portrait.jpg`. Nothing else needs editing.
+3. Save. Done. The photograph now fills the frame edge to edge and covers
+   the drawing and the nameplate underneath it.
 
-3. If the framing is wrong, change the three fractions at the top of
-   `tools/make-portrait.swift` — `cropLeft`, `cropTop`, `cropWidth` — and run
-   it again. They are fractions of the original, not pixels, so they work at
-   any resolution. The height is always derived at 5/4 of the width, so the
-   output cannot come out at the wrong aspect ratio.
+Two optional extras:
 
-Because the JPEG is already 4:5 — the same aspect as the frame — the browser
-does no cropping of its own, and `--portrait-focus` in `css/tokens.css` has
-nothing to do. It only matters if you hand-drop a differently shaped file in.
-
-**The fallback.** Set `--portrait` back to `none` in `css/tokens.css` (the
-line is marked `>>> THE ONE LINE <<<`) and the frame returns to a finished
-dark plate: an engraved border, a drawing taken from the Amazon valuation
-model, and a nameplate. That is also what appears on its own if the JPEG ever
-goes missing, so the hero cannot break — which is why the
-`<svg class="plate__art">` block in `index.html` is still there and should
-stay.
+* If the face sits too high or too low in the crop, change
+  `--portrait-focus: 50% 28%;` on the next line. The first number is
+  left↔right, the second is top↕bottom. `50% 20%` moves the crop up.
+* Once the photo is in, the drawing behind it is dead weight. You can delete
+  the `<svg class="plate__art"> … </svg>` block in `index.html` if you like.
+  Nothing else references it.
 
 The mechanism: `.plate__frame::after` in `css/components.css` paints
 `var(--portrait)` as a full-bleed background layer on top of everything else
 in the frame. When the value is `none`, that layer paints nothing and the
 plate below shows through. No JavaScript is involved.
-
-Accessibility note: `.plate__frame` carries `role="img"` and an `aria-label`
-naming the photograph. `role="img"` makes it a leaf in the accessibility
-tree, so the drawing and nameplate underneath — both now covered — are
-correctly no longer announced.
 
 ---
 
@@ -114,12 +108,10 @@ the pattern already used by the job dates in the Experience section:
 | `css/print.css` | `media="print"` only — the one-column CV |
 | `js/app.js` | `defer`. Reveal-on-scroll, chart draw-in, number counters, sticky masthead, nav highlighting. Enhancement only. |
 | `assets/Resume-Prishida-Khatri.pdf` | The CV. **Do not rename** — several links point at this exact filename. |
-| `assets/portrait.jpg` | The hero photograph, 800×1000 (4:5). Generated — see section 1. |
 | `assets/og-image.png` | 1200×630 social preview |
 | `assets/apple-touch-icon.png` | 180×180, opaque (touch icons must have no alpha channel) |
 | `assets/favicon.svg` | Ink-blue plate with the valuation curve and initials |
 | `tools/make-images.swift` | Regenerates the two PNGs above. Not part of the site. |
-| `tools/make-portrait.swift` | Crops an original headshot to `assets/portrait.jpg`. Not part of the site. |
 | `robots.txt`, `sitemap.xml`, `.nojekyll` | Standard hosting files |
 | `CONTENT-GUIDE.md` | Plain-English editing manual |
 
