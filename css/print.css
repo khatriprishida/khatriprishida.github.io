@@ -1,34 +1,47 @@
 /* ==========================================================================
    print.css — loaded with media="print".
 
-   Target: a clean, one-column, black-on-white CV of about three pages.
-   Charts, the portrait plate and every piece of decoration come off. The
-   data tables stay, because those are the numbers.
+   Target: a clean, one-column, black-on-white CV. Navigation, buttons, the
+   charts and decoration come off; the numbers stay (the valuation table is
+   kept because it IS the numbers). Colour themes are ignored: paper is
+   always white.
    ========================================================================== */
 
-@page { margin: 14mm 14mm; }
+@page { margin: 14mm 15mm; }
+
+:root {
+  --bg: #FFFFFF; --surface: #FFFFFF; --sunk: #FFFFFF;
+  --text: #000000; --text-2: #111111; --text-3: #444444;
+  --rule: #CCCCCC; --rule-2: #BBBBBB; --rule-3: #888888;
+  --accent: #000000; --accent-wash: #FFFFFF;
+  --panel: #FFFFFF; --on-panel: #000000; --on-panel-2: #333333; --panel-accent: #000000;
+  --panel-rule: #BBBBBB;
+}
 
 html, body {
   background: #FFFFFF !important;
-  color: #000000 !important;
+  color: #111111 !important;
   font-size: 9.5pt;
-  line-height: 1.38;
+  line-height: 1.4;
 }
 
 /* ---------------------------------------------------------------- removed */
 .masthead,
 .skip-link,
-.plate,
-.figure__plot,
-.figure__head,
+.menu,
 .hero__actions,
-.contact__actions,
-.contact__lede,
+.hero__lede,
+.ledger__foot,
+.figures-band,
 .sec-head__standfirst,
-.figure__legend,
+.chart,
+.chartfig__head,
+.chartfig__note,
+.unitchart,
+.tags,
+.contact__main,
 .site-footer,
-.glyph,
-.unitchart svg {
+.flow li::before {
   display: none !important;
 }
 
@@ -42,130 +55,197 @@ html, body {
   animation: none !important;
   opacity: 1 !important;
   transform: none !important;
-  float: none !important;
+  background: transparent !important;
+  color: inherit;
 }
 
-.band, .band--sunk, .contact,
-.project, .role, .cert, .edu, .figure-tile, .project__head, .edu__head {
-  background: #FFFFFF !important;
-  color: #000000 !important;
-  border-color: #BBBBBB !important;
-}
+a { color: #000000 !important; text-decoration: none !important; }
+h1, h2, h3, h4, strong, b { color: #000000 !important; }
 
-.wrap { max-width: none; padding-inline: 0; }
-.band { padding-block: 0 !important; margin-top: 5mm; }
-.band + .band { border-top: 0; }
+.wrap { max-width: none; padding-inline: 0 !important; }
+.section, .contact { padding-block: 0 !important; margin-top: 6mm; }
 
-h1, h2, h3, h4, .contact h2, .figure-tile__value, .edu__school {
-  color: #000000 !important;
-}
-h1 { font-size: 21pt; line-height: 1.02; margin-bottom: 2mm; }
-h2 { font-size: 12.5pt; margin-bottom: 1.5mm; max-width: none !important; }
-h3 { font-size: 10.5pt; margin-bottom: 1mm; }
-h4 { font-size: 9.5pt; }
-
-p { margin-bottom: 2mm; }
-
-.eyebrow, .contact .eyebrow { color: #444444 !important; letter-spacing: 0.07em; }
-.sec-head { margin-bottom: 3mm; }
-.sec-head__kicker { margin-bottom: 1.5mm; }
-.sec-head__kicker::after { background: #BBBBBB !important; }
-
-a { color: #000000 !important; text-decoration: none; }
-
-/* --------------------------------------------------------- one column, tight */
-.hero__grid, .profile__grid, .projects, .projects__pair,
-.experience__grid, .skills__grid, .certs__grid, .contact__grid,
-.project__body, .project__body--split, .figure {
+/* Every multi-column grid becomes a single column. */
+.hero__grid, .case--feature, .cases, .cases__pair, .background,
+.skills, .certs__list, .contact__grid, .role {
   display: block !important;
 }
 
+/* ------------------------------------------------------------------- hero */
 .hero { padding-block: 0 !important; }
-.hero__eyebrow { margin-bottom: 1mm; }
-.hero__lede {
-  font-family: inherit;
-  font-size: 10.5pt;
-  line-height: 1.4;
-  max-width: none;
-  margin-bottom: 3mm;
-}
-.hero__facts { padding-block: 2mm; margin-bottom: 3mm; column-count: 2; column-gap: 8mm; }
-.hero__facts > div { border-left: 0 !important; padding-inline: 0 !important; break-inside: avoid; }
-.hero__seeking { border-left: 2px solid #000000; margin-bottom: 2mm; }
-.print-only { font-size: 9.5pt; margin-bottom: 3mm; }
+.status { margin-bottom: 2mm; font-size: 9pt; }
+.status__badge { display: inline !important; padding: 0 !important; border: 0; font-size: 9pt; }
+.status__badge::after { content: ":"; }
+.status__dot { display: none; }
+.hero h1 { font-size: 24pt; line-height: 1; margin-bottom: 2mm; }
+.hero__statement { font-size: 11.5pt; max-width: none; margin-bottom: 1.5mm; }
+.print-contact { font-size: 9pt; margin-bottom: 4mm; }
 
-/* Headline figures: a compact three-across strip, no rules, no glyphs. */
-.figures { display: block !important; border: 0 !important; background: none !important; }
-.figure-tile {
-  display: inline-block !important;
-  width: 32%;
-  vertical-align: top;
-  padding: 0 3mm 2.5mm 0 !important;
+/* The ledger becomes a compact two-column fact list. */
+.ledger { border: 0 !important; padding: 0 !important; border-radius: 0; }
+.ledger__head { display: none; }
+.ledger__rows {
+  columns: 2;
+  column-gap: 8mm;
+  border-top: 1.5pt solid #000000;
+  border-bottom: 0.5pt solid #BBBBBB;
+  padding-block: 1.5mm;
+}
+.ledger__row {
   break-inside: avoid;
+  border: 0 !important;
+  padding-block: 0.8mm !important;
+  grid-template-columns: 16mm minmax(0, 1fr) !important;
 }
-.figure-tile__label { min-height: 0 !important; }
-.figure-tile__value { font-size: 14pt; margin: 0.5mm 0; }
-.figure-tile__note { padding-top: 0.5mm; }
+.ledger__row dd strong { font-size: 9.5pt; }
+.ledger__row dd span { font-size: 8.5pt; color: #444444; }
+.ledger__row--figure .fig { font-size: 12pt; color: #000000 !important; }
 
-/* Profile */
-.profile__lead { font-size: 9.5pt; line-height: 1.4; max-width: none; }
-.profile__lead p:first-child::first-letter {
-  font-size: inherit !important;
-  font-family: inherit !important;
-  line-height: inherit !important;
-  font-weight: inherit !important;
-  color: #000000 !important;
+/* --------------------------------------------------------- section headers */
+.sec-head { margin-bottom: 3mm; max-width: none; }
+.sec-head .eyebrow { display: none; }
+/* Print the short label rather than the long on-screen headline. */
+.sec-head h2 {
+  font-size: 0 !important;
+  border-bottom: 1pt solid #000000;
+  padding-bottom: 1mm;
+  max-width: none !important;
+}
+#work-h::before       { content: "Selected work"; }
+#experience-h::before { content: "Experience and education"; }
+#skills-h::before     { content: "Skills and certificates"; }
+.sec-head h2::before {
+  font-size: 12pt;
+  font-family: var(--sans);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ------------------------------------------------------------------ cases */
+.case {
+  border: 0 !important;
+  border-radius: 0;
+  padding: 0 0 3mm !important;
+  margin-bottom: 3mm;
+  border-bottom: 0.5pt solid #CCCCCC !important;
+}
+.verdicts, .keyfacts, .datatable, .flow { break-inside: avoid; }
+.case__kicker { margin-bottom: 1mm; font-size: 8pt; color: #444444 !important; }
+.case__index { color: #444444 !important; }
+.case h3, .case--feature h3 { font-size: 11pt; margin-bottom: 1.5mm; }
+.case p { max-width: none; margin-bottom: 1.5mm; }
+
+.verdicts { display: block !important; margin: 1.5mm 0; }
+.verdict {
+  display: inline-block !important;
+  border: 0 !important;
+  padding: 0 6mm 0 0 !important;
+}
+.verdict__call { font-size: 10.5pt; color: #000000 !important; }
+.verdict__co { font-size: 7.5pt; }
+
+.keyfacts { display: block !important; border: 0 !important; margin: 1.5mm 0; }
+.keyfacts > div { display: inline-block; padding: 0 6mm 0 0 !important; border: 0 !important; }
+.keyfacts dd { font-size: 10.5pt; }
+
+.chartfig { display: block; }
+.datatable { font-size: 8pt; max-width: 110mm; margin-top: 1mm; }
+.datatable th, .datatable td { padding: 0.5mm 1.5mm; }
+.datatable tr.is-base th, .datatable tr.is-base td { font-weight: 700; color: #000000 !important; }
+
+.flow { display: block !important; margin: 1mm 0; }
+.flow li {
+  display: inline !important;
+  border: 0 !important;
   padding: 0 !important;
 }
-.targets { margin-top: 3mm; padding-top: 2mm; }
-.targets li span { padding: 0.5mm 1.5mm; font-size: 9pt; }
+.flow li + li::before { display: inline !important; content: " → "; }
+.flow__step { display: inline; font-size: 9pt; }
+.flow__what { display: none; }
+.case__aside { border: 0 !important; padding-top: 1mm; font-size: 9pt; }
+.case__aside-label { display: inline; margin-right: 2mm; }
 
-.edu { margin-top: 3mm; break-inside: avoid; }
-.edu__head { padding: 0 0 1mm !important; border-bottom: 0 !important; }
-.edu__item { padding: 1.5mm 0 !important; }
-.edu__school { font-size: 10.5pt; }
-.edu__mark { background: none !important; padding: 0 !important; }
+/* -------------------------------------------------- experience, education */
+.background__col { margin-bottom: 4mm; }
+.col-title {
+  font-size: 9pt;
+  border-bottom: 0.5pt solid #000000;
+  padding-bottom: 0.8mm;
+  margin-bottom: 2mm;
+}
+.role {
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 0 3mm !important;
+  break-inside: avoid;
+}
+.role__when { float: right; margin: 0; font-size: 8.5pt; }
+.role__title { font-size: 10.5pt; }
+.role__org { margin-bottom: 1mm; }
+.role__points li { margin-bottom: 0.8mm; }
+.role__points li::before { background: #000000 !important; }
 
-/* Projects */
-.project { border: 0 !important; border-top: 1px solid #BBBBBB !important;
-           margin-bottom: 3mm; break-inside: avoid; }
-.project__head { padding: 1.5mm 0 0 !important; border-bottom: 0 !important; }
-.project__body { padding: 0 0 2mm !important; }
-.project__prose { font-size: 9.5pt; }
-.keyfacts { margin-top: 2mm; border: 0 !important; background: none !important; }
-.keyfacts > div { display: inline-block; padding: 0 6mm 0 0 !important; }
-.keyfacts dd.is-flagged { color: #000000 !important; }
-.methods { margin-top: 1.5mm; }
-.methods li span { padding: 0 1mm; font-size: 8.5pt; background: none !important; }
+.degrees { display: block; }
+.degree {
+  border: 0 !important;
+  border-radius: 0;
+  padding: 0 !important;
+  margin-bottom: 2mm;
+  break-inside: avoid;
+}
+.degree__when { float: right; margin: 0; font-size: 8.5pt; }
+.degree__school { font-size: 10.5pt; }
+.degree__name { margin-bottom: 0.5mm; }
+.degree__mark { padding: 0 !important; color: #000000 !important; font-size: 9pt; }
 
-.figure__note { font-size: 8.5pt; margin-top: 2mm; }
-.datatable { font-size: 8pt; margin-top: 2mm; }
-.datatable th, .datatable td { padding: 0.8mm 1.5mm; }
-.datatable tr.is-base th, .datatable tr.is-base td {
-  background: #EEEEEE !important; color: #000000 !important;
+/* ----------------------------------------------------------------- skills */
+.skillset { border-top: 0 !important; padding-top: 0; margin-bottom: 2mm; break-inside: avoid; }
+.skillset h3 { display: inline; font-size: 9.5pt; font-family: var(--sans); }
+.skillset h3::after { content: ": "; }
+.skillset__count { display: none; }
+.skillset ul { display: inline; }
+.skillset li {
+  display: inline;
+  border: 0 !important;
+  padding: 0 !important;
+  font-weight: 400;
+}
+.skillset li + li::before { content: " · "; }
+.skillset__detail { display: inline; font-size: 9pt; color: #444444; }
+.skillset__detail::before { content: "("; }
+.skillset__detail::after { content: ")"; }
+
+.certs { margin-top: 3mm; }
+.cert {
+  display: list-item !important;
+  list-style: none;
+  border: 0 !important;
+  padding: 0 !important;
+}
+.cert__name { display: inline; font-weight: 600; }
+.cert__name::after { content: " — "; font-weight: 400; }
+.cert__issuer { display: inline; font-size: 9pt; }
+
+/* ---------------------------------------------------------------- contact */
+.contact { color: #000000 !important; }
+.contact__list { border-top: 1pt solid #000000 !important; }
+.contact__row {
+  grid-template-columns: 22mm minmax(0, 1fr);
+  padding-block: 0.8mm;
+  border-color: #CCCCCC !important;
+}
+.contact__row dt, .contact__row dd, .contact__row a, .contact__meta { color: #000000 !important; }
+.contact__row a { padding: 0; margin: 0; }
+.contact::before {
+  content: "Contact";
+  display: block;
+  font: 700 12pt var(--sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-bottom: 1pt solid #000000;
+  padding-bottom: 1mm;
+  margin-bottom: 2mm;
 }
 
-/* Experience */
-.role { border: 0 !important; border-top: 2px solid #000000 !important;
-        padding: 2mm 0 0 !important; margin-bottom: 3mm; break-inside: avoid; }
-.role li::before { background: #000000 !important; }
-.role li { margin-bottom: 1.5mm; }
-
-/* Skills */
-.skillset { break-inside: avoid; margin-bottom: 3mm; padding-top: 2mm; }
-.skillset__count { display: none; }
-.skillset li { padding: 0.7mm 0; border-color: #DDDDDD !important; }
-.skillset li::before { background: #000000 !important; }
-.certs { margin-top: 3mm; padding-top: 2mm; }
-.cert { border: 0 !important; padding: 0 0 1.5mm !important; display: block !important;
-        width: 48%; vertical-align: top; }
-.certs__grid > .cert { display: inline-block !important; }
-.cert__n { display: none; }
-
-/* Contact */
-.contact__list { margin-top: 2mm; }
-.contact__row { border-color: #BBBBBB !important; padding: 1mm 0;
-                grid-template-columns: 22mm minmax(0, 1fr); }
-.contact__row dt, .contact__row dd, .contact__row a { color: #000000 !important; }
-
-h2, h3 { page-break-after: avoid; break-after: avoid; }
+h2, h3, h4 { break-after: avoid; }

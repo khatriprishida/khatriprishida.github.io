@@ -1,169 +1,172 @@
 /* ==========================================================================
-   charts.css — styling for the hand-authored inline SVG charts.
+   charts.css — the hand-written inline SVG charts and the tables under them.
 
-   The charts are plain SVG written by hand in index.html. There is no
-   charting library and no <canvas>: every mark is in the document, so the
-   charts render with JavaScript switched off, scale with the page, print,
-   and can be styled from here.
+   No chart library and no <canvas>: every mark is markup in index.html, so
+   the charts render with JavaScript off, print, and restyle from here.
 
-   Every chart also has its numbers written out as text next to it. Nothing
-   on this site is chart-only.
+   How they stay readable from 320px to 1440px without scrolling: the outer
+   <svg> has NO viewBox. Horizontal positions are percentages of its width,
+   vertical positions are pixels. Text therefore stays at its real CSS size
+   at every width. Only the valuation curve itself sits in a nested,
+   stretched <svg> (preserveAspectRatio="none"), and its stroke uses
+   vector-effect: non-scaling-stroke so the line never distorts.
+
+   Every chart also has its numbers written out as text beside it.
    ========================================================================== */
 
-.figure {
+.chartfig {
   margin: 0;
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--s3);
+  gap: var(--s4);
 }
 
-.figure__head {
+.chartfig__head {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
+  justify-content: space-between;
   gap: var(--s2) var(--s3);
   padding-bottom: var(--s3);
   border-bottom: 1px solid var(--rule-2);
 }
-.figure__title {
-  font-family: var(--sans);
+.chartfig__title {
   font-size: var(--fs-4);
-  font-weight: 650;
-  color: var(--ink);
-  line-height: 1.3;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.35;
+  max-width: 44ch;
 }
-.figure__unit {
-  font-family: var(--mono);
+.chartfig__unit,
+.chartfig__badge {
   font-size: var(--fs-6);
-  letter-spacing: 0.08em;
+  font-weight: 650;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ink-3);
-  margin-left: auto;
+  color: var(--text-3);
 }
-
-/* On narrow screens the plot keeps a readable minimum width and the wrapper
-   scrolls. It is focusable and labelled so keyboard users can reach it.
-   The figures underneath are the same numbers as text, so nobody is
-   dependent on scrolling this. */
-.figure__plot {
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
+.chartfig__badge {
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--rule-2);
+  border-radius: 999px;
 }
-.figure__plot:focus-visible { outline-offset: 2px; }
 
 .chart {
   display: block;
   width: 100%;
-  min-width: 25rem;
-  height: auto;
-  font-family: var(--mono);
-  font-variant-numeric: tabular-nums;
+  overflow: visible;
+  font-family: var(--sans);
+  font-variant-numeric: lining-nums tabular-nums;
 }
 
-.figure__note {
+.chartfig__note {
   font-size: var(--fs-5);
-  line-height: 1.45;
-  color: var(--ink-3);
+  line-height: 1.55;
+  color: var(--text-3);
+  margin: 0;
 }
-.figure__note b { color: var(--ink-2); font-weight: 600; }
+.chartfig__note b { color: var(--text-2); font-weight: 600; }
 
 /* ---------------------------------------------------------------- marks */
+.c-grid  { stroke: var(--rule); stroke-width: 1; }
+.c-axis  { stroke: var(--rule-3); stroke-width: 1; }
+.c-ref   { stroke: var(--rule-3); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.c-drop  { stroke: var(--accent); stroke-width: 1; stroke-dasharray: 2 3; opacity: 0.7; }
 
-.c-grid   { stroke: var(--rule); stroke-width: 1; }
-.c-axis   { stroke: var(--rule-3); stroke-width: 1; }
-.c-ref    { stroke: var(--rule-3); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.c-band  { fill: var(--accent-wash); }
+.c-area  { fill: var(--accent); opacity: 0.07; }
+.c-curve {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.c-dot   { fill: var(--accent); stroke: var(--surface); stroke-width: 3; }
 
-.c-area   { fill: var(--accent-wash); }
-.c-curve  { fill: none; stroke: var(--accent); stroke-width: 2.5;
-            stroke-linecap: round; stroke-linejoin: round; }
-
-.c-band   { fill: var(--flag-wash); }
-.c-lead   { stroke: var(--flag); stroke-width: 1.25; fill: none; }
-.c-dot    { fill: var(--flag); stroke: var(--card); stroke-width: 2.5; }
-
-.c-bar-1  { fill: var(--accent-3); }
-.c-bar-2  { fill: var(--accent-2); }
-.c-bar-3  { fill: var(--accent); }
-
-.c-tick   { fill: var(--accent-2); }
-.c-tick-empty { fill: none; stroke: var(--rule-2); stroke-width: 1; }
+.c-bar-1 { fill: var(--series-1); }
+.c-bar-2 { fill: var(--series-2); }
+.c-bar-3 { fill: var(--series-3); }
+.c-tick  { fill: var(--accent-2); }
 
 /* ---------------------------------------------------------------- text
-   Sizes are SVG user units. Each chart's viewBox is sized so these land
-   between 10px and 16px on screen at every tested width. */
+   Real CSS pixels (the outer SVG is unscaled). */
+.c-label       { font-size: 12px; fill: var(--text-3); }
+.c-label--strong { fill: var(--text-2); font-weight: 600; }
+.c-axistitle   { font-size: 11px; font-weight: 650; letter-spacing: 0.1em; text-transform: uppercase; fill: var(--text-3); }
+.c-name        { font-size: 13px; font-weight: 600; fill: var(--text-2); }
+.c-value       { font-size: 15px; font-weight: 700; fill: var(--text); }
+.c-value--inv  { fill: var(--on-series-3); }
+.c-flagtext    { font-size: 13px; font-weight: 700; fill: var(--accent); }
+.c-annot       { font-size: 13px; fill: var(--text-2); }
+.c-annot-b     { font-size: 13px; font-weight: 700; fill: var(--text); }
 
-.c-label  { font-size: 13px; fill: var(--ink-3); letter-spacing: 0.02em; }
-.c-name   { font-size: 14.5px; fill: var(--ink-2); font-weight: 500; }
-.c-value  { font-size: 16px; fill: var(--ink); font-weight: 600; letter-spacing: -0.02em; }
-.c-value-inv { font-size: 16px; fill: #FFFFFF; font-weight: 600; letter-spacing: -0.02em; }
-.c-flagtext { font-size: 13.5px; fill: var(--flag); font-weight: 600; }
-.c-annot  { font-size: 13.5px; fill: var(--ink-2); }
-.c-annot-b { font-size: 13.5px; fill: var(--ink); font-weight: 650; }
-
-/* ---------------------------------------------------- data table under a chart
-   The same numbers, readable and selectable. */
-
-.datatable {
-  width: 100%;
-  font-size: var(--fs-5);
-  border-top: 1px solid var(--rule-2);
+/* Text over the chart gets a halo in the card colour so gridlines and the
+   area fill never cut through a label. */
+.c-annot, .c-annot-b, .c-flagtext, .c-label--strong, .c-name {
+  paint-order: stroke;
+  stroke: var(--surface);
+  stroke-width: 4px;
+  stroke-linejoin: round;
 }
+.c-flagtext { stroke: var(--accent-wash); }
+
+/* ------------------------------------------------ data table under a chart */
+.datatable { font-size: var(--fs-5); }
 .datatable caption {
-  font-family: var(--mono);
   font-size: var(--fs-6);
+  font-weight: 650;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ink-3);
+  color: var(--text-3);
   padding-bottom: var(--s2);
 }
-.datatable th, .datatable td { padding: var(--s2) var(--s2); border-bottom: 1px solid var(--rule); }
+.datatable th, .datatable td {
+  padding: 0.45rem var(--s2);
+  border-bottom: 1px solid var(--rule);
+}
+.datatable th:first-child { padding-left: 0; }
+.datatable td:last-child { padding-right: 0; }
 .datatable thead th {
-  font-family: var(--mono);
   font-size: var(--fs-6);
-  font-weight: 500;
+  font-weight: 650;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--ink-3);
+  color: var(--text-3);
+  border-bottom-color: var(--rule-2);
 }
-.datatable tbody th { font-weight: 500; color: var(--ink-2); }
-.datatable td { font-family: var(--mono); text-align: right; color: var(--ink-2); }
+.datatable thead th + th { text-align: right; }
+.datatable tbody th { font-weight: 500; color: var(--text-2); }
+.datatable td {
+  text-align: right;
+  color: var(--text-2);
+  font-variant-numeric: lining-nums tabular-nums;
+}
 .datatable tr:last-child th, .datatable tr:last-child td { border-bottom: 0; }
-.datatable tr.is-base th, .datatable tr.is-base td { color: var(--flag); font-weight: 650; background: var(--flag-wash); }
+.datatable tr.is-base th, .datatable tr.is-base td {
+  color: var(--accent);
+  font-weight: 700;
+  background: var(--accent-wash);
+}
+.datatable tr.is-base th { padding-left: var(--s2); }
+.datatable tr.is-base td:last-child { padding-right: var(--s2); }
+.datatable__tag {
+  font-size: var(--fs-6);
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-left: var(--s1);
+}
 
 /* ------------------------------------------- unit chart (one mark per item) */
-
 .unitchart {
-  margin-top: var(--s5);
-  padding-top: var(--s4);
-  border-top: 1px solid var(--rule-2);
   display: flex;
-  flex-direction: column;
-  gap: var(--s3);
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s3) var(--s4);
+  padding-top: var(--s4);
+  border-top: 1px solid var(--rule);
 }
-.unitchart svg { display: block; width: 100%; max-width: 15rem; height: auto; }
-
-/* ---------------------------------------------------- the hero plate drawing */
-
-.plate__art .p-area  { fill: rgba(143, 180, 212, 0.17); }
-.plate__art .p-curve { fill: none; stroke: var(--panel-line); stroke-width: 2.4;
-                       stroke-linecap: round; }
-.plate__art .p-grid  { stroke: rgba(232, 237, 242, 0.085); stroke-width: 1; }
-.plate__art .p-ref   { stroke: rgba(232, 237, 242, 0.4); stroke-width: 1;
-                       stroke-dasharray: 4 4; }
-.plate__art .p-dot   { fill: var(--panel-flag); stroke: var(--panel); stroke-width: 3; }
-.plate__art .p-label { font-family: var(--mono); font-size: 12.5px; fill: var(--on-panel-2);
-                       letter-spacing: 0.13em; }
-/* 0.85, not lower: over the lightest part of the plate gradient this still
-   measures 5.2:1, and these are real words. */
-.plate__art .p-label--dim { fill: rgba(169, 188, 204, 0.85); }
-.plate__art .p-mark  { font-family: var(--mono); font-size: 13.5px; fill: var(--panel-flag);
-                       font-weight: 600; letter-spacing: 0.02em; }
-
-/* ---------------------------------------------------- glyphs on the KPI tiles */
-
-.glyph .g-track { fill: var(--rule-2); }
-.glyph .g-fill  { fill: var(--accent-2); }
-.glyph .g-fill-2 { fill: var(--accent-3); }
-.glyph .g-unit  { fill: var(--accent-2); }
-.glyph .g-unit-empty { fill: none; stroke: var(--rule-2); stroke-width: 1; }
+.unitchart svg { display: block; width: 13rem; max-width: 100%; height: auto; flex: none; }
+.unitchart p { font-size: var(--fs-5); color: var(--text-3); margin: 0; flex: 1 1 12rem; }

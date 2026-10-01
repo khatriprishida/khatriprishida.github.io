@@ -2,18 +2,21 @@
    motion.css — every transition, keyframe and reveal state. Loaded last.
 
    THE LOAD-BEARING RULE OF THIS SITE
-   ---------------------------------
-   Every hidden-until-revealed state is scoped to `html.js`. The `.js` class
-   is added by a short inline script in <head>. If JavaScript is off, blocked,
-   or fails to load, `.js` is never added (or is removed again by the guard in
-   that same script) and none of the rules below apply — so every element is
-   simply visible, in its final state. Content cannot go missing.
+   ----------------------------------
+   Every hidden-until-revealed state is scoped to `html.js`. The `js` class
+   is added by a short inline script in <head> and removed again by its
+   guards if js/app.js fails. With JavaScript off, blocked or broken, none of
+   the rules below apply and every element is simply visible in its final
+   state. Content cannot go missing.
+
+   Motion only ever explains something: content arriving, a chart being
+   drawn from its baseline. Transform and opacity only. Nothing loops.
    ========================================================================== */
 
 /* ---------------------------------------------------------- section reveal */
 html.js .reveal {
   opacity: 0;
-  transform: translateY(14px);
+  transform: translateY(16px);
 }
 html.js .reveal.is-in {
   opacity: 1;
@@ -21,70 +24,57 @@ html.js .reveal.is-in {
   transition: opacity var(--dur-3) var(--ease-out),
               transform var(--dur-3) var(--ease-out);
 }
-
-/* Staggered children: the eye follows one thing arriving after another. */
 html.js .reveal[data-i="1"].is-in { transition-delay: 60ms; }
 html.js .reveal[data-i="2"].is-in { transition-delay: 120ms; }
 html.js .reveal[data-i="3"].is-in { transition-delay: 180ms; }
 html.js .reveal[data-i="4"].is-in { transition-delay: 240ms; }
-html.js .reveal[data-i="5"].is-in { transition-delay: 300ms; }
-html.js .reveal[data-i="6"].is-in { transition-delay: 360ms; }
 
 /* ------------------------------------------------------------ hero on load */
 html.js .hero-in {
   opacity: 0;
   transform: translateY(12px);
-  animation: rise var(--dur-3) var(--ease-out) forwards;
+  animation: rise 560ms var(--ease-out) forwards;
 }
 html.js .hero-in[data-i="1"] { animation-delay: 40ms; }
 html.js .hero-in[data-i="2"] { animation-delay: 100ms; }
-html.js .hero-in[data-i="3"] { animation-delay: 160ms; }
-html.js .hero-in[data-i="4"] { animation-delay: 220ms; }
-html.js .hero-in[data-i="5"] { animation-delay: 280ms; }
-html.js .hero-in[data-i="6"] { animation-delay: 340ms; }
+html.js .hero-in[data-i="3"] { animation-delay: 170ms; }
+html.js .hero-in[data-i="4"] { animation-delay: 240ms; }
+html.js .hero-in[data-i="5"] { animation-delay: 310ms; }
+@keyframes rise { to { opacity: 1; transform: none; } }
 
-@keyframes rise {
-  to { opacity: 1; transform: none; }
-}
-
-/* The plate arrives from slightly further away — it is the heaviest object. */
-html.js .plate-in {
+/* The "open to work" dot: one soft ring, three times, then still. */
+.status__dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: currentColor;
   opacity: 0;
-  transform: translateY(20px) scale(0.985);
-  animation: plate-rise 620ms var(--ease-out) 120ms forwards;
 }
-@keyframes plate-rise {
-  to { opacity: 1; transform: none; }
+html.js .status__dot::after { animation: ping 1.8s var(--ease-out) 900ms 3; }
+@keyframes ping {
+  0%   { transform: scale(1);   opacity: 0.45; }
+  100% { transform: scale(2.8); opacity: 0; }
 }
 
 /* ------------------------------------------------------------- chart draw
-   Curves carry pathLength="1", so a dasharray of 1 is exactly the whole
-   path regardless of its real length. */
-html.js .c-curve,
-html.js .plate__art .p-curve {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-}
-html.js .is-drawn .c-curve,
-html.js .plate-in .p-curve {
+   The curve carries pathLength="1", so a dasharray of 1 is the whole path
+   whatever its real length. */
+/* 1.5, not 1: with vector-effect: non-scaling-stroke some engines measure
+   the dash in slightly different units from pathLength, and a dash of
+   exactly 1 can stop a few pixels short of the end of the line. */
+html.js .c-curve { stroke-dasharray: 1.5 1.5; stroke-dashoffset: 1.5; }
+html.js .is-drawn .c-curve {
   stroke-dashoffset: 0;
-  transition: stroke-dashoffset 1200ms var(--ease-out) 120ms;
+  transition: stroke-dashoffset 1300ms var(--ease-out) 100ms;
 }
-html.js .plate-in .p-curve {
-  transition: none;
-  animation: draw 1600ms var(--ease-out) 260ms forwards;
-}
-@keyframes draw { to { stroke-dashoffset: 0; } }
 
 html.js .c-area,
-html.js .plate__art .p-area { opacity: 0; }
-html.js .is-drawn .c-area,
-html.js .plate-in .p-area {
-  opacity: 1;
-  transition: opacity 520ms var(--ease-out) 620ms;
-}
+html.js .c-band { opacity: 0; }
+html.js .is-drawn .c-area { opacity: 0.07; transition: opacity 600ms var(--ease-out) 700ms; }
+html.js .is-drawn .c-band { opacity: 1;    transition: opacity 500ms var(--ease-out) 900ms; }
 
-/* Bars grow from their baseline, in order, lightest first. */
+/* Bars grow from their baseline, lowest risk first. */
 html.js .c-bar {
   transform: scaleX(0);
   transform-box: fill-box;
@@ -92,7 +82,7 @@ html.js .c-bar {
 }
 html.js .is-drawn .c-bar {
   transform: none;
-  transition: transform 720ms var(--ease-out);
+  transition: transform 800ms var(--ease-out);
 }
 html.js .is-drawn .c-bar-1 { transition-delay: 80ms; }
 html.js .is-drawn .c-bar-2 { transition-delay: 200ms; }
@@ -102,39 +92,12 @@ html.js .is-drawn .c-bar-3 { transition-delay: 320ms; }
 html.js .c-late { opacity: 0; }
 html.js .is-drawn .c-late {
   opacity: 1;
-  transition: opacity 380ms var(--ease-out) 900ms;
+  transition: opacity 400ms var(--ease-out) 1000ms;
 }
-
-/* -------------------------------------------------------------- KPI glyphs */
-html.js .glyph .g-fill {
-  transform: scaleX(0);
-  transform-box: fill-box;
-  transform-origin: left center;
-}
-html.js .is-in .glyph .g-fill {
-  transform: none;
-  transition: transform 700ms var(--ease-out) 220ms;
-}
-html.js .glyph .g-unit { opacity: 0; }
-html.js .is-in .glyph .g-unit {
-  opacity: 1;
-  transition: opacity 260ms var(--ease-out);
-}
-html.js .is-in .glyph .g-unit:nth-of-type(2)  { transition-delay: 240ms; }
-html.js .is-in .glyph .g-unit:nth-of-type(3)  { transition-delay: 280ms; }
-html.js .is-in .glyph .g-unit:nth-of-type(4)  { transition-delay: 320ms; }
-html.js .is-in .glyph .g-unit:nth-of-type(5)  { transition-delay: 360ms; }
-html.js .is-in .glyph .g-unit:nth-of-type(6)  { transition-delay: 400ms; }
-html.js .is-in .glyph .g-unit:nth-of-type(7)  { transition-delay: 440ms; }
-html.js .is-in .glyph .g-unit:nth-of-type(8)  { transition-delay: 480ms; }
-html.js .is-in .glyph .g-unit:nth-of-type(9)  { transition-delay: 520ms; }
-html.js .is-in .glyph .g-unit:nth-of-type(10) { transition-delay: 560ms; }
-html.js .is-in .glyph .g-unit:nth-of-type(11) { transition-delay: 600ms; }
 
 /* ======================================================================
-   REDUCED MOTION — one block, and it wins.
-   Everything jumps straight to its finished state. Nothing moves, nothing
-   counts, nothing draws. (js/app.js also stops the number counters.)
+   REDUCED MOTION — one block, and it wins. Everything is shown in its
+   finished state immediately. Nothing moves, fades, draws or pings.
    ====================================================================== */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -146,17 +109,11 @@ html.js .is-in .glyph .g-unit:nth-of-type(11) { transition-delay: 600ms; }
     scroll-behavior: auto !important;
   }
   html.js .reveal,
-  html.js .hero-in,
-  html.js .plate-in {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-  html.js .c-curve,
-  html.js .plate__art .p-curve { stroke-dashoffset: 0 !important; }
-  html.js .c-area,
-  html.js .plate__art .p-area,
-  html.js .c-late,
-  html.js .glyph .g-unit { opacity: 1 !important; }
-  html.js .c-bar,
-  html.js .glyph .g-fill { transform: none !important; }
+  html.js .hero-in { opacity: 1 !important; transform: none !important; }
+  html.js .c-curve { stroke-dashoffset: 0 !important; }
+  html.js .c-band,
+  html.js .c-late { opacity: 1 !important; }
+  html.js .c-area { opacity: 0.07 !important; }
+  html.js .c-bar { transform: none !important; }
+  .status__dot::after { animation: none !important; }
 }

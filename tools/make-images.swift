@@ -19,19 +19,20 @@
 import AppKit
 import CoreGraphics
 
-// --- palette, copied from css/tokens.css -----------------------------------
-let paper   = NSColor(srgbRed: 0.980, green: 0.976, blue: 0.969, alpha: 1) // #FAF9F7
-let ink     = NSColor(srgbRed: 0.086, green: 0.094, blue: 0.102, alpha: 1) // #16181A
-let ink2    = NSColor(srgbRed: 0.180, green: 0.196, blue: 0.212, alpha: 1) // #2E3236
-let ink3    = NSColor(srgbRed: 0.353, green: 0.376, blue: 0.408, alpha: 1) // #5A6068
-let accent  = NSColor(srgbRed: 0.071, green: 0.251, blue: 0.420, alpha: 1) // #12406B
-let rule    = NSColor(srgbRed: 0.886, green: 0.871, blue: 0.843, alpha: 1) // #E2DED7
-let panel   = NSColor(srgbRed: 0.055, green: 0.141, blue: 0.216, alpha: 1) // #0E2437
-let panelHi = NSColor(srgbRed: 0.067, green: 0.188, blue: 0.286, alpha: 1) // #113049
-let onPanel = NSColor(srgbRed: 0.910, green: 0.929, blue: 0.949, alpha: 1) // #E8EDF2
-let onPanel2 = NSColor(srgbRed: 0.663, green: 0.737, blue: 0.800, alpha: 1) // #A9BCCC
-let panelLine = NSColor(srgbRed: 0.561, green: 0.706, blue: 0.831, alpha: 1) // #8FB4D4
-let panelFlag = NSColor(srgbRed: 0.894, green: 0.443, blue: 0.306, alpha: 1) // #E4714E
+// --- palette, copied from css/tokens.css (light theme) --------------------
+let paper   = NSColor(srgbRed: 0.969, green: 0.961, blue: 0.941, alpha: 1) // #F7F5F0 --bg
+let ink     = NSColor(srgbRed: 0.071, green: 0.082, blue: 0.090, alpha: 1) // #121517 --text
+let ink2    = NSColor(srgbRed: 0.212, green: 0.235, blue: 0.259, alpha: 1) // #363C42 --text-2
+let ink3    = NSColor(srgbRed: 0.349, green: 0.380, blue: 0.412, alpha: 1) // #596169 --text-3
+let accent  = NSColor(srgbRed: 0.043, green: 0.333, blue: 0.251, alpha: 1) // #0B5540 --accent
+let accentWash = NSColor(srgbRed: 0.894, green: 0.937, blue: 0.914, alpha: 1) // #E4EFE9
+let rule    = NSColor(srgbRed: 0.890, green: 0.871, blue: 0.831, alpha: 1) // #E3DED4 --rule
+let panel   = NSColor(srgbRed: 0.047, green: 0.227, blue: 0.176, alpha: 1) // #0C3A2D --panel
+let panelHi = NSColor(srgbRed: 0.071, green: 0.290, blue: 0.227, alpha: 1) // #124A3A (gradient top)
+let onPanel = NSColor(srgbRed: 0.953, green: 0.945, blue: 0.925, alpha: 1) // #F3F1EC --on-panel
+let onPanel2 = NSColor(srgbRed: 0.718, green: 0.792, blue: 0.757, alpha: 1) // #B7CAC1 --on-panel-2
+let panelLine = NSColor(srgbRed: 0.561, green: 0.831, blue: 0.710, alpha: 1) // #8FD4B5 --panel-accent
+let panelFlag = panelLine
 
 // --- fonts: the same families the stylesheet asks for ----------------------
 func serif(_ size: CGFloat, _ weight: NSFont.Weight = .semibold) -> NSFont {
@@ -173,13 +174,13 @@ func drawPlate(_ cg: CGContext, rect: CGRect, radius: CGFloat, detail: Bool) {
         cg.setFillColor(panelFlag.cgColor)
         cg.fillEllipse(in: CGRect(x: dot.x - 6, y: dot.y - 6, width: 12, height: 12))
 
-        draw("IMPLIED VALUE", mono(13, .medium), onPanel2,
+        draw("IMPLIED VALUE", sans(13, .semibold), onPanel2,
              at: CGPoint(x: rect.minX + 22, y: rect.minY + 20), tracking: 1.6)
-        draw("AGAINST GROWTH RATE", mono(13, .medium), onPanel2.withAlphaComponent(0.72),
+        draw("VS. GROWTH RATE \u{00B7} ILLUSTRATIVE", sans(13, .semibold), onPanel2.withAlphaComponent(0.72),
              at: CGPoint(x: rect.minX + 22, y: rect.minY + 40), tracking: 1.6)
-        draw("PRIOR $239.89", mono(13, .medium), onPanel2.withAlphaComponent(0.72),
+        draw("PRIOR $239.89", sans(13, .semibold), onPanel2.withAlphaComponent(0.72),
              at: CGPoint(x: rect.minX + 22, y: yRef - 22), tracking: 1.6)
-        draw("g = 9.84% · $299.87", mono(14, .semibold), panelFlag,
+        draw("g = 9.84% · $299.87", sans(15, .bold), panelFlag,
              at: CGPoint(x: dot.x - 190, y: dot.y - 34))
 
         // nameplate
@@ -189,11 +190,11 @@ func drawPlate(_ cg: CGContext, rect: CGRect, radius: CGFloat, detail: Bool) {
         cg.move(to: CGPoint(x: rect.minX + 22, y: plateFoot))
         cg.addLine(to: CGPoint(x: rect.maxX - 22, y: plateFoot))
         cg.strokePath()
-        draw("UNIVERSITY OF NEW HAVEN", mono(12, .medium), panelLine,
+        draw("UNIVERSITY OF NEW HAVEN \u{00B7} MAY 2026", sans(12, .semibold), panelLine,
              at: CGPoint(x: rect.minX + 22, y: plateFoot + 16), tracking: 1.4)
         draw("MBA — Financial Analysis", serif(23), onPanel,
              at: CGPoint(x: rect.minX + 22, y: plateFoot + 38))
-        draw("GPA 3.90 / 4.00", mono(15, .semibold), onPanel,
+        draw("GPA 3.90", sans(16, .semibold), onPanel,
              at: CGPoint(x: rect.minX + 22, y: plateFoot + 74))
     }
 
@@ -232,34 +233,42 @@ do {
         cg.move(to: CGPoint(x: x, y: y)); cg.addLine(to: CGPoint(x: right, y: y)); cg.strokePath()
     }
 
-    let kicker = "FINANCIAL ANALYST"
-    draw(kicker, mono(17, .medium), accent, at: CGPoint(x: x, y: 88), tracking: 2.4)
-    draw("\u{00B7} WEST HAVEN, CONNECTICUT", mono(17, .medium), ink3,
-         at: CGPoint(x: x + widthOf(kicker, mono(17, .medium), 2.4) + 14, y: 88), tracking: 2.4)
+    // "Open to work" pill, as in the hero
+    let pill = "Open to work"
+    let pillFont = sans(17, .semibold)
+    let pillW = widthOf(pill, pillFont, 0.2) + 52
+    cg.setFillColor(accentWash.cgColor)
+    cg.addPath(CGPath(roundedRect: CGRect(x: x, y: 80, width: pillW, height: 36),
+                      cornerWidth: 18, cornerHeight: 18, transform: nil))
+    cg.fillPath()
+    cg.setFillColor(accent.cgColor)
+    cg.fillEllipse(in: CGRect(x: x + 16, y: 93, width: 10, height: 10))
+    draw(pill, pillFont, accent, at: CGPoint(x: x + 36, y: 87), tracking: 0.2)
+    draw("New York, NY", sans(17, .medium), ink2, at: CGPoint(x: x + pillW + 16, y: 87))
 
-    draw("Prishida Khatri", serif(92), ink, at: CGPoint(x: x - 4, y: 122))
+    draw("Prishida Khatri", serif(84), ink, at: CGPoint(x: x - 4, y: 128))
 
-    draw("FP&A, forecasting, equity valuation and the dashboards that make them legible.",
-         serif(31, .regular), ink2, at: CGPoint(x: x, y: 264), width: 612, lineHeight: 44)
+    draw("Financial Analyst \u{2014} FP&A, valuation and business intelligence.",
+         serif(31, .regular), ink2, at: CGPoint(x: x, y: 264), width: 620, lineHeight: 44)
 
     hairline(388)
 
     let facts = [("DEGREE", "MBA, Financial Analysis"),
                  ("GRADE", "3.90 / 4.00"),
-                 ("TOOLKIT", "Excel \u{00B7} SQL \u{00B7} Power BI \u{00B7} R")]
+                 ("TOOLKIT", "Excel \u{00B7} SQL \u{00B7} Power BI")]
     var fx: CGFloat = x
     for (i, f) in facts.enumerated() {
         if i > 0 {
             cg.setStrokeColor(rule.cgColor); cg.setLineWidth(1)
             cg.move(to: CGPoint(x: fx - 24, y: 408)); cg.addLine(to: CGPoint(x: fx - 24, y: 464)); cg.strokePath()
         }
-        draw(f.0, mono(13, .medium), ink3, at: CGPoint(x: fx, y: 410), tracking: 1.6)
+        draw(f.0, sans(13, .semibold), ink3, at: CGPoint(x: fx, y: 410), tracking: 1.8)
         draw(f.1, sans(18, .semibold), ink, at: CGPoint(x: fx, y: 434))
-        fx += max(widthOf(f.0, mono(13, .medium), 1.6), widthOf(f.1, sans(18, .semibold), 0)) + 48
+        fx += max(widthOf(f.0, sans(13, .semibold), 1.8), widthOf(f.1, sans(18, .semibold), 0)) + 48
     }
 
     hairline(500)
-    draw("khatriprishida.github.io", mono(17, .medium), accent, at: CGPoint(x: x, y: 522), tracking: 0.6)
+    draw("khatriprishida.github.io", sans(18, .semibold), accent, at: CGPoint(x: x, y: 522), tracking: 0.2)
 
     drawPlate(cg, rect: CGRect(x: 764, y: 72, width: 364, height: 486), radius: 4, detail: true)
 

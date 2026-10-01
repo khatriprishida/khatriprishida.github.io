@@ -3,19 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Page not found — Prishida Khatri</title>
-<meta name="description" content="That page does not exist on this site.">
+<title>Page not found — Prishida Khatri, Financial Analyst</title>
+<meta name="description" content="That page does not exist. Prishida Khatri is a financial analyst in New York, NY.">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#FAF9F7">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F7F5F0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0D1211" media="(prefers-color-scheme: dark)">
+<!-- GitHub Pages serves this file at any missing path, including nested
+     ones, so every asset below is root-relative. -->
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 
-<link rel="stylesheet" href="css/tokens.css">
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/components.css">
-<link rel="stylesheet" href="css/charts.css">
-<link rel="stylesheet" href="css/motion.css">
-<link rel="stylesheet" href="css/print.css" media="print">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/components.css">
 </head>
 
 <body>
@@ -24,34 +25,39 @@
 
 <header class="masthead">
   <div class="wrap masthead__in">
-    <a class="masthead__id" href="index.html">
-      <span class="masthead__name">Prishida Khatri</span>
-      <span class="masthead__role">Financial Analyst</span>
+    <a class="brand" href="/">
+      <span class="brand__mark" aria-hidden="true">PK</span>
+      <span class="brand__text">
+        <span class="brand__name">Prishida Khatri</span>
+        <span class="brand__role">Financial Analyst</span>
+      </span>
     </a>
-    <a class="btn btn--primary btn--sm" href="index.html">Back to the site</a>
+    <a class="btn btn--primary btn--sm masthead__cta" href="/assets/Resume-Prishida-Khatri.pdf">
+      Résumé <span class="btn__meta">PDF</span>
+    </a>
   </div>
 </header>
 
 <main id="main" class="wrap notfound">
-  <div class="notfound__in">
-    <p class="notfound__code num">404</p>
+  <div>
+    <p class="notfound__code">Error 404 · Page not found</p>
     <h1>That page does not exist.</h1>
     <p>
-      The address you followed is not part of this site. Everything lives on
-      one page — profile, analysis, experience, skills and contact.
+      The address you followed is not part of this site. Everything lives on one
+      page: case studies, experience, education, skills and contact.
     </p>
-    <p class="hero__actions">
-      <a class="btn btn--primary" href="index.html">Go to the main page</a>
-      <a class="btn btn--ghost" href="mailto:khatriprishida@gmail.com">khatriprishida@gmail.com</a>
-    </p>
+    <div class="hero__actions">
+      <a class="btn btn--primary btn--lg" href="/">Go to the main page</a>
+      <a class="btn btn--ghost btn--lg" href="/assets/Resume-Prishida-Khatri.pdf">Résumé (PDF)</a>
+      <a class="btn btn--ghost btn--lg" href="mailto:khatriprishida@gmail.com">Email me</a>
+    </div>
   </div>
 </main>
 
 <footer class="site-footer">
   <div class="wrap site-footer__in">
-    <p>&copy; 2026 Prishida Khatri</p>
-    <p><a href="index.html">Home</a></p>
-    <p class="site-footer__note">Hand-built in HTML, CSS and SVG. No trackers.</p>
+    <p>&copy; 2026 Prishida Khatri · New York, NY</p>
+    <p><a href="/">Home</a></p>
   </div>
 </footer>
 

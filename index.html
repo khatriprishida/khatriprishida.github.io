@@ -5,50 +5,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
 <!-- ======================================================================
-     ABSOLUTE URLS LIVE IN EXACTLY FIVE PLACES ON THIS PAGE:
+     ABSOLUTE URLS LIVE IN EXACTLY THESE PLACES ON THIS PAGE:
        1. <link rel="canonical">
        2. <meta property="og:url">
        3. <meta property="og:image"> and <meta name="twitter:image">
-       4. the JSON-LD "url" and "image" fields at the bottom of <head>
-     Everything else on this site is a relative link and will keep working
-     if the repository is ever renamed. See README.md.
+       4. the JSON-LD "url" and "image" fields below
+     Everything else is a relative link and keeps working if the repository
+     is ever renamed. See README.md.
      ====================================================================== -->
 
-<title>Prishida Khatri — Financial Analyst | FP&amp;A, Valuation and Business Intelligence</title>
-<meta name="description" content="Prishida Khatri is a financial analyst in West Haven, Connecticut. MBA in Financial Analysis (GPA 3.90), with work in FP&amp;A, forecasting, equity valuation, financial modelling and Power BI reporting.">
+<title>Prishida Khatri — Financial Analyst | FP&amp;A, Valuation, Business Intelligence | New York</title>
+<meta name="description" content="Prishida Khatri is a financial analyst in New York, NY. MBA in Financial Analysis (GPA 3.90), University of New Haven. FP&amp;A, budgeting and forecasting, equity valuation, financial modeling and Power BI reporting. Open to Financial Analyst, FP&amp;A, BI and corporate finance roles.">
 <link rel="canonical" href="https://khatriprishida.github.io/">
 
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="Prishida Khatri">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://khatriprishida.github.io/">
-<meta property="og:title" content="Prishida Khatri — Financial Analyst">
-<meta property="og:description" content="MBA in Financial Analysis (GPA 3.90). FP&amp;A, forecasting, equity valuation, financial modelling and Power BI reporting.">
+<meta property="og:title" content="Prishida Khatri — Financial Analyst, New York">
+<meta property="og:description" content="MBA in Financial Analysis (GPA 3.90). FP&amp;A, forecasting, equity valuation, financial modeling and Power BI reporting. Open to Financial Analyst, FP&amp;A, BI and corporate finance roles.">
 <meta property="og:image" content="https://khatriprishida.github.io/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Prishida Khatri, Financial Analyst — MBA in Financial Analysis, GPA 3.90.">
+<meta property="og:image:alt" content="Prishida Khatri, Financial Analyst, New York — MBA in Financial Analysis, GPA 3.90.">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Prishida Khatri — Financial Analyst">
-<meta name="twitter:description" content="MBA in Financial Analysis (GPA 3.90). FP&amp;A, forecasting, equity valuation, financial modelling and Power BI reporting.">
+<meta name="twitter:title" content="Prishida Khatri — Financial Analyst, New York">
+<meta name="twitter:description" content="MBA in Financial Analysis (GPA 3.90). FP&amp;A, forecasting, equity valuation, financial modeling and Power BI reporting.">
 <meta name="twitter:image" content="https://khatriprishida.github.io/assets/og-image.png">
 
-<meta name="theme-color" content="#FAF9F7">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F7F5F0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0D1211" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
 <!-- ======================================================================
      PROGRESSIVE ENHANCEMENT SWITCH.
 
-     Adding `js` to <html> is what allows css/motion.css to hide anything.
-     Two guards make sure content can never stay hidden:
-       * the timer below removes `js` again if js/app.js never announced
-         itself (blocked, 404, cached badly, or a syntax error);
-       * the onerror handler on the <script> tag at the end of <body>
-         removes it the moment the file fails to load.
-     With JavaScript switched off entirely, `js` is never added at all and
-     the page renders complete and static.
+     Adding `js` to <html> is the only thing that allows css/motion.css to
+     hide anything. Three guards make sure content can never stay hidden:
+       * JavaScript off: `js` is never added, the page renders complete;
+       * js/app.js fails to load: the onerror handler on its <script> tag
+         at the end of <body> removes `js` straight away;
+       * js/app.js loads but never runs (syntax error, bad cache): the timer
+         below removes `js` if app.js has not set data-app-ready.
      ====================================================================== -->
 <script>
   (function (d) {
@@ -77,14 +78,14 @@
   "givenName": "Prishida",
   "familyName": "Khatri",
   "jobTitle": "Financial Analyst",
-  "description": "Financial analyst with an MBA in Financial Analysis, working across FP&A, budgeting, forecasting, financial modelling, valuation, business intelligence and data analytics.",
+  "description": "Financial Analyst with an MBA in Financial Analysis (GPA 3.90) and a foundation in FP&A, budgeting, forecasting, financial modeling, valuation, business intelligence and data analytics.",
   "email": "mailto:khatriprishida@gmail.com",
   "url": "https://khatriprishida.github.io/",
   "image": "https://khatriprishida.github.io/assets/og-image.png",
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "West Haven",
-    "addressRegion": "CT",
+    "addressLocality": "New York",
+    "addressRegion": "NY",
     "addressCountry": "US"
   },
   "sameAs": [
@@ -97,16 +98,18 @@
   "hasCredential": [
     {
       "@type": "EducationalOccupationalCredential",
-      "name": "Master of Business Administration, Financial Analysis",
+      "name": "Master of Business Administration in Financial Analysis",
       "credentialCategory": "degree",
       "educationalLevel": "Master's degree",
+      "dateCreated": "2026-05",
       "recognizedBy": { "@type": "CollegeOrUniversity", "name": "University of New Haven" }
     },
     {
       "@type": "EducationalOccupationalCredential",
-      "name": "Bachelor of Business Administration",
+      "name": "Bachelor of Business Administration, First Class Honors",
       "credentialCategory": "degree",
       "educationalLevel": "Bachelor's degree",
+      "dateCreated": "2023-12",
       "recognizedBy": { "@type": "CollegeOrUniversity", "name": "Islington College" }
     },
     {
@@ -137,12 +140,13 @@
   "knowsAbout": [
     "Financial Planning and Analysis",
     "Budgeting and Forecasting",
-    "Financial Modelling",
+    "Financial Modeling",
     "Equity Valuation",
     "Financial Statement Analysis",
     "Ratio Analysis",
     "Investment Analysis",
     "Variance Analysis",
+    "Statistical Analysis",
     "Business Intelligence",
     "Data Visualization",
     "KPI Reporting",
@@ -153,11 +157,16 @@
     "Power BI",
     "DAX",
     "Data Modeling",
+    "Tableau",
     "R",
     "ggplot2",
     "dplyr",
     "SPSS",
-    "Statistical Analysis"
+    "QuickBooks",
+    "Documentation and Reporting",
+    "Data Entry and Management",
+    "Cross-functional Collaboration",
+    "Operations Management"
   ]
 }
 </script>
@@ -166,764 +175,569 @@
 <body>
 
 <a class="skip-link" href="#main">Skip to main content</a>
-<span class="sr-only" data-sentinel aria-hidden="true"></span>
+<span class="sentinel" data-sentinel aria-hidden="true"></span>
 
 <header class="masthead" data-masthead>
   <div class="wrap masthead__in">
-    <a class="masthead__id" href="index.html">
-      <span class="masthead__name">Prishida Khatri</span>
-      <span class="masthead__role">Financial Analyst</span>
+    <a class="brand" href="#top" aria-label="Prishida Khatri, Financial Analyst — back to top">
+      <span class="brand__mark" aria-hidden="true">PK</span>
+      <span class="brand__text">
+        <span class="brand__name">Prishida Khatri</span>
+        <span class="brand__role">Financial Analyst</span>
+      </span>
     </a>
-    <nav class="masthead__nav" aria-label="Page sections">
+
+    <!-- Wide screens: the section links sit in the bar. -->
+    <nav class="nav nav--bar" aria-label="Sections">
       <ul>
-        <li><a href="#profile">Profile</a></li>
-        <li><a href="#analysis">Analysis</a></li>
+        <li><a href="#work">Work</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
-    <a class="btn btn--primary btn--sm" href="assets/Resume-Prishida-Khatri.pdf">
+
+    <a class="btn btn--primary btn--sm masthead__cta" href="assets/Resume-Prishida-Khatri.pdf">
       Résumé <span class="btn__meta">PDF</span>
     </a>
+
+    <!-- Narrow screens: the same links behind a native disclosure. Works with
+         JavaScript off; js/app.js only adds close-on-select and Escape. -->
+    <details class="menu" data-menu>
+      <summary class="menu__toggle">
+        <span class="menu__label">Menu</span>
+        <svg class="menu__icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+          <path d="M3 6h14M3 10h14M3 14h14"/>
+        </svg>
+      </summary>
+      <nav class="menu__panel" aria-label="Sections">
+        <ul>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#experience">Experience &amp; education</a></li>
+          <li><a href="#skills">Skills &amp; certificates</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="assets/Resume-Prishida-Khatri.pdf">Download résumé <span class="menu__meta">PDF, 73&nbsp;KB</span></a></li>
+        </ul>
+      </nav>
+    </details>
   </div>
 </header>
 
 <main id="main">
 
   <!-- ====================================================================
-       HERO
+       HERO — who she is, what she wants, why she is credible, how to act.
        ==================================================================== -->
-  <section class="hero" aria-labelledby="page-title">
+  <section class="hero" id="top" aria-labelledby="name">
     <div class="wrap hero__grid">
 
-      <div class="hero__text">
+      <div class="hero__main">
         <!-- ==== EDIT: HERO TEXT ==================================== -->
-        <div class="hero__eyebrow hero-in" data-i="1">
-          <p class="eyebrow">Financial Analyst</p>
-          <span class="dot" aria-hidden="true"></span>
-          <p class="eyebrow">West Haven, Connecticut</p>
-        </div>
-
-        <h1 id="page-title" class="hero-in" data-i="2">Prishida Khatri</h1>
-
-        <p class="hero__lede hero-in" data-i="3">
-          I take financial and operational data apart — statements, budgets, portfolios —
-          and put it back together as something a decision can be made from.
+        <p class="status hero-in" data-i="1">
+          <span class="status__badge"><span class="status__dot" aria-hidden="true"></span>Open to work</span>
+          <span class="status__roles"><span class="nowrap">Financial Analyst ·</span> <span class="nowrap">FP&amp;A ·</span> <span class="nowrap">Business Intelligence ·</span> <span class="nowrap">Corporate Finance</span></span>
         </p>
 
-        <dl class="hero__facts hero-in" data-i="4">
-          <div>
-            <dt>Degree</dt>
-            <dd>MBA, Financial Analysis</dd>
-          </div>
-          <div>
-            <dt>Grade</dt>
-            <dd class="num">3.90 / 4.00</dd>
-          </div>
-          <div>
-            <dt>Toolkit</dt>
-            <dd>Excel · SQL · Power BI · R</dd>
-          </div>
-          <div>
-            <dt>Focus</dt>
-            <dd>FP&amp;A · Valuation · BI</dd>
-          </div>
-        </dl>
+        <h1 id="name" class="hero-in" data-i="2">Prishida Khatri</h1>
+
+        <p class="hero__statement hero-in" data-i="3">
+          Financial Analyst with an MBA in Financial Analysis
+          <span class="nowrap">(GPA 3.90)</span>, based in New York.
+        </p>
+
+        <p class="hero__lede hero-in" data-i="4">
+          FP&amp;A, budgeting and forecasting, valuation and business intelligence —
+          built in Advanced Excel, SQL, Power BI and R, and carried through to a
+          recommendation someone can act on.
+        </p>
 
         <div class="hero__actions hero-in" data-i="5">
-          <a class="btn btn--primary" href="assets/Resume-Prishida-Khatri.pdf">
-            Download résumé <span class="btn__meta">(PDF, 73&nbsp;KB)</span>
+          <a class="btn btn--primary btn--lg" href="assets/Resume-Prishida-Khatri.pdf">
+            <svg class="btn__icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 3v9m0 0-3.5-3.5M10 12l3.5-3.5M4 15.5h12"/></svg>
+            Download résumé <span class="btn__meta">PDF, 73&nbsp;KB</span>
           </a>
-          <a class="btn btn--ghost" href="mailto:khatriprishida@gmail.com">khatriprishida@gmail.com</a>
-          <a class="btn btn--ghost" href="https://www.linkedin.com/in/prishida-khatri-791a711b1/" rel="me noopener">LinkedIn</a>
+          <a class="btn btn--ghost btn--lg" href="mailto:khatriprishida@gmail.com">Email me</a>
+          <a class="btn btn--ghost btn--lg" href="https://www.linkedin.com/in/prishida-khatri-791a711b1/" rel="me noopener">LinkedIn</a>
         </div>
 
-        <p class="hero__seeking hero-in" data-i="6">
-          <strong>Open to:</strong> Financial Analyst · FP&amp;A Analyst ·
-          Business Intelligence Analyst · Corporate Finance
-        </p>
-
-        <!-- Printed CVs need the contact details at the top of page one.
-             On screen this line is hidden because the same details appear
-             in the buttons above and in the Contact section; on paper the
-             buttons are dropped, so this takes their place. -->
-        <p class="print-only">
-          khatriprishida@gmail.com &middot;
-          linkedin.com/in/prishida-khatri-791a711b1 &middot;
-          West Haven, Connecticut
+        <!-- Printed CVs need contact details at the top of page one. On screen
+             the same details are in the buttons above and in Contact below. -->
+        <p class="print-only print-contact">
+          New York, NY &middot; khatriprishida@gmail.com &middot;
+          linkedin.com/in/prishida-khatri-791a711b1 &middot; khatriprishida.github.io
         </p>
         <!-- ==== /EDIT ============================================== -->
       </div>
 
-      <!-- ==================================================================
-           THE PORTRAIT PLATE
-
-           There is no photograph yet, so this is a finished plate: an
-           engraved dark frame carrying a drawing taken from the Amazon
-           valuation model, with a nameplate along the bottom.
-
-           TO ADD THE PHOTOGRAPH: save it as assets/portrait.jpg and change
-           the single line marked ">>> THE ONE LINE <<<" near the top of
-           css/tokens.css. The photograph then fills this frame edge to
-           edge and covers the drawing and the nameplate. Nothing here
-           needs to be touched. (Optional tidy-up afterwards: delete the
-           <svg class="plate__art"> block below.)
-           ================================================================== -->
-      <div class="plate plate-in">
-        <div class="plate__frame">
-
-          <svg class="plate__art" viewBox="0 0 400 500" role="img"
-               aria-label="Decorative drawing taken from the Amazon valuation model: implied value per share rises steeply as the growth-rate assumption increases, marked at the 9.84 percent base case. The full chart, with figures, appears in Selected analysis below.">
-            <g class="p-grid" fill="none">
-              <line x1="0" y1="60"  x2="400" y2="60"/>
-              <line x1="0" y1="120" x2="400" y2="120"/>
-              <line x1="0" y1="180" x2="400" y2="180"/>
-              <line x1="0" y1="240" x2="400" y2="240"/>
-              <line x1="0" y1="300" x2="400" y2="300"/>
-              <line x1="0" y1="360" x2="400" y2="360"/>
-              <line x1="0" y1="420" x2="400" y2="420"/>
-              <line x1="57"  y1="0" x2="57"  y2="500"/>
-              <line x1="114" y1="0" x2="114" y2="500"/>
-              <line x1="171" y1="0" x2="171" y2="500"/>
-              <line x1="228" y1="0" x2="228" y2="500"/>
-              <line x1="285" y1="0" x2="285" y2="500"/>
-              <line x1="342" y1="0" x2="342" y2="500"/>
-            </g>
-            <path class="p-area" d="M -20 282 L -7 280 L 6 278 L 19 276 L 32 274 L 45 272 L 58 269 L 71 267 L 84 264 L 96 262 L 109 259 L 122 256 L 135 253 L 148 250 L 161 246 L 174 242 L 187 238 L 200 234 L 213 230 L 226 225 L 239 220 L 252 215 L 265 209 L 278 203 L 291 196 L 304 189 L 316 181 L 329 172 L 342 163 L 355 152 L 368 141 L 381 128 L 394 114 L 407 98 L 420 80 L 420 520 L -20 520 Z"/>
-            <line class="p-ref" x1="0" y1="204" x2="400" y2="204"/>
-            <path class="p-curve" pathLength="1" d="M -20 282 L -7 280 L 6 278 L 19 276 L 32 274 L 45 272 L 58 269 L 71 267 L 84 264 L 96 262 L 109 259 L 122 256 L 135 253 L 148 250 L 161 246 L 174 242 L 187 238 L 200 234 L 213 230 L 226 225 L 239 220 L 252 215 L 265 209 L 278 203 L 291 196 L 304 189 L 316 181 L 329 172 L 342 163 L 355 152 L 368 141 L 381 128 L 394 114 L 407 98 L 420 80"/>
-            <circle class="p-dot" cx="342" cy="163" r="5.5"/>
-            <text class="p-label" x="26" y="42">IMPLIED VALUE</text>
-            <text class="p-label p-label--dim" x="26" y="62">AGAINST GROWTH RATE</text>
-            <text class="p-label p-label--dim" x="26" y="196">PRIOR $239.89</text>
-            <text class="p-mark" x="330" y="147" text-anchor="end">g = 9.84% · $299.87</text>
-          </svg>
-
-          <div class="plate__body">
-            <p class="eyebrow">University of New Haven</p>
-            <p class="plate__title">Master of Business Administration<br>Financial Analysis</p>
-            <dl class="plate__stats">
-              <div>
-                <dt>Grade</dt>
-                <dd class="num">3.90 / 4.00</dd>
-              </div>
-              <div>
-                <dt>Undergraduate</dt>
-                <dd>First Class Honors</dd>
-              </div>
-            </dl>
-          </div>
-
+      <!-- ==== EDIT: AT A GLANCE ================================== -->
+      <aside class="ledger hero-in" data-i="4" aria-labelledby="ledger-h">
+        <div class="ledger__head">
+          <h2 id="ledger-h" class="ledger__title">At a glance</h2>
+          <span class="ledger__loc">New York, NY</span>
         </div>
-      </div>
+        <dl class="ledger__rows">
+          <div class="ledger__row">
+            <dt>MBA</dt>
+            <dd><strong>Financial Analysis</strong><span>University of New Haven · May 2026</span></dd>
+          </div>
+          <div class="ledger__row ledger__row--figure">
+            <dt>GPA</dt>
+            <dd><strong class="fig">3.90</strong><span>of 4.00</span></dd>
+          </div>
+          <div class="ledger__row">
+            <dt>BBA</dt>
+            <dd><strong>First Class Honors</strong><span>Islington College · Dec 2023</span></dd>
+          </div>
+          <div class="ledger__row">
+            <dt>Focus</dt>
+            <dd><strong>FP&amp;A · Valuation · BI</strong><span>Budgeting, forecasting, variance analysis</span></dd>
+          </div>
+          <div class="ledger__row">
+            <dt>Tools</dt>
+            <dd><strong>Excel · SQL · Power BI</strong><span>Tableau · R · SPSS · QuickBooks</span></dd>
+          </div>
+        </dl>
+        <a class="ledger__foot" href="#work">See the four case studies <span aria-hidden="true">→</span></a>
+      </aside>
+      <!-- ==== /EDIT ============================================== -->
 
     </div>
   </section>
 
   <!-- ====================================================================
-       HEADLINE FIGURES
-       Every number here also appears in full, in words, further down.
+       KEY FIGURES — every number here is also written out further down.
        ==================================================================== -->
-  <section class="band band--sunk band--tight" aria-labelledby="figures-h">
+  <section class="figures-band" aria-labelledby="figures-h">
     <div class="wrap">
-      <h2 id="figures-h" class="sr-only">Headline figures</h2>
-      <!-- ==== EDIT: THE SIX HEADLINE NUMBERS ===================== -->
+      <h2 id="figures-h" class="sr-only">Key figures</h2>
+      <!-- ==== EDIT: KEY FIGURES ================================== -->
       <ul class="figures">
-
-        <li class="figure-tile">
-          <p class="figure-tile__label">Graduate GPA</p>
-          <p class="figure-tile__value"><span class="num" data-count>3.90</span><span class="unit">/4.00</span></p>
-          <svg class="glyph" viewBox="0 0 120 12" role="img" aria-label="Bar filled to 3.90 of a possible 4.00">
-            <rect class="g-track" x="0" y="0" width="120" height="12" rx="1"/>
-            <rect class="g-fill" x="0" y="0" width="117" height="12" rx="1"/>
-          </svg>
-          <p class="figure-tile__note">MBA, Financial Analysis</p>
+        <li class="figure reveal" data-i="1">
+          <p class="figure__value"><span class="fig">3.90</span></p>
+          <p class="figure__label">MBA grade point average</p>
+          <p class="figure__note">Financial Analysis, University of New Haven</p>
         </li>
-
-        <li class="figure-tile">
-          <p class="figure-tile__label">Analytical projects</p>
-          <p class="figure-tile__value"><span class="num" data-count>4</span></p>
-          <svg class="glyph" viewBox="0 0 120 12" role="img" aria-label="Four marks, one for each project">
-            <rect class="g-unit" x="0"  y="0" width="24" height="12" rx="1"/>
-            <rect class="g-unit" x="32" y="0" width="24" height="12" rx="1"/>
-            <rect class="g-unit" x="64" y="0" width="24" height="12" rx="1"/>
-            <rect class="g-unit" x="96" y="0" width="24" height="12" rx="1"/>
-          </svg>
-          <p class="figure-tile__note">Valuation, portfolios, BI, budgeting</p>
+        <li class="figure reveal" data-i="2">
+          <p class="figure__value"><span class="fig">+25</span><span class="figure__unit">%</span></p>
+          <p class="figure__label">Modeled upside</p>
+          <p class="figure__note">Amazon Inc. valuation, against a $239.89 prior price</p>
         </li>
-
-        <li class="figure-tile">
-          <p class="figure-tile__label">Securities analysed</p>
-          <p class="figure-tile__value"><span class="num" data-count>11</span></p>
-          <svg class="glyph" viewBox="0 0 120 12" role="img" aria-label="Eleven marks, one for each security">
-            <rect class="g-unit" x="0"   y="0" width="7" height="12" rx="1"/>
-            <rect class="g-unit" x="11.3" y="0" width="7" height="12" rx="1"/>
-            <rect class="g-unit" x="22.6" y="0" width="7" height="12" rx="1"/>
-            <rect class="g-unit" x="33.9" y="0" width="7" height="12" rx="1"/>
-            <rect class="g-unit" x="45.2" y="0" width="7" height="12" rx="1"/>
-            <rect class="g-unit" x="56.5" y="0" width="7" height="12" rx="1"/>
-            <rect class="g-unit" x="67.8" y="0" width="7" height="12" rx="1"/>
-            <rect class="g-unit" x="79.1" y="0" width="7" height="12" rx="1"/>
-            <rect class="g-unit" x="90.4" y="0" width="7" height="12" rx="1"/>
-            <rect class="g-unit" x="101.7" y="0" width="7" height="12" rx="1"/>
-            <rect class="g-unit" x="113"  y="0" width="7" height="12" rx="1"/>
-          </svg>
-          <p class="figure-tile__note">Equity and fixed income</p>
+        <li class="figure reveal" data-i="3">
+          <p class="figure__value"><span class="fig">11</span></p>
+          <p class="figure__label">Securities analyzed</p>
+          <p class="figure__note">Equities and fixed income, across three portfolios</p>
         </li>
-
-        <li class="figure-tile">
-          <p class="figure-tile__label">Certifications</p>
-          <p class="figure-tile__value"><span class="num" data-count>4</span></p>
-          <svg class="glyph" viewBox="0 0 120 12" role="img" aria-label="Four marks, one for each certificate">
-            <rect class="g-unit" x="0"  y="0" width="24" height="12" rx="1"/>
-            <rect class="g-unit" x="32" y="0" width="24" height="12" rx="1"/>
-            <rect class="g-unit" x="64" y="0" width="24" height="12" rx="1"/>
-            <rect class="g-unit" x="96" y="0" width="24" height="12" rx="1"/>
-          </svg>
-          <p class="figure-tile__note">LinkedIn Learning · Coursera</p>
+        <li class="figure reveal" data-i="4">
+          <p class="figure__value"><span class="fig">50</span><span class="figure__unit">%</span></p>
+          <p class="figure__label">Rise in sales, followers &amp; satisfaction</p>
+          <p class="figure__note">Strii Nepal, backed by customer and sales-trend analysis</p>
         </li>
-
-        <li class="figure-tile">
-          <p class="figure-tile__label">Modelled upside</p>
-          <p class="figure-tile__value"><span class="num" data-count>25</span><span class="unit">%</span></p>
-          <svg class="glyph" viewBox="0 0 120 12" role="img" aria-label="Two bars: prior price 239.89 dollars against implied value 299.87 dollars">
-            <rect class="g-fill g-fill-2" x="0" y="0" width="96" height="5" rx="1"/>
-            <rect class="g-fill" x="0" y="7" width="120" height="5" rx="1"/>
-          </svg>
-          <p class="figure-tile__note">Amazon Inc., against a $239.89 prior price</p>
-        </li>
-
-        <li class="figure-tile">
-          <p class="figure-tile__label">Sales growth delivered</p>
-          <p class="figure-tile__value"><span class="num" data-count>50</span><span class="unit">%</span></p>
-          <svg class="glyph" viewBox="0 0 120 12" role="img" aria-label="Two bars: baseline against a 50 percent increase">
-            <rect class="g-fill g-fill-2" x="0" y="0" width="80" height="5" rx="1"/>
-            <rect class="g-fill" x="0" y="7" width="120" height="5" rx="1"/>
-          </svg>
-          <p class="figure-tile__note">Strii Nepal — sales, followers, satisfaction</p>
-        </li>
-
       </ul>
       <!-- ==== /EDIT ============================================== -->
     </div>
   </section>
 
   <!-- ====================================================================
-       01 — PROFILE
+       WORK — the four case studies
        ==================================================================== -->
-  <section id="profile" class="band" aria-labelledby="profile-h">
+  <section id="work" class="section" aria-labelledby="work-h">
     <div class="wrap">
-      <div class="sec-head sec-head--split reveal">
-        <div class="sec-head__kicker"><p class="eyebrow">01 — Profile</p></div>
-        <h2 id="profile-h">A generalist analyst, comfortable from the ledger to the dashboard.</h2>
+      <header class="sec-head reveal">
+        <p class="eyebrow">Selected work</p>
+        <h2 id="work-h">Four case studies, from the financial statements to the recommendation.</h2>
         <p class="sec-head__standfirst">
-          The work runs in one line: get the data clean, build the model, test what it is
-          sensitive to, then present it so that a non-analyst can act on it.
+          MBA projects carried through end to end: equity valuation, portfolio construction,
+          BI reporting and a master budget. Every figure comes from the project itself; the one
+          modeled curve is labeled as illustrative.
         </p>
-      </div>
+      </header>
 
-      <div class="profile__grid">
-        <div class="reveal" data-i="1">
-          <!-- ==== EDIT: SUMMARY ====================================== -->
-          <div class="profile__lead measure">
-            <p>
-              Financial Analyst with an MBA in Financial Analysis (GPA&nbsp;3.90) and a strong
-              foundation in FP&amp;A, budgeting, forecasting, financial modeling, valuation,
-              business intelligence, and data analytics.
-            </p>
-            <p>
-              Proficient in Advanced Excel (VLOOKUP, Power Pivot, Power Query, pivot tables),
-              SQL, Power BI, and R to transform financial and operational data into actionable
-              insights.
-            </p>
-            <p>
-              Experienced in KPI reporting, dashboard development, financial statement analysis,
-              investment analysis, variance analysis, and cross-functional collaboration.
-            </p>
-          </div>
-          <!-- ==== /EDIT ============================================== -->
+      <div class="cases">
 
-          <div class="targets">
-            <p class="eyebrow">Roles in view</p>
-            <ul>
-              <li><span>Financial Analyst</span></li>
-              <li><span>FP&amp;A Analyst</span></li>
-              <li><span>Business Intelligence Analyst</span></li>
-              <li><span>Corporate Finance</span></li>
+        <!-- ==== EDIT: CASE 01 ===================================== -->
+        <article class="case case--feature reveal" aria-labelledby="case1-h">
+          <div class="case__text">
+            <p class="case__kicker"><span class="case__index">01</span>Valuation · Equity research</p>
+            <h3 id="case1-h">Financial Statement Analysis and Company Valuation</h3>
+            <p>
+              A full financial analysis of <strong>Lockheed Martin</strong> — liquidity,
+              profitability, EPS, ROE and P&amp;L — across the income statement, balance sheet
+              and cash flow statement, ending in a <strong>Buy</strong> recommendation.
+            </p>
+            <p>
+              <strong>Amazon Inc.</strong> analyzed across its key business segments: derived an
+              implied growth rate of 9.84% and issued a recommendation on 25% upside from a prior
+              price of $239.89.
+            </p>
+
+            <ul class="verdicts" aria-label="Recommendations">
+              <li class="verdict">
+                <span class="verdict__co">Lockheed Martin</span>
+                <span class="verdict__call">Buy</span>
+                <span class="verdict__basis">Ratio and P&amp;L analysis across all three statements</span>
+              </li>
+              <li class="verdict">
+                <span class="verdict__co">Amazon Inc.</span>
+                <span class="verdict__call">+25% upside</span>
+                <span class="verdict__basis">Implied growth 9.84% against a $239.89 prior price</span>
+              </li>
+            </ul>
+
+            <ul class="tags" aria-label="Methods">
+              <li>Financial statement analysis</li>
+              <li>Ratio analysis</li>
+              <li>EPS &amp; ROE</li>
+              <li>Segment analysis</li>
+              <li>Equity valuation</li>
             </ul>
           </div>
+
+          <figure class="chartfig" data-draw aria-labelledby="fig1-cap">
+            <figcaption id="fig1-cap" class="chartfig__head">
+              <span class="chartfig__title">Amazon Inc. — implied value per share against the growth assumption</span>
+              <span class="chartfig__badge">Illustrative</span>
+            </figcaption>
+
+            <!-- Built so the text stays at its real size at every width: the
+                 outer SVG has no viewBox (x in %, y in px); only the curve sits
+                 in a stretched inner SVG. Coordinates: y 258 = $100,
+                 y 50.6 = $400; x 0% = 7% growth, 100% = 10.5% growth. -->
+            <svg class="chart chart--line" width="100%" height="300" role="img"
+                 aria-label="Line chart, illustrative. Implied value per share rises with the assumed growth rate: about 159 dollars at 8 percent, 214 dollars at 9 percent, 299.87 dollars at the 9.84 percent base case, 324 dollars at 10 percent and 434 dollars at 10.5 percent. A dashed line marks the 239.89 dollar prior price; the shaded band between the prior price and the base case is the 25 percent upside. The same numbers are in the table below.">
+              <g class="c-grid">
+                <line x1="0" x2="100%" y1="188.9" y2="188.9"/>
+                <line x1="0" x2="100%" y1="119.7" y2="119.7"/>
+                <line x1="0" x2="100%" y1="50.6"  y2="50.6"/>
+                <line x1="28.57%" x2="28.57%" y1="16" y2="258"/>
+                <line x1="57.14%" x2="57.14%" y1="16" y2="258"/>
+                <line x1="85.71%" x2="85.71%" y1="16" y2="258"/>
+              </g>
+
+              <rect class="c-band" x="0" y="119.8" width="100%" height="41.5"/>
+
+              <svg x="0" y="16" width="100%" height="242" viewBox="52 16 496 242" preserveAspectRatio="none" overflow="visible">
+                <path class="c-area" d="M 52.0 239.9 L 64.4 238.3 L 76.8 236.6 L 89.2 234.8 L 101.6 233.0 L 114.0 231.1 L 126.4 229.2 L 138.8 227.1 L 151.2 225.0 L 163.6 222.8 L 176.0 220.5 L 188.4 218.1 L 200.8 215.6 L 213.2 213.0 L 225.6 210.2 L 238.0 207.4 L 250.4 204.4 L 262.8 201.2 L 275.2 197.9 L 287.6 194.4 L 300.0 190.7 L 312.4 186.8 L 324.8 182.7 L 337.2 178.4 L 349.6 173.7 L 362.0 168.9 L 374.4 163.6 L 386.8 158.1 L 399.2 152.1 L 411.6 145.8 L 424.0 138.9 L 436.4 131.6 L 448.8 123.6 L 461.2 115.0 L 473.6 105.7 L 486.0 95.5 L 498.4 84.4 L 510.8 72.1 L 523.2 58.6 L 535.6 43.6 L 548.0 26.8 L 548.0 258.0 L 52.0 258.0 Z"/>
+                <path class="c-curve" pathLength="1" vector-effect="non-scaling-stroke" d="M 52.0 239.9 L 64.4 238.3 L 76.8 236.6 L 89.2 234.8 L 101.6 233.0 L 114.0 231.1 L 126.4 229.2 L 138.8 227.1 L 151.2 225.0 L 163.6 222.8 L 176.0 220.5 L 188.4 218.1 L 200.8 215.6 L 213.2 213.0 L 225.6 210.2 L 238.0 207.4 L 250.4 204.4 L 262.8 201.2 L 275.2 197.9 L 287.6 194.4 L 300.0 190.7 L 312.4 186.8 L 324.8 182.7 L 337.2 178.4 L 349.6 173.7 L 362.0 168.9 L 374.4 163.6 L 386.8 158.1 L 399.2 152.1 L 411.6 145.8 L 424.0 138.9 L 436.4 131.6 L 448.8 123.6 L 461.2 115.0 L 473.6 105.7 L 486.0 95.5 L 498.4 84.4 L 510.8 72.1 L 523.2 58.6 L 535.6 43.6 L 548.0 26.8"/>
+              </svg>
+
+              <line class="c-ref" x1="0" x2="100%" y1="161.3" y2="161.3"/>
+              <line class="c-axis" x1="0" x2="100%" y1="258" y2="258"/>
+
+              <g class="c-late">
+                <line class="c-drop" x1="81.15%" x2="81.15%" y1="126" y2="258"/>
+                <circle class="c-dot" cx="81.15%" cy="119.8" r="6"/>
+                <text class="c-annot-b" x="81.15%" dx="-14" y="90" text-anchor="end">Base case · g = 9.84%</text>
+                <text class="c-annot" x="81.15%" dx="-14" y="108" text-anchor="end">Implied $299.87 · +25.0%</text>
+                <text class="c-flagtext" x="0" dx="4" y="145">+25.0% upside</text>
+                <text class="c-label c-label--strong" x="0" dx="4" y="178">Prior price $239.89</text>
+              </g>
+
+              <g class="c-label">
+                <text x="0" y="253">$100</text>
+                <text x="0" y="115">$300</text>
+                <text x="0" y="46">$400</text>
+                <text x="0" y="278">7%</text>
+                <text x="28.57%" y="278" text-anchor="middle">8%</text>
+                <text x="57.14%" y="278" text-anchor="middle">9%</text>
+                <text x="85.71%" y="278" text-anchor="middle">10%</text>
+                <text class="c-axistitle" x="50%" y="298" text-anchor="middle">Assumed annual growth rate</text>
+              </g>
+            </svg>
+
+            <p class="chartfig__note">
+              Single-stage growth model calibrated to the base case: growth <b>9.84%</b>, discount
+              rate <b>12.0%</b>, implied value <b>$299.87</b> against a prior price of
+              <b>$239.89</b> — a <b>+25.0%</b> upside. The curve shows how far a small change in the
+              growth assumption moves the answer.
+            </p>
+
+            <table class="datatable">
+              <caption>Implied value at other growth assumptions</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Growth</th>
+                  <th scope="col">Value</th>
+                  <th scope="col">vs. $239.89</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">8.00%</th><td>$159.22</td><td>−33.6%</td></tr>
+                <tr><th scope="row">9.00%</th><td>$214.26</td><td>−10.7%</td></tr>
+                <tr class="is-base"><th scope="row">9.84% <span class="datatable__tag">base</span></th><td>$299.87</td><td>+25.0%</td></tr>
+                <tr><th scope="row">10.00%</th><td>$324.34</td><td>+35.2%</td></tr>
+                <tr><th scope="row">10.50%</th><td>$434.41</td><td>+81.1%</td></tr>
+              </tbody>
+            </table>
+          </figure>
+        </article>
+        <!-- ==== /EDIT ============================================== -->
+
+        <!-- ==== EDIT: CASE 02 ===================================== -->
+        <article class="case case--feature case--flip reveal" aria-labelledby="case2-h">
+          <div class="case__text">
+            <p class="case__kicker"><span class="case__index">02</span>Portfolio construction</p>
+            <h3 id="case2-h">Investment Portfolio Analysis</h3>
+            <p>
+              Built <strong>Conservative, Moderate and Aggressive</strong> portfolios across
+              <strong>11 equities and fixed-income securities</strong> using historical return data,
+              with projected returns of 4.45%, 8.72% and 28% respectively.
+            </p>
+            <p>
+              Assessed risk-adjusted returns with the Sharpe ratio, beta and CAGR to shape each
+              allocation to its target risk profile.
+            </p>
+
+            <dl class="keyfacts">
+              <div><dt>Securities</dt><dd>11</dd></div>
+              <div><dt>Portfolios</dt><dd>3</dd></div>
+              <div><dt>Risk measures</dt><dd class="keyfacts__words">Sharpe · Beta · CAGR</dd></div>
+            </dl>
+
+            <ul class="tags" aria-label="Methods">
+              <li>Asset allocation</li>
+              <li>Risk-adjusted return</li>
+              <li>Sharpe ratio</li>
+              <li>Beta</li>
+              <li>CAGR</li>
+            </ul>
+          </div>
+
+          <figure class="chartfig" data-draw aria-labelledby="fig2-cap">
+            <figcaption id="fig2-cap" class="chartfig__head">
+              <span class="chartfig__title">Projected annual return by portfolio</span>
+              <span class="chartfig__unit">Per cent</span>
+            </figcaption>
+
+            <!-- Bars are percentages of the chart width: 30% of return = 100%
+                 of width, so 4.45% → 14.83%, 8.72% → 29.07%, 28% → 93.33%. -->
+            <svg class="chart chart--bars" width="100%" height="244" role="img"
+                 aria-label="Bar chart of projected annual return by portfolio: Conservative 4.45 percent, Moderate 8.72 percent, Aggressive 28 percent. The same numbers are written beside the chart.">
+              <g class="c-grid">
+                <line x1="33.33%" x2="33.33%" y1="20" y2="196"/>
+                <line x1="66.67%" x2="66.67%" y1="20" y2="196"/>
+                <line x1="99.9%"  x2="99.9%"  y1="20" y2="196"/>
+              </g>
+
+              <g class="c-name">
+                <text x="0" y="16">Conservative</text>
+                <text x="0" y="80">Moderate</text>
+                <text x="0" y="144">Aggressive</text>
+              </g>
+
+              <rect class="c-bar c-bar-1" x="0" y="26"  width="14.83%" height="30" rx="2"/>
+              <rect class="c-bar c-bar-2" x="0" y="90"  width="29.07%" height="30" rx="2"/>
+              <rect class="c-bar c-bar-3" x="0" y="154" width="93.33%" height="30" rx="2"/>
+
+              <g class="c-late">
+                <text class="c-value" x="14.83%" dx="10" y="46.5">4.45%</text>
+                <text class="c-value" x="29.07%" dx="10" y="110.5">8.72%</text>
+                <text class="c-value c-value--inv" x="93.33%" dx="-10" y="174.5" text-anchor="end">28%</text>
+              </g>
+
+
+              <g class="c-label">
+                <text x="0" y="216">0%</text>
+                <text x="33.33%" y="216" text-anchor="middle">10%</text>
+                <text x="66.67%" y="216" text-anchor="middle">20%</text>
+                <text x="100%" y="216" text-anchor="end">30%</text>
+                <text class="c-axistitle" x="50%" y="240" text-anchor="middle">Projected annual return</text>
+              </g>
+            </svg>
+
+            <p class="chartfig__note">
+              Conservative <b>4.45%</b>, Moderate <b>8.72%</b>, Aggressive <b>28%</b>. Shade deepens
+              with the risk profile, and every bar is labeled, so nothing depends on color alone.
+            </p>
+
+            <div class="unitchart">
+              <svg viewBox="0 0 208 16" role="img" aria-label="Eleven marks, one for each of the eleven securities analyzed">
+                <g class="c-tick">
+                  <rect x="0"   y="0" width="12" height="16" rx="2"/>
+                  <rect x="18"  y="0" width="12" height="16" rx="2"/>
+                  <rect x="36"  y="0" width="12" height="16" rx="2"/>
+                  <rect x="54"  y="0" width="12" height="16" rx="2"/>
+                  <rect x="72"  y="0" width="12" height="16" rx="2"/>
+                  <rect x="90"  y="0" width="12" height="16" rx="2"/>
+                  <rect x="108" y="0" width="12" height="16" rx="2"/>
+                  <rect x="126" y="0" width="12" height="16" rx="2"/>
+                  <rect x="144" y="0" width="12" height="16" rx="2"/>
+                  <rect x="162" y="0" width="12" height="16" rx="2"/>
+                  <rect x="180" y="0" width="12" height="16" rx="2"/>
+                </g>
+              </svg>
+              <p><b>11</b> equities and fixed-income securities, analyzed on historical return data.</p>
+            </div>
+          </figure>
+        </article>
+        <!-- ==== /EDIT ============================================== -->
+
+        <div class="cases__pair">
+
+          <!-- ==== EDIT: CASE 03 =================================== -->
+          <article class="case reveal" data-i="1" aria-labelledby="case3-h">
+            <p class="case__kicker"><span class="case__index">03</span>Business intelligence</p>
+            <h3 id="case3-h">Data Analysis and Data Visualization</h3>
+            <p>
+              Interactive <strong>Power BI</strong> dashboards built with DAX, Power Pivot and Power
+              Query to monitor KPIs and highlight the revenue drivers of the business. Analyzed
+              business datasets for trends, relationships and performance drivers, and turned them
+              into data-driven recommendations.
+            </p>
+
+            <ol class="flow" aria-label="Reporting workflow">
+              <li><span class="flow__step">Power Query</span><span class="flow__what">Data preparation</span></li>
+              <li><span class="flow__step">Power Pivot</span><span class="flow__what">Data model</span></li>
+              <li><span class="flow__step">DAX</span><span class="flow__what">KPI measures</span></li>
+              <li><span class="flow__step">Power BI</span><span class="flow__what">KPIs and revenue drivers</span></li>
+            </ol>
+
+            <p class="case__aside">
+              <span class="case__aside-label">Statistics</span>
+              Regression analysis, hypothesis testing and chi-square tests in R and Excel.
+            </p>
+          </article>
+          <!-- ==== /EDIT ============================================ -->
+
+          <!-- ==== EDIT: CASE 04 =================================== -->
+          <article class="case reveal" data-i="2" aria-labelledby="case4-h">
+            <p class="case__kicker"><span class="case__index">04</span>FP&amp;A</p>
+            <h3 id="case4-h">Budgeting and Financial Planning</h3>
+            <p>
+              A comprehensive <strong>master budget</strong> applying FP&amp;A principles — operating
+              and cash budgets and projected financial statements — then used to evaluate
+              performance and support planning and control through forecasting and variance
+              analysis.
+            </p>
+
+            <ol class="flow" aria-label="Master budget structure">
+              <li><span class="flow__step">Operating budget</span><span class="flow__what">Operations plan</span></li>
+              <li><span class="flow__step">Cash budget</span><span class="flow__what">Liquidity</span></li>
+              <li><span class="flow__step">Projected statements</span><span class="flow__what">Pro forma</span></li>
+              <li><span class="flow__step">Variance analysis</span><span class="flow__what">Planning &amp; control</span></li>
+            </ol>
+
+            <p class="case__aside">
+              <span class="case__aside-label">Methods</span>
+              Forecasting, variance analysis, planning and control.
+            </p>
+          </article>
+          <!-- ==== /EDIT ============================================ -->
+
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       EXPERIENCE AND EDUCATION
+       ==================================================================== -->
+  <section id="experience" class="section section--sunk" aria-labelledby="experience-h">
+    <div class="wrap">
+      <header class="sec-head reveal">
+        <p class="eyebrow">Experience &amp; education</p>
+        <h2 id="experience-h">Operating experience close to the numbers, and a finance degree on top.</h2>
+      </header>
+
+      <div class="background">
+
+        <!-- ==== EDIT: EXPERIENCE =================================== -->
+        <div class="background__col reveal" data-i="1">
+          <h3 class="col-title">Experience</h3>
+          <ol class="timeline">
+            <li class="role">
+              <p class="role__when">Aug 2022 – Mar 2023</p>
+              <h4 class="role__title">Operations &amp; Management</h4>
+              <p class="role__org">Strii Nepal · Kathmandu, Nepal</p>
+              <ul class="role__points">
+                <li>Managed sales, transaction, revenue and operational datasets supporting business reporting and decision making.</li>
+                <li>Monitored operating budgets, inventory and operating expenses while improving operational efficiency.</li>
+                <li>Analyzed customer and sales trends that contributed to a <strong>50% increase</strong> in sales, followers and customer satisfaction.</li>
+              </ul>
+            </li>
+            <li class="role">
+              <p class="role__when">May 2022 – Aug 2022</p>
+              <h4 class="role__title">Customer Service Representative Intern</h4>
+              <p class="role__org">Gyapu Nepal · Lalitpur, Nepal</p>
+              <ul class="role__points">
+                <li>Resolved customer inquiries across multiple channels while supporting operational recording and cross-functional coordination.</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+        <!-- ==== /EDIT ============================================== -->
 
         <!-- ==== EDIT: EDUCATION ==================================== -->
-        <div class="edu reveal" data-i="2">
-          <div class="edu__head">
-            <h3 class="eyebrow">Education</h3>
-          </div>
-          <div class="edu__item">
-            <h4 class="edu__school">University of New Haven</h4>
-            <p class="edu__degree">Master of Business Administration — Financial Analysis</p>
-            <p class="edu__mark">Grade point average <b class="num">3.90 / 4.00</b></p>
-          </div>
-          <div class="edu__item">
-            <h4 class="edu__school">Islington College</h4>
-            <p class="edu__degree">Bachelor of Business Administration</p>
-            <p class="edu__mark">Awarded <b>First Class Honors</b></p>
-          </div>
+        <div class="background__col reveal" data-i="2">
+          <h3 class="col-title">Education</h3>
+          <ol class="degrees">
+            <li class="degree">
+              <p class="degree__when">May 2026</p>
+              <h4 class="degree__school">University of New Haven</h4>
+              <p class="degree__name">Master of Business Administration in Financial Analysis</p>
+              <p class="degree__mark"><span class="fig">3.90</span> GPA</p>
+            </li>
+            <li class="degree">
+              <p class="degree__when">Dec 2023</p>
+              <h4 class="degree__school">Islington College</h4>
+              <p class="degree__name">Bachelor of Business Administration</p>
+              <p class="degree__mark">First Class Honors</p>
+            </li>
+          </ol>
         </div>
         <!-- ==== /EDIT ============================================== -->
+
       </div>
     </div>
   </section>
 
   <!-- ====================================================================
-       02 — SELECTED ANALYSIS
+       SKILLS AND CERTIFICATES
        ==================================================================== -->
-  <section id="analysis" class="band band--sunk" aria-labelledby="analysis-h">
+  <section id="skills" class="section" aria-labelledby="skills-h">
     <div class="wrap">
-      <div class="sec-head sec-head--split reveal">
-        <div class="sec-head__kicker"><p class="eyebrow">02 — Selected analysis</p></div>
-        <h2 id="analysis-h">Four projects, taken from raw statements to a recommendation.</h2>
-        <p class="sec-head__standfirst">
-          Graduate coursework, carried through in full. Every figure on this page comes out
-          of the four projects below — nothing is illustrative except where it says so.
-        </p>
-      </div>
+      <header class="sec-head reveal">
+        <p class="eyebrow">Skills &amp; certificates</p>
+        <h2 id="skills-h">The toolkit, grouped by what it is for.</h2>
+      </header>
 
-      <div class="projects">
-
-        <!-- ==== EDIT: PROJECT 01 =================================== -->
-        <article class="project reveal">
-          <div class="project__head">
-            <span class="project__index num">01</span>
-            <span class="project__tag">Academic project</span>
-          </div>
-          <div class="project__body project__body--split">
-            <div>
-              <h3>Financial Statement Analysis and Company Valuation</h3>
-              <div class="project__prose">
-                <p>
-                  Comprehensive financial analysis of <strong>Lockheed Martin</strong> using
-                  liquidity and profitability ratios and growth metrics (EPS, ROE), with P&amp;L
-                  analysis across the income statement, balance sheet and cash flow statement.
-                  Evaluated performance and investment attractiveness through ratio analysis and
-                  historical trend assessment.
-                </p>
-                <p>
-                  Analyzed <strong>Amazon Inc.</strong> across key business segments, deriving an
-                  implied growth rate of 9.84% and issuing a recommendation based on 25% upside
-                  from a prior price of $239.89.
-                </p>
-              </div>
-              <dl class="keyfacts">
-                <div>
-                  <dt>Implied growth</dt>
-                  <dd>9.84%</dd>
-                </div>
-                <div>
-                  <dt>Prior price</dt>
-                  <dd>$239.89</dd>
-                </div>
-                <div>
-                  <dt>Upside</dt>
-                  <dd class="is-flagged">+25%</dd>
-                </div>
-              </dl>
-              <ul class="methods">
-                <li><span>Ratio analysis</span></li>
-                <li><span>EPS</span></li>
-                <li><span>ROE</span></li>
-                <li><span>Trend assessment</span></li>
-                <li><span>Segment analysis</span></li>
-                <li><span>Equity valuation</span></li>
-              </ul>
-            </div>
-
-            <figure class="figure" data-draw>
-              <div class="figure__head">
-                <span class="figure__title">Amazon Inc. — implied value per share against the growth-rate assumption</span>
-                <span class="figure__unit">US$ per share</span>
-              </div>
-
-              <div class="figure__plot" tabindex="0">
-                <svg class="chart" viewBox="0 0 560 320" role="img"
-                     aria-label="Line chart. Implied value per share rises with the assumed growth rate: about 159 dollars at 8 percent, 214 dollars at 9 percent, 299.87 dollars at the 9.84 percent base case, 324 dollars at 10 percent and 434 dollars at 10.5 percent. A dashed line marks the 239.89 dollar prior price; the shaded band between the two is the 25 percent upside. The same numbers are listed in the table below the chart.">
-
-                  <g class="c-grid">
-                    <line x1="52" y1="258" x2="548" y2="258"/>
-                    <line x1="52" y1="188.9" x2="548" y2="188.9"/>
-                    <line x1="52" y1="119.7" x2="548" y2="119.7"/>
-                    <line x1="52" y1="50.6" x2="548" y2="50.6"/>
-                    <line x1="193.7" y1="16" x2="193.7" y2="258"/>
-                    <line x1="335.4" y1="16" x2="335.4" y2="258"/>
-                    <line x1="477.1" y1="16" x2="477.1" y2="258"/>
-                  </g>
-
-                  <rect class="c-band" x="52" y="119.8" width="496" height="41.5"/>
-
-                  <path class="c-area" d="M 52.0 239.9 L 64.4 238.3 L 76.8 236.6 L 89.2 234.8 L 101.6 233.0 L 114.0 231.1 L 126.4 229.2 L 138.8 227.1 L 151.2 225.0 L 163.6 222.8 L 176.0 220.5 L 188.4 218.1 L 200.8 215.6 L 213.2 213.0 L 225.6 210.2 L 238.0 207.4 L 250.4 204.4 L 262.8 201.2 L 275.2 197.9 L 287.6 194.4 L 300.0 190.7 L 312.4 186.8 L 324.8 182.7 L 337.2 178.4 L 349.6 173.7 L 362.0 168.9 L 374.4 163.6 L 386.8 158.1 L 399.2 152.1 L 411.6 145.8 L 424.0 138.9 L 436.4 131.6 L 448.8 123.6 L 461.2 115.0 L 473.6 105.7 L 486.0 95.5 L 498.4 84.4 L 510.8 72.1 L 523.2 58.6 L 535.6 43.6 L 548.0 26.8 L 548.0 258.0 L 52.0 258.0 Z"/>
-
-                  <line class="c-ref" x1="52" y1="161.3" x2="548" y2="161.3"/>
-                  <line class="c-grid" x1="454.5" y1="119.8" x2="454.5" y2="258" stroke-dasharray="3 3"/>
-
-                  <path class="c-curve" pathLength="1" d="M 52.0 239.9 L 64.4 238.3 L 76.8 236.6 L 89.2 234.8 L 101.6 233.0 L 114.0 231.1 L 126.4 229.2 L 138.8 227.1 L 151.2 225.0 L 163.6 222.8 L 176.0 220.5 L 188.4 218.1 L 200.8 215.6 L 213.2 213.0 L 225.6 210.2 L 238.0 207.4 L 250.4 204.4 L 262.8 201.2 L 275.2 197.9 L 287.6 194.4 L 300.0 190.7 L 312.4 186.8 L 324.8 182.7 L 337.2 178.4 L 349.6 173.7 L 362.0 168.9 L 374.4 163.6 L 386.8 158.1 L 399.2 152.1 L 411.6 145.8 L 424.0 138.9 L 436.4 131.6 L 448.8 123.6 L 461.2 115.0 L 473.6 105.7 L 486.0 95.5 L 498.4 84.4 L 510.8 72.1 L 523.2 58.6 L 535.6 43.6 L 548.0 26.8"/>
-
-                  <g class="c-late">
-                    <path class="c-lead" d="M 442 80 Q 462 92 452 112"/>
-                    <circle class="c-dot" cx="454.5" cy="119.8" r="5.5"/>
-                    <text class="c-annot" x="434" y="66" text-anchor="end">Base case — growth 9.84%</text>
-                    <text class="c-annot-b" x="434" y="86" text-anchor="end">implied $299.87 · +25.0%</text>
-                    <text class="c-flagtext" x="60" y="146">+25.0% upside</text>
-                    <text class="c-label" x="544" y="177" text-anchor="end">Prior price $239.89</text>
-                  </g>
-
-                  <line class="c-axis" x1="52" y1="258" x2="548" y2="258"/>
-
-                  <g class="c-label">
-                    <text x="44" y="262" text-anchor="end">100</text>
-                    <text x="44" y="193" text-anchor="end">200</text>
-                    <text x="44" y="124" text-anchor="end">300</text>
-                    <text x="44" y="55" text-anchor="end">400</text>
-                    <text x="52" y="280" text-anchor="middle">7%</text>
-                    <text x="193.7" y="280" text-anchor="middle">8%</text>
-                    <text x="335.4" y="280" text-anchor="middle">9%</text>
-                    <text x="477.1" y="280" text-anchor="middle">10%</text>
-                    <text x="300" y="306" text-anchor="middle" letter-spacing="1.4">ASSUMED ANNUAL GROWTH RATE</text>
-                  </g>
-                </svg>
-              </div>
-
-              <p class="figure__note">
-                Illustrative sensitivity, single-stage growth model calibrated to the base case
-                — discount rate <b>12.0%</b>, growth <b>9.84%</b>, implied value <b>$299.87</b>
-                against a prior price of <b>$239.89</b>, a <b>+25.0%</b> upside. Small changes in
-                the growth assumption move the implied value a long way.
-              </p>
-
-              <table class="datatable">
-                <caption>Implied value at other growth assumptions</caption>
-                <thead>
-                  <tr>
-                    <th scope="col">Growth rate</th>
-                    <th scope="col">Implied value</th>
-                    <th scope="col">vs. $239.89</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr><th scope="row">8.00%</th><td>$159.22</td><td>−33.6%</td></tr>
-                  <tr><th scope="row">9.00%</th><td>$214.26</td><td>−10.7%</td></tr>
-                  <tr class="is-base"><th scope="row">9.84% — base case</th><td>$299.87</td><td>+25.0%</td></tr>
-                  <tr><th scope="row">10.00%</th><td>$324.34</td><td>+35.2%</td></tr>
-                  <tr><th scope="row">10.50%</th><td>$434.41</td><td>+81.1%</td></tr>
-                </tbody>
-              </table>
-            </figure>
-          </div>
-        </article>
-        <!-- ==== /EDIT ============================================== -->
-
-        <!-- ==== EDIT: PROJECT 02 =================================== -->
-        <article class="project reveal">
-          <div class="project__head">
-            <span class="project__index num">02</span>
-            <span class="project__tag">Academic project</span>
-          </div>
-          <div class="project__body project__body--split">
-            <div>
-              <h3>Investment Portfolio Analysis</h3>
-              <div class="project__prose">
-                <p>
-                  Constructed Conservative, Moderate and Aggressive portfolios evaluated across
-                  <strong>11 equity and fixed-income securities</strong> using historical return
-                  data, achieving portfolio projections of 4.45%, 8.72% and 28% respectively.
-                </p>
-                <p>
-                  Applied Sharpe Ratio, Beta and CAGR. Built in Advanced Excel (Power Pivot,
-                  Pivot Table, VLOOKUP) with reporting in Power BI dashboards using DAX.
-                </p>
-              </div>
-              <dl class="keyfacts">
-                <div>
-                  <dt>Conservative</dt>
-                  <dd>4.45%</dd>
-                </div>
-                <div>
-                  <dt>Moderate</dt>
-                  <dd>8.72%</dd>
-                </div>
-                <div>
-                  <dt>Aggressive</dt>
-                  <dd>28%</dd>
-                </div>
-              </dl>
-              <ul class="methods">
-                <li><span>Sharpe Ratio</span></li>
-                <li><span>Beta</span></li>
-                <li><span>CAGR</span></li>
-                <li><span>Power Pivot</span></li>
-                <li><span>Pivot Table</span></li>
-                <li><span>VLOOKUP</span></li>
-                <li><span>Power BI</span></li>
-                <li><span>DAX</span></li>
-              </ul>
-            </div>
-
-            <figure class="figure" data-draw>
-              <div class="figure__head">
-                <span class="figure__title">Modelled annual return by portfolio strategy</span>
-                <span class="figure__unit">Per cent</span>
-              </div>
-
-              <div class="figure__plot" tabindex="0">
-                <svg class="chart" viewBox="0 0 560 220" role="img"
-                     aria-label="Bar chart of modelled annual return by portfolio strategy: Conservative 4.45 percent, Moderate 8.72 percent, Aggressive 28.0 percent. The same numbers are listed beside the chart.">
-                  <g class="c-grid">
-                    <line x1="201" y1="8" x2="201" y2="174"/>
-                    <line x1="268" y1="8" x2="268" y2="174"/>
-                    <line x1="335" y1="8" x2="335" y2="174"/>
-                    <line x1="402" y1="8" x2="402" y2="174"/>
-                    <line x1="469" y1="8" x2="469" y2="174"/>
-                    <line x1="536" y1="8" x2="536" y2="174"/>
-                  </g>
-
-                  <rect class="c-bar c-bar-1" x="134" y="18"  width="59.6"  height="34"/>
-                  <rect class="c-bar c-bar-2" x="134" y="74"  width="116.8" height="34"/>
-                  <rect class="c-bar c-bar-3" x="134" y="130" width="375.2" height="34"/>
-
-                  <g class="c-name">
-                    <text x="124" y="40"  text-anchor="end">Conservative</text>
-                    <text x="124" y="96"  text-anchor="end">Moderate</text>
-                    <text x="124" y="152" text-anchor="end">Aggressive</text>
-                  </g>
-
-                  <g class="c-late">
-                    <text class="c-value" x="202" y="40">4.45%</text>
-                    <text class="c-value" x="259" y="96">8.72%</text>
-                    <text class="c-value-inv" x="499" y="152" text-anchor="end">28.0%</text>
-                  </g>
-
-                  <line class="c-axis" x1="134" y1="8" x2="134" y2="174"/>
-
-                  <g class="c-label">
-                    <text x="134" y="192" text-anchor="middle">0%</text>
-                    <text x="201" y="192" text-anchor="middle">5%</text>
-                    <text x="268" y="192" text-anchor="middle">10%</text>
-                    <text x="335" y="192" text-anchor="middle">15%</text>
-                    <text x="402" y="192" text-anchor="middle">20%</text>
-                    <text x="469" y="192" text-anchor="middle">25%</text>
-                    <text x="536" y="192" text-anchor="middle">30%</text>
-                    <text x="335" y="214" text-anchor="middle" letter-spacing="1.4">PROJECTED ANNUAL RETURN</text>
-                  </g>
-                </svg>
-              </div>
-
-              <p class="figure__note">
-                Projected annual return: Conservative <b>4.45%</b>, Moderate <b>8.72%</b>,
-                Aggressive <b>28%</b>. <span class="figure__legend">Colour runs light to dark
-                with risk and every bar carries its own label, so nothing here depends on
-                colour alone.</span>
-              </p>
-
-              <div class="unitchart">
-                <p class="eyebrow">Securities screened</p>
-                <svg viewBox="0 0 190 14" role="img" aria-label="Eleven marks, one for each of the eleven securities screened">
-                  <g class="c-tick">
-                    <rect x="0"   y="0" width="10" height="14" rx="1"/>
-                    <rect x="18"  y="0" width="10" height="14" rx="1"/>
-                    <rect x="36"  y="0" width="10" height="14" rx="1"/>
-                    <rect x="54"  y="0" width="10" height="14" rx="1"/>
-                    <rect x="72"  y="0" width="10" height="14" rx="1"/>
-                    <rect x="90"  y="0" width="10" height="14" rx="1"/>
-                    <rect x="108" y="0" width="10" height="14" rx="1"/>
-                    <rect x="126" y="0" width="10" height="14" rx="1"/>
-                    <rect x="144" y="0" width="10" height="14" rx="1"/>
-                    <rect x="162" y="0" width="10" height="14" rx="1"/>
-                    <rect x="180" y="0" width="10" height="14" rx="1"/>
-                  </g>
-                </svg>
-                <p class="figure__note"><b>11</b> equity and fixed-income securities, screened on historical return data.</p>
-              </div>
-            </figure>
-          </div>
-        </article>
-        <!-- ==== /EDIT ============================================== -->
-
-        <div class="projects__pair">
-
-          <!-- ==== EDIT: PROJECT 03 ================================= -->
-          <article class="project reveal" data-i="1">
-            <div class="project__head">
-              <span class="project__index num">03</span>
-              <span class="project__tag">Academic project</span>
-            </div>
-            <div class="project__body">
-              <div>
-                <h3>Data Analysis and Data Visualization</h3>
-                <div class="project__prose">
-                  <p>
-                    Designed and built interactive <strong>Power BI</strong> dashboards using DAX,
-                    Power Pivot and Power Query over large datasets. Analyzed business datasets to
-                    identify trends, relationships and performance drivers.
-                  </p>
-                  <p>
-                    Transformed data into insights through KPI tracking and performance reporting.
-                    Performed regression analysis, hypothesis testing and chi-square evaluations in
-                    R and Excel.
-                  </p>
-                </div>
-                <ul class="methods">
-                  <li><span>Power BI</span></li>
-                  <li><span>DAX</span></li>
-                  <li><span>Power Query</span></li>
-                  <li><span>Regression</span></li>
-                  <li><span>Hypothesis testing</span></li>
-                  <li><span>Chi-square</span></li>
-                  <li><span>R</span></li>
-                  <li><span>Excel</span></li>
-                </ul>
-              </div>
-            </div>
-          </article>
-          <!-- ==== /EDIT ============================================ -->
-
-          <!-- ==== EDIT: PROJECT 04 ================================= -->
-          <article class="project reveal" data-i="2">
-            <div class="project__head">
-              <span class="project__index num">04</span>
-              <span class="project__tag">Academic project</span>
-            </div>
-            <div class="project__body">
-              <div>
-                <h3>Budgeting and Financial Planning</h3>
-                <div class="project__prose">
-                  <p>
-                    Developed a comprehensive master budget applying FP&amp;A principles, including
-                    operating and cash budgets and projected financial statements.
-                  </p>
-                  <p>
-                    Evaluated financial performance and supported planning and control through
-                    forecasting and variance analysis.
-                  </p>
-                </div>
-                <ul class="methods">
-                  <li><span>Master budget</span></li>
-                  <li><span>Operating budget</span></li>
-                  <li><span>Cash budget</span></li>
-                  <li><span>Projected statements</span></li>
-                  <li><span>Forecasting</span></li>
-                  <li><span>Variance analysis</span></li>
-                </ul>
-              </div>
-            </div>
-          </article>
-          <!-- ==== /EDIT ============================================ -->
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ====================================================================
-       03 — EXPERIENCE
-       ==================================================================== -->
-  <section id="experience" class="band" aria-labelledby="experience-h">
-    <div class="wrap">
-      <div class="sec-head sec-head--split reveal">
-        <div class="sec-head__kicker"><p class="eyebrow">03 — Experience</p></div>
-        <h2 id="experience-h">Two operating roles, both sitting close to the numbers.</h2>
-        <p class="sec-head__standfirst">
-          Sales and revenue datasets, budgets, inventory and the reporting built on top of
-          them — the operational side of the same work.
-        </p>
-      </div>
-
-      <!-- ==== EDIT: EXPERIENCE =================================== -->
-      <div class="experience__grid">
-
-        <article class="role reveal" data-i="1">
-          <div class="role__meta">
-            <span class="role__org">Strii Nepal</span>
-            <span class="role__where">Kathmandu, Nepal</span>
-            <span class="role__when num">Aug 2022 – Mar 2023</span>
-          </div>
-          <h3>Operations &amp; Management</h3>
-          <ul>
-            <li>Managed sales, transaction, revenue, and operational datasets supporting business reporting and decision-making</li>
-            <li>Tracked budgets, inventory, and operating expenses while improving operational efficiency</li>
-            <li>Analyzed customer and sales metrics that contributed to a 50% increase in sales, followers, and customer satisfaction</li>
-            <li>Collaborated across teams to optimize digital engagement and customer communications</li>
-          </ul>
-        </article>
-
-        <article class="role reveal" data-i="2">
-          <div class="role__meta">
-            <span class="role__org">Gyapu Nepal</span>
-            <span class="role__where">Lalitpur, Nepal</span>
-            <span class="role__when num">May 2022 – Aug 2022</span>
-          </div>
-          <h3>Customer Service Representative Intern</h3>
-          <ul>
-            <li>Resolved customer inquiries across phone, email, and chat while maintaining accurate operational records</li>
-            <li>Supported reporting and cross-functional coordination to improve operational efficiency</li>
-          </ul>
-        </article>
-
-      </div>
-      <!-- ==== /EDIT ============================================== -->
-    </div>
-  </section>
-
-  <!-- ====================================================================
-       04 — SKILLS AND CERTIFICATIONS
-       ==================================================================== -->
-  <section id="skills" class="band band--sunk" aria-labelledby="skills-h">
-    <div class="wrap">
-      <div class="sec-head sec-head--split reveal">
-        <div class="sec-head__kicker"><p class="eyebrow">04 — Skills and certifications</p></div>
-        <h2 id="skills-h">The toolkit, grouped by what it is actually for.</h2>
-        <p class="sec-head__standfirst">
-          Technical tools, the analysis they are used for, and the business habits that keep
-          the output usable by other people.
-        </p>
-      </div>
-
-      <!-- ==== EDIT: SKILLS ====================================== -->
-      <div class="skills__grid">
+      <!-- ==== EDIT: SKILLS ======================================= -->
+      <div class="skills">
 
         <div class="skillset reveal" data-i="1">
-          <h3>Technical</h3>
-          <span class="skillset__count"><span class="num">7</span> tools</span>
-          <ul>
-            <li>Microsoft Office</li>
-            <li>Microsoft Excel — Pivot Table, Power Pivot, VLOOKUP, Data Analysis ToolPak</li>
-            <li>SQL</li>
-            <li>Power BI — DAX and Data Modeling</li>
-            <li>Data Visualization</li>
-            <li>R — ggplot2, dplyr</li>
-            <li>SPSS</li>
-          </ul>
-        </div>
-
-        <div class="skillset reveal" data-i="2">
-          <h3>Data &amp; financial analysis</h3>
-          <span class="skillset__count"><span class="num">7</span> areas</span>
+          <h3>Financial &amp; analysis</h3>
+          <p class="skillset__count">7 areas</p>
           <ul>
             <li>Budgeting and Forecasting</li>
             <li>Financial Statement Analysis</li>
             <li>Investment Analysis</li>
-            <li>Financial Planning and Analysis</li>
+            <li>FP&amp;A</li>
             <li>Ratio Analysis</li>
             <li>Equity Valuation</li>
             <li>Statistical Analysis</li>
           </ul>
         </div>
 
+        <div class="skillset reveal" data-i="2">
+          <h3>Technical</h3>
+          <p class="skillset__count">9 tools</p>
+          <ul>
+            <li>Microsoft Excel <span class="skillset__detail">Pivot Tables, Power Pivot, VLOOKUP, Data Analytics ToolPak</span></li>
+            <li>Power BI <span class="skillset__detail">DAX and Data Modeling</span></li>
+            <li>SQL</li>
+            <li>Tableau</li>
+            <li>R <span class="skillset__detail">ggplot2, dplyr</span></li>
+            <li>SPSS</li>
+            <li>QuickBooks</li>
+            <li>Data Visualization</li>
+            <li>Microsoft Office</li>
+          </ul>
+        </div>
+
         <div class="skillset reveal" data-i="3">
           <h3>Business</h3>
-          <span class="skillset__count"><span class="num">5</span> practices</span>
+          <p class="skillset__count">4 practices</p>
           <ul>
-            <li>Documentation and Reporting</li>
-            <li>Multitasking Abilities</li>
+            <li>Documentation &amp; Reporting</li>
             <li>Data Entry and Management</li>
             <li>Cross-functional Collaboration</li>
             <li>Operations Management</li>
@@ -933,29 +747,25 @@
       </div>
       <!-- ==== /EDIT ============================================== -->
 
-      <!-- ==== EDIT: CERTIFICATIONS ============================== -->
+      <!-- ==== EDIT: CERTIFICATES ================================= -->
       <div class="certs reveal">
-        <h3 class="eyebrow">Certifications</h3>
-        <ul class="certs__grid">
+        <h3 class="col-title">Certificates</h3>
+        <ul class="certs__list">
           <li class="cert">
-            <span class="cert__n">01</span>
-            <h4 class="cert__name">SQL Essential Training</h4>
-            <p class="cert__issuer">LinkedIn Learning</p>
+            <span class="cert__name">SQL Essential Training</span>
+            <span class="cert__issuer">LinkedIn Learning</span>
           </li>
           <li class="cert">
-            <span class="cert__n">02</span>
-            <h4 class="cert__name">Learning Excel 2019</h4>
-            <p class="cert__issuer">LinkedIn Learning</p>
+            <span class="cert__name">Learning Excel 2019</span>
+            <span class="cert__issuer">LinkedIn Learning</span>
           </li>
           <li class="cert">
-            <span class="cert__n">03</span>
-            <h4 class="cert__name">R for Data Science: Analysis and Visualization</h4>
-            <p class="cert__issuer">LinkedIn Learning</p>
+            <span class="cert__name">R for Data Science: Analysis and Visualization</span>
+            <span class="cert__issuer">LinkedIn Learning</span>
           </li>
           <li class="cert">
-            <span class="cert__n">04</span>
-            <h4 class="cert__name">Introduction to Social Media Marketing</h4>
-            <p class="cert__issuer">Coursera</p>
+            <span class="cert__name">Introduction to Social Media Marketing</span>
+            <span class="cert__issuer">Coursera</span>
           </li>
         </ul>
       </div>
@@ -964,30 +774,32 @@
   </section>
 
   <!-- ====================================================================
-       05 — CONTACT
+       CONTACT
        ==================================================================== -->
-  <section id="contact" class="band contact" aria-labelledby="contact-h">
+  <section id="contact" class="contact" aria-labelledby="contact-h">
     <div class="wrap">
-      <div class="sec-head reveal">
-        <div class="sec-head__kicker"><p class="eyebrow">05 — Contact</p></div>
-        <h2 id="contact-h">Available for analyst roles.</h2>
-      </div>
-
-      <!-- ==== EDIT: CONTACT ===================================== -->
+      <!-- ==== EDIT: CONTACT ====================================== -->
       <div class="contact__grid">
-        <div class="reveal" data-i="1">
+        <div class="contact__main reveal">
+          <p class="eyebrow">Contact</p>
+          <h2 id="contact-h">Hiring for a financial analyst or FP&amp;A role? Let’s talk.</h2>
           <p class="contact__lede">
-            Financial Analyst, FP&amp;A Analyst, Business Intelligence Analyst and
-            corporate finance roles. Email is the fastest way to reach me.
+            Open to Financial Analyst, FP&amp;A Analyst, Business Intelligence Analyst and
+            Corporate Finance roles. Email is the fastest way to reach me.
+          </p>
+          <p class="contact__email">
+            <a href="mailto:khatriprishida@gmail.com">khatriprishida@gmail.com</a>
           </p>
           <div class="contact__actions">
-            <a class="btn btn--onpanel" href="assets/Resume-Prishida-Khatri.pdf">
-              Download résumé <span class="btn__meta">(PDF, 73&nbsp;KB)</span>
+            <a class="btn btn--onpanel btn--lg" href="assets/Resume-Prishida-Khatri.pdf">
+              <svg class="btn__icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 3v9m0 0-3.5-3.5M10 12l3.5-3.5M4 15.5h12"/></svg>
+              Download résumé <span class="btn__meta">PDF, 73&nbsp;KB</span>
             </a>
+            <a class="btn btn--panel-ghost btn--lg" href="https://www.linkedin.com/in/prishida-khatri-791a711b1/" rel="me noopener">LinkedIn</a>
           </div>
         </div>
 
-        <dl class="contact__list reveal" data-i="2">
+        <dl class="contact__list reveal" data-i="1">
           <div class="contact__row">
             <dt>Email</dt>
             <dd><a href="mailto:khatriprishida@gmail.com">khatriprishida@gmail.com</a></dd>
@@ -998,11 +810,11 @@
           </div>
           <div class="contact__row">
             <dt>Location</dt>
-            <dd>West Haven, Connecticut, United States</dd>
+            <dd>New York, NY</dd>
           </div>
           <div class="contact__row">
             <dt>Résumé</dt>
-            <dd><a href="assets/Resume-Prishida-Khatri.pdf">Resume-Prishida-Khatri.pdf (PDF, 73&nbsp;KB)</a></dd>
+            <dd><a href="assets/Resume-Prishida-Khatri.pdf">Resume-Prishida-Khatri.pdf <span class="contact__meta">PDF, 73&nbsp;KB</span></a></dd>
           </div>
         </dl>
       </div>
@@ -1014,9 +826,9 @@
 
 <footer class="site-footer">
   <div class="wrap site-footer__in">
-    <p>&copy; 2026 Prishida Khatri</p>
-    <p><a href="#main">Back to top</a></p>
+    <p>&copy; 2026 Prishida Khatri · New York, NY</p>
     <p class="site-footer__note">Hand-built in HTML, CSS and SVG. No trackers.</p>
+    <p><a href="#top">Back to top <span aria-hidden="true">↑</span></a></p>
   </div>
 </footer>
 
