@@ -24,6 +24,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   overflow-wrap: break-word;
+  /* Belt and braces: 3D transforms near the edges can never cause sideways
+     scrolling. `clip` (not `hidden`) keeps the sticky masthead working. */
+  overflow-x: clip;
 }
 
 /* ---------------------------------------------------------------- headings

@@ -34,9 +34,8 @@
 <meta name="twitter:description" content="MBA in Financial Analysis (GPA 3.90). FP&amp;A, forecasting, equity valuation, financial modeling and Power BI reporting.">
 <meta name="twitter:image" content="https://khatriprishida.github.io/assets/og-image.png">
 
-<meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#F7F5F0" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0D1211" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
@@ -229,8 +228,21 @@
        HERO — who she is, what she wants, why she is credible, how to act.
        ==================================================================== -->
   <section class="hero" id="top" aria-labelledby="name">
-    <div class="wrap hero__grid">
 
+    <!-- The 3D stage. Without JavaScript or WebGL it shows a still render of
+         the scene (assets/hero-still-*.webp); js/app.js lazily loads
+         js/hero3d.js, which draws the live WebGL scene on top of it.
+         Decorative only: no figures are attached to it. -->
+    <div class="hero__stage" data-hero-stage aria-hidden="true">
+      <picture>
+        <source media="(min-width: 64rem)" srcset="assets/hero-still-desktop.webp" type="image/webp">
+        <img class="hero__still" src="assets/hero-still-mobile.webp" alt=""
+             width="682" height="491" decoding="async" fetchpriority="high">
+      </picture>
+    </div>
+    <div class="hero__glow" data-glow aria-hidden="true"></div>
+
+    <div class="wrap hero__grid">
       <div class="hero__main">
         <!-- ==== EDIT: HERO TEXT ==================================== -->
         <p class="status hero-in" data-i="1">
@@ -238,7 +250,7 @@
           <span class="status__roles"><span class="nowrap">Financial Analyst ·</span> <span class="nowrap">FP&amp;A ·</span> <span class="nowrap">Business Intelligence ·</span> <span class="nowrap">Corporate Finance</span></span>
         </p>
 
-        <h1 id="name" class="hero-in" data-i="2">Prishida Khatri</h1>
+        <h1 id="name" class="hero-in" data-i="2"><span class="hero__first">Prishida</span> <span class="hero__last">Khatri</span></h1>
 
         <p class="hero__statement hero-in" data-i="3">
           Financial Analyst with an MBA in Financial Analysis
@@ -252,12 +264,12 @@
         </p>
 
         <div class="hero__actions hero-in" data-i="5">
-          <a class="btn btn--primary btn--lg" href="assets/Resume-Prishida-Khatri.pdf">
+          <a class="btn btn--primary btn--lg" data-magnetic href="assets/Resume-Prishida-Khatri.pdf">
             <svg class="btn__icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 3v9m0 0-3.5-3.5M10 12l3.5-3.5M4 15.5h12"/></svg>
             Download résumé <span class="btn__meta">PDF, 73&nbsp;KB</span>
           </a>
-          <a class="btn btn--ghost btn--lg" href="mailto:khatriprishida@gmail.com">Email me</a>
-          <a class="btn btn--ghost btn--lg" href="https://www.linkedin.com/in/prishida-khatri-791a711b1/" rel="me noopener">LinkedIn</a>
+          <a class="btn btn--ghost btn--lg" data-magnetic href="mailto:khatriprishida@gmail.com">Email me</a>
+          <a class="btn btn--ghost btn--lg" data-magnetic href="https://www.linkedin.com/in/prishida-khatri-791a711b1/" rel="me noopener">LinkedIn</a>
         </div>
 
         <!-- Printed CVs need contact details at the top of page one. On screen
@@ -268,40 +280,38 @@
         </p>
         <!-- ==== /EDIT ============================================== -->
       </div>
+    </div>
 
-      <!-- ==== EDIT: AT A GLANCE ================================== -->
-      <aside class="ledger hero-in" data-i="4" aria-labelledby="ledger-h">
-        <div class="ledger__head">
-          <h2 id="ledger-h" class="ledger__title">At a glance</h2>
-          <span class="ledger__loc">New York, NY</span>
-        </div>
-        <dl class="ledger__rows">
-          <div class="ledger__row">
-            <dt>MBA</dt>
-            <dd><strong>Financial Analysis</strong><span>University of New Haven · May 2026</span></dd>
+    <!-- ==== EDIT: AT A GLANCE ================================== -->
+    <div class="wrap glance-wrap">
+      <aside class="glance hero-in" data-i="6" aria-labelledby="glance-h">
+        <h2 id="glance-h" class="sr-only">At a glance</h2>
+        <dl class="glance__rows">
+          <div class="glance__item">
+            <dt>MBA · May 2026</dt>
+            <dd><strong>Financial Analysis</strong><span>University of New Haven</span></dd>
           </div>
-          <div class="ledger__row ledger__row--figure">
+          <div class="glance__item glance__item--figure">
             <dt>GPA</dt>
             <dd><strong class="fig">3.90</strong></dd>
           </div>
-          <div class="ledger__row">
-            <dt>BBA</dt>
-            <dd><strong>First Class Honors</strong><span>Islington College · Dec 2023</span></dd>
+          <div class="glance__item">
+            <dt>BBA · Dec 2023</dt>
+            <dd><strong>First Class Honors</strong><span>Islington College</span></dd>
           </div>
-          <div class="ledger__row">
+          <div class="glance__item">
             <dt>Focus</dt>
             <dd><strong>FP&amp;A · Valuation · BI</strong><span>Budgeting, forecasting, variance analysis</span></dd>
           </div>
-          <div class="ledger__row">
+          <div class="glance__item">
             <dt>Tools</dt>
             <dd><strong>Excel · SQL · Power BI</strong><span>Tableau · R · SPSS · QuickBooks</span></dd>
           </div>
         </dl>
-        <a class="ledger__foot" href="#work">See the four case studies <span aria-hidden="true">→</span></a>
       </aside>
-      <!-- ==== /EDIT ============================================== -->
-
     </div>
+    <!-- ==== /EDIT ============================================== -->
+
   </section>
 
   <!-- ====================================================================
@@ -313,22 +323,22 @@
       <!-- ==== EDIT: KEY FIGURES ================================== -->
       <ul class="figures">
         <li class="figure reveal" data-i="1">
-          <p class="figure__value"><span class="fig">3.90</span></p>
+          <p class="figure__value"><span class="fig" data-count>3.90</span></p>
           <p class="figure__label">MBA grade point average</p>
           <p class="figure__note">Financial Analysis, University of New Haven</p>
         </li>
         <li class="figure reveal" data-i="2">
-          <p class="figure__value"><span class="fig">+25</span><span class="figure__unit">%</span></p>
+          <p class="figure__value"><span class="fig">+</span><span class="fig" data-count>25</span><span class="figure__unit">%</span></p>
           <p class="figure__label">Upside identified</p>
           <p class="figure__note">Amazon Inc. recommendation, from a $239.89 prior price</p>
         </li>
         <li class="figure reveal" data-i="3">
-          <p class="figure__value"><span class="fig">11</span></p>
+          <p class="figure__value"><span class="fig" data-count>11</span></p>
           <p class="figure__label">Securities analyzed</p>
           <p class="figure__note">Equities and fixed income, across three portfolios</p>
         </li>
         <li class="figure reveal" data-i="4">
-          <p class="figure__value"><span class="fig">50</span><span class="figure__unit">%</span></p>
+          <p class="figure__value"><span class="fig" data-count>50</span><span class="figure__unit">%</span></p>
           <p class="figure__label">Increase in sales, followers &amp; satisfaction</p>
           <p class="figure__note">Strii Nepal · her customer and sales-trend analysis contributed</p>
         </li>
@@ -354,7 +364,7 @@
       <div class="cases">
 
         <!-- ==== EDIT: CASE 01 ===================================== -->
-        <article class="case case--feature reveal" aria-labelledby="case1-h">
+        <article class="case case--feature reveal" data-tilt aria-labelledby="case1-h">
           <div class="case__text">
             <p class="case__kicker"><span class="case__index">01</span>Valuation · Equity research</p>
             <h3 id="case1-h">Financial Statement Analysis and Company Valuation</h3>
@@ -391,40 +401,32 @@
             </ul>
           </div>
 
-          <figure class="chartfig" data-draw aria-labelledby="fig1-cap">
+          <figure class="chartfig" aria-labelledby="fig1-cap">
             <figcaption id="fig1-cap" class="chartfig__head">
               <span class="chartfig__title">Amazon Inc. — the basis of the recommendation</span>
               <span class="chartfig__unit">Prior price = 100</span>
             </figcaption>
 
-            <!-- Only resume figures: the $239.89 prior price and the 25% upside
-                 the recommendation rests on. Drawn as an index (prior price =
-                 100) so no target price is stated or implied in dollars.
-                 Outer SVG has no viewBox: x in %, y in px. Baseline y 226;
-                 100 = 150px tall (top y 76); the +25 segment is 37.5px. -->
-            <svg class="chart chart--cols" width="100%" height="262" role="img"
-                 aria-label="Column chart indexed to the prior price. Left column: prior price of 239.89 dollars, set to 100. Right column: the same base plus a highlighted 25 percent upside, the basis of the recommendation. The figures are also written below the chart.">
-              <line class="c-grid" x1="0" x2="100%" y1="226" y2="226"/>
-
-              <rect class="c-col c-col--base" x="10%" y="76" width="30%" height="150" rx="2"/>
-              <rect class="c-col c-col--base" x="58%" y="76" width="30%" height="150" rx="2"/>
-              <rect class="c-col c-col--up"   x="58%" y="38.5" width="30%" height="37.5" rx="2"/>
-
-              <line class="c-ref" x1="4%" x2="96%" y1="76" y2="76"/>
-
-              <g class="c-late">
-                <text class="c-value" x="25%" y="66" text-anchor="middle">$239.89</text>
-                <text class="c-flagtext" x="73%" y="28" text-anchor="middle">+25% upside</text>
-                <text class="c-value c-value--inv" x="25%" y="154" text-anchor="middle">100</text>
-                <text class="c-value c-value--inv" x="73%" y="154" text-anchor="middle">100</text>
-                <text class="c-value c-value--inv" x="73%" y="62" text-anchor="middle">+25</text>
-              </g>
-
-              <g class="c-label">
-                <text x="25%" y="246" text-anchor="middle">Prior price</text>
-                <text x="73%" y="246" text-anchor="middle">Recommendation basis</text>
-              </g>
-            </svg>
+            <!-- CSS 3D columns (no WebGL). Heights are fractions of the chart
+                 height: prior price 100 → 0.8; the +25 upside stacks 0.2 on
+                 top. Only resume figures; no target price is stated. -->
+            <div class="chart3d" data-chart3d role="img"
+                 aria-label="Three-dimensional column chart indexed to the prior price. Left column: prior price of 239.89 dollars, set to 100. Right column: the same base plus a gold 25 percent upside, the basis of the recommendation. The figures are also written below the chart.">
+              <div class="chart3d__scene">
+                <span class="chart3d__floor"></span>
+                <div class="col3d" style="--h:0.8;--top:0.8">
+                  <span class="cube cube--c2"><i class="f f-front"></i><i class="f f-back"></i><i class="f f-left"></i><i class="f f-right"></i><i class="f f-top"></i></span>
+                  <span class="col3d__value">$239.89</span>
+                  <span class="col3d__name">Prior price</span>
+                </div>
+                <div class="col3d" style="--h:0.8;--h2:0.2;--top:1">
+                  <span class="cube cube--c2"><i class="f f-front"></i><i class="f f-back"></i><i class="f f-left"></i><i class="f f-right"></i><i class="f f-top"></i></span>
+                  <span class="cube cube--gold cube--stack"><i class="f f-front"></i><i class="f f-back"></i><i class="f f-left"></i><i class="f f-right"></i><i class="f f-top"></i></span>
+                  <span class="col3d__value col3d__value--gold">+25% upside</span>
+                  <span class="col3d__name">Recommendation basis</span>
+                </div>
+              </div>
+            </div>
 
             <dl class="keyfacts keyfacts--fig">
               <div><dt>Implied growth</dt><dd>9.84%</dd></div>
@@ -441,7 +443,7 @@
         <!-- ==== /EDIT ============================================== -->
 
         <!-- ==== EDIT: CASE 02 ===================================== -->
-        <article class="case case--feature case--flip reveal" aria-labelledby="case2-h">
+        <article class="case case--feature case--flip reveal" data-tilt aria-labelledby="case2-h">
           <div class="case__text">
             <p class="case__kicker"><span class="case__index">02</span>Portfolio construction</p>
             <h3 id="case2-h">Investment Portfolio Analysis</h3>
@@ -470,51 +472,39 @@
             </ul>
           </div>
 
-          <figure class="chartfig" data-draw aria-labelledby="fig2-cap">
+          <figure class="chartfig" aria-labelledby="fig2-cap">
             <figcaption id="fig2-cap" class="chartfig__head">
               <span class="chartfig__title">Projected return by portfolio</span>
               <span class="chartfig__unit">Percent</span>
             </figcaption>
 
-            <!-- Bars are percentages of the chart width: 30% of return = 100%
-                 of width, so 4.45% → 14.83%, 8.72% → 29.07%, 28% → 93.33%. -->
-            <svg class="chart chart--bars" width="100%" height="244" role="img"
-                 aria-label="Bar chart of projected return by portfolio: Conservative 4.45 percent, Moderate 8.72 percent, Aggressive 28 percent. The same numbers are written beside the chart.">
-              <g class="c-grid">
-                <line x1="33.33%" x2="33.33%" y1="20" y2="196"/>
-                <line x1="66.67%" x2="66.67%" y1="20" y2="196"/>
-                <line x1="99.9%"  x2="99.9%"  y1="20" y2="196"/>
-              </g>
-
-              <g class="c-name">
-                <text x="0" y="16">Conservative</text>
-                <text x="0" y="80">Moderate</text>
-                <text x="0" y="144">Aggressive</text>
-              </g>
-
-              <rect class="c-bar c-bar-1" x="0" y="26"  width="14.83%" height="30" rx="2"/>
-              <rect class="c-bar c-bar-2" x="0" y="90"  width="29.07%" height="30" rx="2"/>
-              <rect class="c-bar c-bar-3" x="0" y="154" width="93.33%" height="30" rx="2"/>
-
-              <g class="c-late">
-                <text class="c-value" x="14.83%" dx="10" y="46.5">4.45%</text>
-                <text class="c-value" x="29.07%" dx="10" y="110.5">8.72%</text>
-                <text class="c-value c-value--inv" x="93.33%" dx="-10" y="174.5" text-anchor="end">28%</text>
-              </g>
-
-
-              <g class="c-label">
-                <text x="0" y="216">0%</text>
-                <text x="33.33%" y="216" text-anchor="middle">10%</text>
-                <text x="66.67%" y="216" text-anchor="middle">20%</text>
-                <text x="100%" y="216" text-anchor="end">30%</text>
-                <text class="c-axistitle" x="50%" y="240" text-anchor="middle">Projected return</text>
-              </g>
-            </svg>
+            <!-- CSS 3D columns. Height = return ÷ 28 (the tallest), so
+                 4.45 → 0.159, 8.72 → 0.311, 28 → 1. -->
+            <div class="chart3d chart3d--three" data-chart3d role="img"
+                 aria-label="Three-dimensional column chart of projected return by portfolio: Conservative 4.45 percent, Moderate 8.72 percent, Aggressive 28 percent. The same numbers are written beside the chart.">
+              <div class="chart3d__scene">
+                <span class="chart3d__floor"></span>
+                <div class="col3d" style="--h:0.159;--top:0.159">
+                  <span class="cube cube--c1"><i class="f f-front"></i><i class="f f-back"></i><i class="f f-left"></i><i class="f f-right"></i><i class="f f-top"></i></span>
+                  <span class="col3d__value">4.45%</span>
+                  <span class="col3d__name">Conservative</span>
+                </div>
+                <div class="col3d" style="--h:0.311;--top:0.311">
+                  <span class="cube cube--c2"><i class="f f-front"></i><i class="f f-back"></i><i class="f f-left"></i><i class="f f-right"></i><i class="f f-top"></i></span>
+                  <span class="col3d__value">8.72%</span>
+                  <span class="col3d__name">Moderate</span>
+                </div>
+                <div class="col3d" style="--h:1;--top:1">
+                  <span class="cube cube--c3"><i class="f f-front"></i><i class="f f-back"></i><i class="f f-left"></i><i class="f f-right"></i><i class="f f-top"></i></span>
+                  <span class="col3d__value">28%</span>
+                  <span class="col3d__name">Aggressive</span>
+                </div>
+              </div>
+            </div>
 
             <p class="chartfig__note">
               Conservative <b>4.45%</b>, Moderate <b>8.72%</b>, Aggressive <b>28%</b>. Shade deepens
-              with the risk profile, and every bar is labeled, so nothing depends on color alone.
+              with the risk profile, and every column is labeled, so nothing depends on color alone.
             </p>
 
             <div class="unitchart">
@@ -542,7 +532,7 @@
         <div class="cases__pair">
 
           <!-- ==== EDIT: CASE 03 =================================== -->
-          <article class="case reveal" data-i="1" aria-labelledby="case3-h">
+          <article class="case reveal" data-tilt data-i="1" aria-labelledby="case3-h">
             <p class="case__kicker"><span class="case__index">03</span>Business intelligence</p>
             <h3 id="case3-h">Data Analysis and Data Visualization</h3>
             <p>
@@ -567,7 +557,7 @@
           <!-- ==== /EDIT ============================================ -->
 
           <!-- ==== EDIT: CASE 04 =================================== -->
-          <article class="case reveal" data-i="2" aria-labelledby="case4-h">
+          <article class="case reveal" data-tilt data-i="2" aria-labelledby="case4-h">
             <p class="case__kicker"><span class="case__index">04</span>FP&amp;A</p>
             <h3 id="case4-h">Budgeting and Financial Planning</h3>
             <p>
@@ -759,11 +749,11 @@
             <a href="mailto:khatriprishida@gmail.com">khatriprishida@gmail.com</a>
           </p>
           <div class="contact__actions">
-            <a class="btn btn--onpanel btn--lg" href="assets/Resume-Prishida-Khatri.pdf">
+            <a class="btn btn--primary btn--lg" data-magnetic href="assets/Resume-Prishida-Khatri.pdf">
               <svg class="btn__icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 3v9m0 0-3.5-3.5M10 12l3.5-3.5M4 15.5h12"/></svg>
               Download résumé <span class="btn__meta">PDF, 73&nbsp;KB</span>
             </a>
-            <a class="btn btn--panel-ghost btn--lg" href="https://www.linkedin.com/in/prishida-khatri-791a711b1/" rel="me noopener">LinkedIn</a>
+            <a class="btn btn--ghost btn--lg" data-magnetic href="https://www.linkedin.com/in/prishida-khatri-791a711b1/" rel="me noopener">LinkedIn</a>
           </div>
         </div>
 

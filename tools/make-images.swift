@@ -20,13 +20,13 @@ import AppKit
 import CoreGraphics
 
 // --- palette, copied from css/tokens.css (light theme) --------------------
-let paper   = NSColor(srgbRed: 0.969, green: 0.961, blue: 0.941, alpha: 1) // #F7F5F0 --bg
+let paper   = NSColor(srgbRed: 1.0, green: 1.0, blue: 1.0, alpha: 1)       // #FFFFFF --bg
 let ink     = NSColor(srgbRed: 0.071, green: 0.082, blue: 0.090, alpha: 1) // #121517 --text
 let ink2    = NSColor(srgbRed: 0.212, green: 0.235, blue: 0.259, alpha: 1) // #363C42 --text-2
 let ink3    = NSColor(srgbRed: 0.349, green: 0.380, blue: 0.412, alpha: 1) // #596169 --text-3
 let accent  = NSColor(srgbRed: 0.043, green: 0.333, blue: 0.251, alpha: 1) // #0B5540 --accent
-let accentWash = NSColor(srgbRed: 0.894, green: 0.937, blue: 0.914, alpha: 1) // #E4EFE9
-let rule    = NSColor(srgbRed: 0.890, green: 0.871, blue: 0.831, alpha: 1) // #E3DED4 --rule
+let accentWash = NSColor(srgbRed: 0.902, green: 0.949, blue: 0.925, alpha: 1) // #E6F2EC
+let rule    = NSColor(srgbRed: 0.902, green: 0.918, blue: 0.906, alpha: 1) // #E6EAE7 --rule
 let panel   = NSColor(srgbRed: 0.047, green: 0.227, blue: 0.176, alpha: 1) // #0C3A2D --panel
 let panelHi = NSColor(srgbRed: 0.071, green: 0.290, blue: 0.227, alpha: 1) // #124A3A (gradient top)
 let onPanel = NSColor(srgbRed: 0.953, green: 0.945, blue: 0.925, alpha: 1) // #F3F1EC --on-panel

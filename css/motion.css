@@ -9,40 +9,73 @@
    the rules below apply and every element is simply visible in its final
    state. Content cannot go missing.
 
-   Motion only ever explains something: content arriving, a chart growing
-   from its baseline. Transform and opacity only. Nothing loops.
+   Transform and opacity only. Reduced motion shows every finished state.
    ========================================================================== */
 
-/* ---------------------------------------------------------- section reveal */
+/* ------------------------------------------------- section reveal, in depth
+   Sections tip up out of the page: a small rotateX in perspective. */
 html.js .reveal {
   opacity: 0;
-  transform: translateY(16px);
+  transform: perspective(1200px) translateY(36px) rotateX(-8deg);
+  transform-origin: 50% 0%;
 }
 html.js .reveal.is-in {
   opacity: 1;
   transform: none;
   transition: opacity var(--dur-3) var(--ease-out),
-              transform var(--dur-3) var(--ease-out);
+              transform 900ms var(--ease-out);
 }
-html.js .reveal[data-i="1"].is-in { transition-delay: 60ms; }
-html.js .reveal[data-i="2"].is-in { transition-delay: 120ms; }
-html.js .reveal[data-i="3"].is-in { transition-delay: 180ms; }
-html.js .reveal[data-i="4"].is-in { transition-delay: 240ms; }
+html.js .reveal[data-i="1"].is-in { transition-delay: 70ms; }
+html.js .reveal[data-i="2"].is-in { transition-delay: 140ms; }
+html.js .reveal[data-i="3"].is-in { transition-delay: 210ms; }
+html.js .reveal[data-i="4"].is-in { transition-delay: 280ms; }
+/* Cards that tilt keep their own transform once revealed. */
+html.js .case.reveal.is-in {
+  transform: perspective(1400px) rotateX(var(--tx, 0deg)) rotateY(var(--ty, 0deg));
+}
+
+/* Figures: the gold rule draws across as the card arrives. */
+html.js .figure.reveal::before { transform: scaleX(0); }
+html.js .figure.reveal.is-in::before {
+  transform: scaleX(1);
+  transition: transform 1100ms var(--ease-out) 200ms;
+}
 
 /* ------------------------------------------------------------ hero on load */
 html.js .hero-in {
   opacity: 0;
-  transform: translateY(12px);
-  animation: rise 560ms var(--ease-out) forwards;
+  transform: translateY(18px);
+  animation: rise 800ms var(--ease-out) forwards;
 }
-html.js .hero-in[data-i="1"] { animation-delay: 40ms; }
-html.js .hero-in[data-i="2"] { animation-delay: 100ms; }
-html.js .hero-in[data-i="3"] { animation-delay: 170ms; }
-html.js .hero-in[data-i="4"] { animation-delay: 240ms; }
-html.js .hero-in[data-i="5"] { animation-delay: 310ms; }
+html.js .hero-in[data-i="1"] { animation-delay: 60ms; }
+html.js .hero-in[data-i="2"] { animation-delay: 120ms; }
+html.js .hero-in[data-i="3"] { animation-delay: 220ms; }
+html.js .hero-in[data-i="4"] { animation-delay: 300ms; }
+html.js .hero-in[data-i="5"] { animation-delay: 380ms; }
+html.js .hero-in[data-i="6"] { animation-delay: 520ms; }
 @keyframes rise { to { opacity: 1; transform: none; } }
 
-/* The "open to work" dot: one soft ring, three times, then still. */
+/* The name: each half slides up from behind a line. */
+html.js .hero h1 .hero__first,
+html.js .hero h1 .hero__last {
+  animation: name-in 1000ms var(--ease-out) both;
+}
+html.js .hero h1 .hero__last { animation-delay: 110ms; }
+@keyframes name-in {
+  from { transform: translateY(0.35em); opacity: 0; filter: blur(6px); }
+  to   { transform: none; opacity: 1; filter: none; }
+}
+
+/* The still render breathes very slightly until WebGL takes over, so the
+   hero is alive even before (or without) the 3D scene. */
+html.js .hero__still { animation: drift 14s ease-in-out infinite alternate; }
+@keyframes drift {
+  from { transform: scale(1.02) translate3d(-0.6%, 0, 0); }
+  to   { transform: scale(1.06) translate3d(0.6%, -0.8%, 0); }
+}
+.hero__stage.is-live .hero__still { animation: none; }
+
+/* The "open to work" dot: a soft ring, three times, then still. */
 .status__dot::after {
   content: "";
   position: absolute;
@@ -57,45 +90,28 @@ html.js .status__dot::after { animation: ping 1.8s var(--ease-out) 900ms 3; }
   100% { transform: scale(2.8); opacity: 0; }
 }
 
-/* ------------------------------------------------------------- chart draw
-   Columns rise from the baseline: the prior price first, then the upside. */
-html.js .c-col {
-  transform: scaleY(0);
-  transform-box: fill-box;
-  transform-origin: center bottom;
-}
-html.js .is-drawn .c-col {
+/* ------------------------------------------------------- 3D columns grow */
+html.js [data-chart3d] .cube { transform: scaleY(0.001); }
+html.js [data-chart3d] .col3d__value { opacity: 0; }
+html.js [data-chart3d].is-drawn .cube {
   transform: none;
-  transition: transform 700ms var(--ease-out) 80ms;
+  transition: transform 1100ms var(--ease-spring);
 }
-html.js .is-drawn .c-col--up { transition-delay: 640ms; transition-duration: 420ms; }
-html.js .c-ref { opacity: 0; }
-html.js .is-drawn .c-ref { opacity: 1; transition: opacity 300ms var(--ease-out) 600ms; }
-
-/* Bars grow from their baseline, lowest risk first. */
-html.js .c-bar {
-  transform: scaleX(0);
-  transform-box: fill-box;
-  transform-origin: left center;
-}
-html.js .is-drawn .c-bar {
-  transform: none;
-  transition: transform 800ms var(--ease-out);
-}
-html.js .is-drawn .c-bar-1 { transition-delay: 80ms; }
-html.js .is-drawn .c-bar-2 { transition-delay: 200ms; }
-html.js .is-drawn .c-bar-3 { transition-delay: 320ms; }
-
-/* Annotations land after the data they annotate. */
-html.js .c-late { opacity: 0; }
-html.js .is-drawn .c-late {
+html.js [data-chart3d].is-drawn .col3d:nth-of-type(2) .cube { transition-delay: 120ms; }
+html.js [data-chart3d].is-drawn .col3d:nth-of-type(3) .cube { transition-delay: 240ms; }
+html.js [data-chart3d].is-drawn .col3d:nth-of-type(4) .cube { transition-delay: 360ms; }
+html.js [data-chart3d].is-drawn .cube--stack { transition-delay: 700ms !important; }
+html.js [data-chart3d].is-drawn .col3d__value {
   opacity: 1;
-  transition: opacity 400ms var(--ease-out) 1000ms;
+  transition: opacity 500ms var(--ease-out) 900ms;
 }
+
+/* Magnetic buttons ease back when the pointer leaves. */
+[data-magnetic] { will-change: transform; }
 
 /* ======================================================================
    REDUCED MOTION — one block, and it wins. Everything is shown in its
-   finished state immediately. Nothing moves, fades, draws or pings.
+   finished state immediately. Nothing moves, fades, tilts or counts.
    ====================================================================== */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -107,10 +123,14 @@ html.js .is-drawn .c-late {
     scroll-behavior: auto !important;
   }
   html.js .reveal,
-  html.js .hero-in { opacity: 1 !important; transform: none !important; }
-  html.js .c-ref,
-  html.js .c-late { opacity: 1 !important; }
-  html.js .c-bar,
-  html.js .c-col { transform: none !important; }
+  html.js .hero-in,
+  html.js .hero h1 .hero__first,
+  html.js .hero h1 .hero__last { opacity: 1 !important; transform: none !important; filter: none !important; }
+  html.js .hero__still { animation: none !important; transform: none !important; }
+  html.js .figure.reveal::before { transform: none !important; }
+  html.js [data-chart3d] .cube { transform: none !important; }
+  html.js [data-chart3d] .col3d__value { opacity: 1 !important; }
   .status__dot::after { animation: none !important; }
+  .case { transform: none !important; }
+  .hero__glow { display: none !important; }
 }

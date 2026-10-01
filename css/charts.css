@@ -1,13 +1,13 @@
 /* ==========================================================================
-   charts.css — the hand-written inline SVG charts and the tables under them.
+   charts.css — the two CSS-3D column charts and the small unit chart.
 
-   No chart library and no <canvas>: every mark is markup in index.html, so
-   the charts render with JavaScript off, print, and restyle from here.
-
-   How they stay readable from 320px to 1440px without scrolling: the outer
-   <svg> has NO viewBox. Horizontal positions are percentages of its width,
-   vertical positions are pixels, so text is always drawn at its real CSS
-   size at every width.
+   The columns are real 3D boxes built from five faces with CSS transforms
+   (`transform-style: preserve-3d`), not WebGL and not images. Every label is
+   HTML text. js/app.js turns the whole chart a few degrees as it scrolls
+   through the viewport ("time" as the fourth dimension) and grows the
+   columns from the floor when they first appear. With JavaScript off, or
+   with reduced motion, the chart simply sits at a fixed three-quarter angle,
+   fully drawn.
 
    Every chart also has its numbers written out as text beside it.
    ========================================================================== */
@@ -36,26 +36,12 @@
   line-height: 1.35;
   max-width: 44ch;
 }
-.chartfig__unit,
-.chartfig__badge {
+.chartfig__unit {
   font-size: var(--fs-6);
   font-weight: 650;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-3);
-}
-.chartfig__badge {
-  padding: 0.2rem 0.55rem;
-  border: 1px solid var(--rule-2);
-  border-radius: 999px;
-}
-
-.chart {
-  display: block;
-  width: 100%;
-  overflow: visible;
-  font-family: var(--sans);
-  font-variant-numeric: lining-nums tabular-nums;
 }
 
 .chartfig__note {
@@ -66,40 +52,147 @@
 }
 .chartfig__note b { color: var(--text-2); font-weight: 600; }
 
-/* ---------------------------------------------------------------- marks */
-.c-grid  { stroke: var(--rule); stroke-width: 1; }
-.c-axis  { stroke: var(--rule-3); stroke-width: 1; }
-.c-ref   { stroke: var(--rule-3); stroke-width: 1.5; stroke-dasharray: 5 4; }
-
-
-.c-col--base { fill: var(--series-2); }
-.c-col--up   { fill: var(--series-3); }
-
-.c-bar-1 { fill: var(--series-1); }
-.c-bar-2 { fill: var(--series-2); }
-.c-bar-3 { fill: var(--series-3); }
-.c-tick  { fill: var(--accent-2); }
-
-/* ---------------------------------------------------------------- text
-   Real CSS pixels (the outer SVG is unscaled). */
-.c-label       { font-size: 12px; fill: var(--text-3); }
-.c-axistitle   { font-size: 11px; font-weight: 650; letter-spacing: 0.1em; text-transform: uppercase; fill: var(--text-3); }
-.c-name        { font-size: 13px; font-weight: 600; fill: var(--text-2); }
-.c-value       { font-size: 15px; font-weight: 700; fill: var(--text); }
-.c-value--inv  { fill: var(--on-series-3); }
-.c-flagtext    { font-size: 15px; font-weight: 700; fill: var(--accent); }
-
-/* Text over the chart gets a halo in the card colour so gridlines and the
-   area fill never cut through a label. */
-.c-flagtext, .c-name {
-  paint-order: stroke;
-  stroke: var(--surface);
-  stroke-width: 4px;
-  stroke-linejoin: round;
+/* ======================================================================
+   CSS 3D COLUMN CHART
+   Sizes: --H chart height, --W column width, --D column depth.
+   Per column: --h height fraction (0–1), --h2 stacked segment, --top the
+   total, used to place the value label.
+   ====================================================================== */
+.chart3d {
+  --H: 12.5rem;
+  --W: 4.5rem;
+  --D: 4.5rem;
+  --ry: -26deg;           /* turned by js/app.js with scroll */
+  --rx: -12deg;
+  position: relative;
+  padding: 3.5rem 0 5rem;
+  perspective: 70rem;
+  perspective-origin: 50% 20%;
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(80% 70% at 50% 100%, rgba(47, 138, 102, 0.08), transparent 70%),
+    linear-gradient(180deg, #FFFFFF, var(--sunk));
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+@media (max-width: 33.99rem) {
+  .chart3d { --H: 10.5rem; --W: 3.6rem; --D: 3.6rem; }
 }
 
-/* ---------------------------------------- key facts under the Amazon chart */
-.keyfacts--fig { margin: 0; }
+.chart3d__scene {
+  position: relative;
+  height: var(--H);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 220ms linear;
+}
+
+/* The floor: a soft grid the columns stand on. */
+.chart3d__floor {
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  top: calc(var(--H) - var(--D) * 1.6);
+  height: calc(var(--D) * 3.2);
+  transform: rotateX(90deg);
+  background:
+    linear-gradient(var(--rule-2) 1px, transparent 1px) 0 0 / 100% 1.5rem,
+    linear-gradient(90deg, var(--rule-2) 1px, transparent 1px) 0 0 / 1.5rem 100%;
+  -webkit-mask-image: radial-gradient(closest-side, #000 55%, transparent);
+  mask-image: radial-gradient(closest-side, #000 55%, transparent);
+  opacity: 0.8;
+}
+
+.col3d {
+  position: relative;
+  width: var(--W);
+  height: var(--H);
+  transform-style: preserve-3d;
+}
+
+.cube {
+  --c: var(--accent-2);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: var(--W);
+  height: calc(var(--h) * var(--H));
+  transform-style: preserve-3d;
+  transform-origin: 50% 100%;
+}
+.cube--stack {
+  bottom: calc(var(--h) * var(--H));
+  height: calc(var(--h2) * var(--H));
+}
+.cube--c1   { --c: var(--series-1); }
+.cube--c2   { --c: var(--series-2); }
+.cube--c3   { --c: var(--series-3); }
+.cube--gold { --c: var(--gold); }
+
+.f { position: absolute; display: block; }
+.f-front {
+  inset: 0;
+  transform: translateZ(calc(var(--D) / 2));
+  background: linear-gradient(180deg, color-mix(in srgb, var(--c) 88%, #FFFFFF), var(--c));
+}
+.f-back {
+  inset: 0;
+  transform: rotateY(180deg) translateZ(calc(var(--D) / 2));
+  background: color-mix(in srgb, var(--c) 70%, #000000);
+}
+.f-left, .f-right {
+  top: 0;
+  bottom: 0;
+  width: var(--D);
+}
+.f-right {
+  left: calc(var(--W) - var(--D) / 2);
+  transform: rotateY(90deg);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--c) 78%, #000000), color-mix(in srgb, var(--c) 66%, #000000));
+}
+.f-left {
+  left: calc(var(--D) / -2);
+  transform: rotateY(-90deg);
+  background: color-mix(in srgb, var(--c) 82%, #000000);
+}
+.f-top {
+  left: 0;
+  width: var(--W);
+  top: calc(var(--D) / -2);
+  height: var(--D);
+  transform: rotateX(90deg);
+  background: color-mix(in srgb, var(--c) 62%, #FFFFFF);
+}
+
+/* Labels live in the same 3D space, on the front plane. */
+.col3d__value,
+.col3d__name {
+  position: absolute;
+  left: 50%;
+  white-space: nowrap;
+  transform: translateX(-50%) translateZ(calc(var(--D) / 2 + 2px));
+}
+.col3d__value {
+  bottom: calc(var(--top) * var(--H) + var(--D) * 0.55 + 0.4rem);
+  font: 700 1rem/1 var(--sans);
+  color: var(--text);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.col3d__value--gold { color: var(--gold-ink); }
+.col3d__name {
+  top: calc(100% + 0.9rem);
+  width: max-content;
+  max-width: 8.5rem;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.25;
+  font-size: var(--fs-5);
+  font-weight: 600;
+  color: var(--text-2);
+}
 
 /* ------------------------------------------- unit chart (one mark per item) */
 .unitchart {
@@ -112,3 +205,6 @@
 }
 .unitchart svg { display: block; width: 13rem; max-width: 100%; height: auto; flex: none; }
 .unitchart p { font-size: var(--fs-5); color: var(--text-3); margin: 0; flex: 1 1 12rem; }
+.c-tick { fill: var(--accent-2); }
+
+.keyfacts--fig { margin: 0; }

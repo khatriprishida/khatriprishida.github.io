@@ -2,10 +2,9 @@
    tokens.css — every colour, size and duration used on this site.
    Loaded first. Nothing here draws anything; it only names values.
 
-   Two themes, both first-class: light (default) and dark, chosen by the
-   visitor's operating system through prefers-color-scheme. Components only
-   ever use the semantic names below (--bg, --text-3, --accent …), never raw
-   hex, so a theme is nothing more than a second set of values.
+   ONE THEME: bright white. The site deliberately does not follow the
+   visitor's dark-mode setting (`color-scheme: light`), so it looks the same
+   on every machine. Components only use the semantic names below.
 
    Contrast: every text/background pair was measured, not guessed, and the
    ratio is written beside it. WCAG AA needs 4.5:1 for body text and 3:1 for
@@ -13,132 +12,88 @@
    ========================================================================== */
 
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
 
   /* ------------------------------------------------------------ surfaces */
-  --bg:           #F7F5F0;   /* page — warm paper                             */
-  --surface:      #FFFFFF;   /* cards, raised panels                          */
-  --sunk:         #EFECE5;   /* tinted bands                                  */
+  --bg:           #FFFFFF;   /* page                                          */
+  --surface:      #FFFFFF;   /* cards                                         */
+  --sunk:         #F4F7F5;   /* tinted bands, a breath of green               */
+  --glass:        rgba(255, 255, 255, 0.72);
 
   /* ---------------------------------------------------------------- text */
-  --text:         #121517;   /* headings        16.8:1 on bg, 15.5 on sunk    */
-  --text-2:       #363C42;   /* body            10.2:1 on bg,  9.5 on sunk    */
-  --text-3:       #596169;   /* secondary        5.8:1 on bg,  5.3 on sunk    */
+  --text:         #101417;   /* headings        18.4:1 on bg                  */
+  --text-2:       #3A4048;   /* body            10.5:1 on bg,  9.7 on sunk    */
+  --text-3:       #596169;   /* secondary        6.3:1 on bg,  5.8 on sunk    */
 
   /* --------------------------------------------------------------- rules */
-  --rule:         #E3DED4;   /* hairlines, decorative                         */
-  --rule-2:       #CFC9BD;   /* card borders                                  */
-  --rule-3:       #8A857C;   /* chart axes / reference lines  3.4:1 on bg     */
+  --rule:         #E6EAE7;
+  --rule-2:       #D3DAD5;
+  --rule-3:       #8A928C;   /* chart axes        3.3:1 on bg                 */
 
   /* -------------------------------------------------------------- accent
-     One accent family: a deep banker's green. It reads as "finance" without
-     reaching for navy, and doubles as the "upside" colour in the charts.
-     Every use is also labelled in words. */
-  --accent:       #0B5540;   /* links, primary button   8.8:1 on surface      */
-  --accent-2:     #2F7A5F;   /* mid series              5.2:1 on surface      */
-  --accent-3:     #5A927A;   /* lightest series         3.6:1 on surface      */
-  --accent-wash:  #E4EFE9;   /* tinted fills behind accent text               */
-  --on-accent:    #FFFFFF;   /* text on --accent        8.8:1                 */
+     Primary: deep banker's green. Secondary: gold, used for highlights and
+     the 3D line; --gold-ink is the only gold that may carry small text. */
+  --accent:       #0B5540;   /* links, buttons    8.8:1 on bg                 */
+  --accent-2:     #2F7A5F;   /*                   5.2:1 on bg                 */
+  --accent-3:     #5A927A;   /* lightest series   3.6:1 on bg                 */
+  --accent-wash:  #E6F2EC;
   --accent-hover: #083F30;
+  --on-accent:    #FFFFFF;   /*                   8.8:1 on --accent           */
 
-  /* Chart series, in order of risk (lowest first). Light theme runs light to
-     dark; the dark theme runs dim to bright. Both ≥ 3:1 against --surface. */
+  --gold:         #C9952E;   /* decorative only (2.7:1) — never small text    */
+  --gold-ink:     #8A5A12;   /* gold text         5.9:1 on bg                 */
+  --gold-wash:    #FBF3E2;
+
+  /* Chart series, lowest risk first. All ≥ 3:1 on white. */
   --series-1:     var(--accent-3);
   --series-2:     var(--accent-2);
   --series-3:     var(--accent);
-  --on-series-3:  #FFFFFF;
 
-  /* --------------------------------------------------------------- panel
-     The one dark object on the page: the closing Contact band and footer. */
-  --panel:        #0C3A2D;
-  --on-panel:     #F3F1EC;   /* 11.2:1 on panel                               */
-  --on-panel-2:   #B7CAC1;   /*  7.4:1 on panel                               */
-  --panel-accent: #8FD4B5;   /*  7.4:1 on panel                               */
-  --panel-rule:   rgba(243, 241, 236, 0.18);
-
-  /* --------------------------------------------------------------- type
-     System stacks only. No webfonts, no network. The serif is Iowan Old
-     Style on Apple devices, Palatino/Book Antiqua on Windows, Georgia as the
-     universal fallback. */
+  /* --------------------------------------------------------------- type */
   --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua",
            Georgia, "Times New Roman", serif;
   --sans:  system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
            "Helvetica Neue", Arial, sans-serif;
 
-  /* One scale. No font size on this site sits outside this list. */
-  --fs-hero:    clamp(2.75rem, 1.55rem + 4.6vw, 5.25rem);       /* the name      */
-  --fs-1:       clamp(1.85rem, 1.3rem + 1.9vw, 2.9rem);    /* h2            */
+  --fs-hero:    clamp(3rem, 1.6rem + 5.4vw, 6.25rem);      /* the name      */
+  --fs-1:       clamp(1.9rem, 1.3rem + 2.1vw, 3.1rem);     /* h2            */
   --fs-2:       clamp(1.3rem, 1.12rem + 0.7vw, 1.7rem);    /* h3, statement */
   --fs-3:       1.0625rem;                                 /* body 17px     */
   --fs-4:       0.9375rem;                                 /* small 15px    */
   --fs-5:       0.8125rem;                                 /* fine 13px     */
   --fs-6:       0.75rem;                                   /* label 12px    */
-  --fs-figure:  clamp(2.25rem, 1.6rem + 2.2vw, 3.4rem);    /* KPI numbers   */
+  --fs-figure:  clamp(2.5rem, 1.7rem + 2.6vw, 3.9rem);     /* KPI numbers   */
 
-  /* --------------------------------------------------------------- space
-     4px base. */
+  /* --------------------------------------------------------------- space */
   --s1: 0.25rem;  --s2: 0.5rem;   --s3: 0.75rem;  --s4: 1rem;
   --s5: 1.5rem;   --s6: 2rem;     --s7: 3rem;     --s8: 4rem;
   --s9: 6rem;     --s10: 8rem;
 
-  --wrap:        78rem;
+  --wrap:        80rem;
   --wrap-pad:    clamp(1.25rem, 0.6rem + 3vw, 3rem);
   --measure:     64ch;
-  --masthead-h:  4rem;
-  --radius:      6px;
-  --radius-lg:   10px;
+  --masthead-h:  4.25rem;
+  --radius:      8px;
+  --radius-lg:   16px;
   --target:      2.75rem;   /* 44px minimum touch target                      */
 
   /* -------------------------------------------------------------- motion */
   --dur-1: 150ms;
-  --dur-2: 220ms;
-  --dur-3: 480ms;
+  --dur-2: 240ms;
+  --dur-3: 700ms;
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
 
-  /* --------------------------------------------------------------- depth */
-  --shadow-1: 0 1px 2px rgba(18, 21, 23, 0.05);
-  --shadow-2: 0 1px 2px rgba(18, 21, 23, 0.04),
-              0 12px 32px -16px rgba(18, 21, 23, 0.20);
-}
-
-/* ==========================================================================
-   DARK THEME — same names, new values. Measured the same way.
-   ========================================================================== */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg:           #0D1211;
-    --surface:      #141A19;
-    --sunk:         #101615;
-
-    --text:         #ECEAE4;   /* 14.7:1 on surface                         */
-    --text-2:       #C9CCC7;   /* 10.9:1 on surface                         */
-    --text-3:       #9CA5A0;   /*  7.0:1 on surface                         */
-
-    --rule:         #232B29;
-    --rule-2:       #33403C;
-    --rule-3:       #6B7571;   /*  3.7:1 on surface                         */
-
-    --accent:       #7FD1AE;   /*  9.8:1 on surface                         */
-    --accent-2:     #5DAF8C;
-    --accent-3:     #3B8468;   /*  3.9:1 on surface                         */
-    --accent-wash:  #15271F;
-    --on-accent:    #062117;   /*  9.4:1 on --accent                        */
-    --accent-hover: #A2E2C6;
-
-    --series-1:     #3B8468;   /* dim → bright with risk                    */
-    --series-2:     #5DAF8C;
-    --series-3:     #8FDDB9;
-    --on-series-3:  #062117;
-
-    --panel:        #122420;   /* on-panel 14.3:1, on-panel-2 9.4:1         */
-    --panel-rule:   rgba(243, 241, 236, 0.14);
-
-    --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
-    --shadow-2: 0 1px 2px rgba(0, 0, 0, 0.35),
-                0 16px 40px -20px rgba(0, 0, 0, 0.7);
-  }
+  /* --------------------------------------------------------------- depth
+     Soft, green-tinted shadows: depth without greyness on white. */
+  --shadow-1: 0 1px 2px rgba(11, 45, 34, 0.05),
+              0 2px 8px -2px rgba(11, 45, 34, 0.06);
+  --shadow-2: 0 1px 2px rgba(11, 45, 34, 0.04),
+              0 18px 40px -18px rgba(11, 45, 34, 0.22);
+  --shadow-3: 0 2px 4px rgba(11, 45, 34, 0.04),
+              0 30px 70px -28px rgba(11, 45, 34, 0.32);
 }
 
 @media (max-width: 40rem) {
-  :root { --masthead-h: 3.5rem; }
+  :root { --masthead-h: 3.75rem; }
 }

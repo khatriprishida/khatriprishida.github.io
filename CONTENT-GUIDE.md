@@ -36,6 +36,13 @@ fact is not on the PDF, it does not go on the site.
 The "Open to work" line and the roles after it, your name, the one-sentence
 statement, the short paragraph under it, and the three buttons.
 
+Your name is split into two pieces so each can animate in:
+`<span class="hero__first">Prishida</span> <span class="hero__last">Khatri</span>`.
+Change the words inside, keep the two `<span>`s.
+
+The moving 3D picture behind the hero has no words or numbers in it, so there
+is nothing to edit there.
+
 If you change your email address, change it in **four** places: the
 "Email me" button here, the big address and the list in the Contact section,
 and the `"email"` line inside the `<script type="application/ld+json">` block
@@ -49,41 +56,47 @@ card, the Contact list, the footer, the printed contact line (the
 (see `README.md`, section 6) because it says "New York, NY" too.
 
 ### `EDIT: AT A GLANCE`
-The white card beside your name. Each row is a short label (`MBA`, `GPA`…),
-a bold line and a small grey line underneath.
+The frosted bar along the bottom of the hero. Each item is a short label
+(`MBA · May 2026`, `GPA`…), a bold line and a small grey line underneath.
 
 ### `EDIT: KEY FIGURES`
 The four big numbers under the hero. Each one looks like this:
 
 ```html
-<p class="figure__value"><span class="fig">3.90</span></p>
+<p class="figure__value"><span class="fig" data-count>3.90</span></p>
 <p class="figure__label">MBA grade point average</p>
 <p class="figure__note">Financial Analysis, University of New Haven</p>
 ```
 
-Change the number, the bold label and the grey note. For a percentage, the
-`%` sits in its own `<span class="figure__unit">` so it can be drawn smaller.
+Change the number, the bold label and the grey note. The number counts up
+from zero on screen by itself (`data-count`) and always lands on exactly what
+you typed. For a percentage, the `%` sits in its own
+`<span class="figure__unit">` so it can be drawn smaller; a leading `+` sits in
+its own `<span class="fig">` so it does not count.
 
 ### `EDIT: CASE 01` … `CASE 04`
 Each case study has a small label ("01 · Valuation"), a title, one or two
 paragraphs, and then a visual.
 
 * **Case 01** has two "calls" (Lockheed Martin — Buy; Amazon — +25% upside),
-  a row of method tags, and the Amazon chart (prior price vs. 25% upside) with
-  three key facts under it.
-* **Case 02** has three key facts, method tags and the portfolio bar chart.
+  a row of method tags, and the 3D Amazon chart (prior price vs. 25% upside)
+  with three key facts under it.
+* **Case 02** has three key facts, method tags and the 3D portfolio chart.
 * **Cases 03 and 04** have a four-step strip. Each step is one line:
 
   ```html
   <li><span class="flow__step">Power Query</span><span class="flow__what">Data preparation</span></li>
   ```
 
-**The chart numbers are drawn by hand in the SVG.** If a project figure
-changes, the chart will not follow it automatically. For the portfolio bars,
-each bar's `width` is the return divided by 30, as a percentage (28% → 93.33%);
-the value label next to it uses the same number as its `x`. For the Amazon
-chart, ask whoever built this to redraw it — or delete the whole
-`<figure class="chartfig"> … </figure>` block and keep the words. Deleting a
+**The 3D charts are set by hand.** Each column is a
+`<div class="col3d" style="--h:0.311;--top:0.311">` block with a label inside.
+`--h` is the column's height as a fraction of the tallest (for the portfolios:
+the return divided by 28, so 8.72% → 0.311) and `--top` is the same number
+(it places the label). Change the label text in `col3d__value` and
+`col3d__name` to match. Also update the `aria-label` on the
+`<div class="chart3d" …>` line, which is what screen readers hear. If in
+doubt, delete the whole `<figure class="chartfig"> … </figure>` block and keep
+the words — deleting a chart breaks nothing else. Deleting a
 chart breaks nothing else.
 
 To add a method tag, copy one line: `<li>Ratio analysis</li>`.
@@ -131,7 +144,8 @@ contact list).
 * Any filename inside `assets/`.
 * The `<script type="application/ld+json">` block at the top — except the
   values inside quote marks, if a fact changes.
-* Anything in `css/` or `js/`.
+* Anything in `css/` or `js/` (and never edit `js/vendor/`).
+* The two `hero-still-*.webp` images (see `README.md`, section 7).
 * **Never add a phone number.** The site is built deliberately without one.
 
 ---
