@@ -282,7 +282,7 @@
           </div>
           <div class="ledger__row ledger__row--figure">
             <dt>GPA</dt>
-            <dd><strong class="fig">3.90</strong><span>of 4.00</span></dd>
+            <dd><strong class="fig">3.90</strong></dd>
           </div>
           <div class="ledger__row">
             <dt>BBA</dt>
@@ -319,8 +319,8 @@
         </li>
         <li class="figure reveal" data-i="2">
           <p class="figure__value"><span class="fig">+25</span><span class="figure__unit">%</span></p>
-          <p class="figure__label">Modeled upside</p>
-          <p class="figure__note">Amazon Inc. valuation, against a $239.89 prior price</p>
+          <p class="figure__label">Upside identified</p>
+          <p class="figure__note">Amazon Inc. recommendation, from a $239.89 prior price</p>
         </li>
         <li class="figure reveal" data-i="3">
           <p class="figure__value"><span class="fig">11</span></p>
@@ -329,8 +329,8 @@
         </li>
         <li class="figure reveal" data-i="4">
           <p class="figure__value"><span class="fig">50</span><span class="figure__unit">%</span></p>
-          <p class="figure__label">Rise in sales, followers &amp; satisfaction</p>
-          <p class="figure__note">Strii Nepal, backed by customer and sales-trend analysis</p>
+          <p class="figure__label">Increase in sales, followers &amp; satisfaction</p>
+          <p class="figure__note">Strii Nepal · her customer and sales-trend analysis contributed</p>
         </li>
       </ul>
       <!-- ==== /EDIT ============================================== -->
@@ -347,8 +347,7 @@
         <h2 id="work-h">Four case studies, from the financial statements to the recommendation.</h2>
         <p class="sec-head__standfirst">
           MBA projects carried through end to end: equity valuation, portfolio construction,
-          BI reporting and a master budget. Every figure comes from the project itself; the one
-          modeled curve is labeled as illustrative.
+          BI reporting and a master budget. Every figure on this page comes from the project itself.
         </p>
       </header>
 
@@ -379,7 +378,7 @@
               <li class="verdict">
                 <span class="verdict__co">Amazon Inc.</span>
                 <span class="verdict__call">+25% upside</span>
-                <span class="verdict__basis">Implied growth 9.84% against a $239.89 prior price</span>
+                <span class="verdict__basis">Implied growth rate 9.84%; prior price $239.89</span>
               </li>
             </ul>
 
@@ -394,80 +393,49 @@
 
           <figure class="chartfig" data-draw aria-labelledby="fig1-cap">
             <figcaption id="fig1-cap" class="chartfig__head">
-              <span class="chartfig__title">Amazon Inc. — implied value per share against the growth assumption</span>
-              <span class="chartfig__badge">Illustrative</span>
+              <span class="chartfig__title">Amazon Inc. — the basis of the recommendation</span>
+              <span class="chartfig__unit">Prior price = 100</span>
             </figcaption>
 
-            <!-- Built so the text stays at its real size at every width: the
-                 outer SVG has no viewBox (x in %, y in px); only the curve sits
-                 in a stretched inner SVG. Coordinates: y 258 = $100,
-                 y 50.6 = $400; x 0% = 7% growth, 100% = 10.5% growth. -->
-            <svg class="chart chart--line" width="100%" height="300" role="img"
-                 aria-label="Line chart, illustrative. Implied value per share rises with the assumed growth rate: about 159 dollars at 8 percent, 214 dollars at 9 percent, 299.87 dollars at the 9.84 percent base case, 324 dollars at 10 percent and 434 dollars at 10.5 percent. A dashed line marks the 239.89 dollar prior price; the shaded band between the prior price and the base case is the 25 percent upside. The same numbers are in the table below.">
-              <g class="c-grid">
-                <line x1="0" x2="100%" y1="188.9" y2="188.9"/>
-                <line x1="0" x2="100%" y1="119.7" y2="119.7"/>
-                <line x1="0" x2="100%" y1="50.6"  y2="50.6"/>
-                <line x1="28.57%" x2="28.57%" y1="16" y2="258"/>
-                <line x1="57.14%" x2="57.14%" y1="16" y2="258"/>
-                <line x1="85.71%" x2="85.71%" y1="16" y2="258"/>
-              </g>
+            <!-- Only resume figures: the $239.89 prior price and the 25% upside
+                 the recommendation rests on. Drawn as an index (prior price =
+                 100) so no target price is stated or implied in dollars.
+                 Outer SVG has no viewBox: x in %, y in px. Baseline y 226;
+                 100 = 150px tall (top y 76); the +25 segment is 37.5px. -->
+            <svg class="chart chart--cols" width="100%" height="262" role="img"
+                 aria-label="Column chart indexed to the prior price. Left column: prior price of 239.89 dollars, set to 100. Right column: the same base plus a highlighted 25 percent upside, the basis of the recommendation. The figures are also written below the chart.">
+              <line class="c-grid" x1="0" x2="100%" y1="226" y2="226"/>
 
-              <rect class="c-band" x="0" y="119.8" width="100%" height="41.5"/>
+              <rect class="c-col c-col--base" x="10%" y="76" width="30%" height="150" rx="2"/>
+              <rect class="c-col c-col--base" x="58%" y="76" width="30%" height="150" rx="2"/>
+              <rect class="c-col c-col--up"   x="58%" y="38.5" width="30%" height="37.5" rx="2"/>
 
-              <svg x="0" y="16" width="100%" height="242" viewBox="52 16 496 242" preserveAspectRatio="none" overflow="visible">
-                <path class="c-area" d="M 52.0 239.9 L 64.4 238.3 L 76.8 236.6 L 89.2 234.8 L 101.6 233.0 L 114.0 231.1 L 126.4 229.2 L 138.8 227.1 L 151.2 225.0 L 163.6 222.8 L 176.0 220.5 L 188.4 218.1 L 200.8 215.6 L 213.2 213.0 L 225.6 210.2 L 238.0 207.4 L 250.4 204.4 L 262.8 201.2 L 275.2 197.9 L 287.6 194.4 L 300.0 190.7 L 312.4 186.8 L 324.8 182.7 L 337.2 178.4 L 349.6 173.7 L 362.0 168.9 L 374.4 163.6 L 386.8 158.1 L 399.2 152.1 L 411.6 145.8 L 424.0 138.9 L 436.4 131.6 L 448.8 123.6 L 461.2 115.0 L 473.6 105.7 L 486.0 95.5 L 498.4 84.4 L 510.8 72.1 L 523.2 58.6 L 535.6 43.6 L 548.0 26.8 L 548.0 258.0 L 52.0 258.0 Z"/>
-                <path class="c-curve" pathLength="1" vector-effect="non-scaling-stroke" d="M 52.0 239.9 L 64.4 238.3 L 76.8 236.6 L 89.2 234.8 L 101.6 233.0 L 114.0 231.1 L 126.4 229.2 L 138.8 227.1 L 151.2 225.0 L 163.6 222.8 L 176.0 220.5 L 188.4 218.1 L 200.8 215.6 L 213.2 213.0 L 225.6 210.2 L 238.0 207.4 L 250.4 204.4 L 262.8 201.2 L 275.2 197.9 L 287.6 194.4 L 300.0 190.7 L 312.4 186.8 L 324.8 182.7 L 337.2 178.4 L 349.6 173.7 L 362.0 168.9 L 374.4 163.6 L 386.8 158.1 L 399.2 152.1 L 411.6 145.8 L 424.0 138.9 L 436.4 131.6 L 448.8 123.6 L 461.2 115.0 L 473.6 105.7 L 486.0 95.5 L 498.4 84.4 L 510.8 72.1 L 523.2 58.6 L 535.6 43.6 L 548.0 26.8"/>
-              </svg>
-
-              <line class="c-ref" x1="0" x2="100%" y1="161.3" y2="161.3"/>
-              <line class="c-axis" x1="0" x2="100%" y1="258" y2="258"/>
+              <line class="c-ref" x1="4%" x2="96%" y1="76" y2="76"/>
 
               <g class="c-late">
-                <line class="c-drop" x1="81.15%" x2="81.15%" y1="126" y2="258"/>
-                <circle class="c-dot" cx="81.15%" cy="119.8" r="6"/>
-                <text class="c-annot-b" x="81.15%" dx="-14" y="90" text-anchor="end">Base case · g = 9.84%</text>
-                <text class="c-annot" x="81.15%" dx="-14" y="108" text-anchor="end">Implied $299.87 · +25.0%</text>
-                <text class="c-flagtext" x="0" dx="4" y="145">+25.0% upside</text>
-                <text class="c-label c-label--strong" x="0" dx="4" y="178">Prior price $239.89</text>
+                <text class="c-value" x="25%" y="66" text-anchor="middle">$239.89</text>
+                <text class="c-flagtext" x="73%" y="28" text-anchor="middle">+25% upside</text>
+                <text class="c-value c-value--inv" x="25%" y="154" text-anchor="middle">100</text>
+                <text class="c-value c-value--inv" x="73%" y="154" text-anchor="middle">100</text>
+                <text class="c-value c-value--inv" x="73%" y="62" text-anchor="middle">+25</text>
               </g>
 
               <g class="c-label">
-                <text x="0" y="253">$100</text>
-                <text x="0" y="115">$300</text>
-                <text x="0" y="46">$400</text>
-                <text x="0" y="278">7%</text>
-                <text x="28.57%" y="278" text-anchor="middle">8%</text>
-                <text x="57.14%" y="278" text-anchor="middle">9%</text>
-                <text x="85.71%" y="278" text-anchor="middle">10%</text>
-                <text class="c-axistitle" x="50%" y="298" text-anchor="middle">Assumed annual growth rate</text>
+                <text x="25%" y="246" text-anchor="middle">Prior price</text>
+                <text x="73%" y="246" text-anchor="middle">Recommendation basis</text>
               </g>
             </svg>
 
-            <p class="chartfig__note">
-              Single-stage growth model calibrated to the base case: growth <b>9.84%</b>, discount
-              rate <b>12.0%</b>, implied value <b>$299.87</b> against a prior price of
-              <b>$239.89</b> — a <b>+25.0%</b> upside. The curve shows how far a small change in the
-              growth assumption moves the answer.
-            </p>
+            <dl class="keyfacts keyfacts--fig">
+              <div><dt>Implied growth</dt><dd>9.84%</dd></div>
+              <div><dt>Prior price</dt><dd>$239.89</dd></div>
+              <div><dt>Upside</dt><dd>+25%</dd></div>
+            </dl>
 
-            <table class="datatable">
-              <caption>Implied value at other growth assumptions</caption>
-              <thead>
-                <tr>
-                  <th scope="col">Growth</th>
-                  <th scope="col">Value</th>
-                  <th scope="col">vs. $239.89</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><th scope="row">8.00%</th><td>$159.22</td><td>−33.6%</td></tr>
-                <tr><th scope="row">9.00%</th><td>$214.26</td><td>−10.7%</td></tr>
-                <tr class="is-base"><th scope="row">9.84% <span class="datatable__tag">base</span></th><td>$299.87</td><td>+25.0%</td></tr>
-                <tr><th scope="row">10.00%</th><td>$324.34</td><td>+35.2%</td></tr>
-                <tr><th scope="row">10.50%</th><td>$434.41</td><td>+81.1%</td></tr>
-              </tbody>
-            </table>
+            <p class="chartfig__note">
+              Segment analysis gave an implied growth rate of <b>9.84%</b>; the recommendation
+              rests on <b>25%</b> upside from the <b>$239.89</b> prior price.
+            </p>
           </figure>
         </article>
         <!-- ==== /EDIT ============================================== -->
@@ -504,14 +472,14 @@
 
           <figure class="chartfig" data-draw aria-labelledby="fig2-cap">
             <figcaption id="fig2-cap" class="chartfig__head">
-              <span class="chartfig__title">Projected annual return by portfolio</span>
-              <span class="chartfig__unit">Per cent</span>
+              <span class="chartfig__title">Projected return by portfolio</span>
+              <span class="chartfig__unit">Percent</span>
             </figcaption>
 
             <!-- Bars are percentages of the chart width: 30% of return = 100%
                  of width, so 4.45% → 14.83%, 8.72% → 29.07%, 28% → 93.33%. -->
             <svg class="chart chart--bars" width="100%" height="244" role="img"
-                 aria-label="Bar chart of projected annual return by portfolio: Conservative 4.45 percent, Moderate 8.72 percent, Aggressive 28 percent. The same numbers are written beside the chart.">
+                 aria-label="Bar chart of projected return by portfolio: Conservative 4.45 percent, Moderate 8.72 percent, Aggressive 28 percent. The same numbers are written beside the chart.">
               <g class="c-grid">
                 <line x1="33.33%" x2="33.33%" y1="20" y2="196"/>
                 <line x1="66.67%" x2="66.67%" y1="20" y2="196"/>
@@ -540,7 +508,7 @@
                 <text x="33.33%" y="216" text-anchor="middle">10%</text>
                 <text x="66.67%" y="216" text-anchor="middle">20%</text>
                 <text x="100%" y="216" text-anchor="end">30%</text>
-                <text class="c-axistitle" x="50%" y="240" text-anchor="middle">Projected annual return</text>
+                <text class="c-axistitle" x="50%" y="240" text-anchor="middle">Projected return</text>
               </g>
             </svg>
 

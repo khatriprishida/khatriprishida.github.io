@@ -27,7 +27,7 @@ One page, in the order a recruiter reads it:
 |---|---|---|
 | Hero | `#top` | Who she is, the roles she wants ("Open to work"), New York, the 3.90 MBA, and one-click résumé / email / LinkedIn. The **At a glance** card beside it summarises degrees, dates, focus and tools. |
 | Key figures | — | 3.90 GPA · +25% modelled upside · 11 securities · 50% sales increase |
-| Selected work | `#work` | The four MBA case studies. 01 (valuation) and 02 (portfolios) carry hand-drawn charts; 03 (BI) and 04 (budgeting) carry process strips. |
+| Selected work | `#work` | The four MBA case studies. 01 (valuation) and 02 (portfolios) carry hand-drawn charts of résumé figures; 03 (BI) and 04 (budgeting) carry process strips. |
 | Experience & education | `#experience` | Strii Nepal and Gyapu Nepal; University of New Haven (May 2026) and Islington College (Dec 2023). |
 | Skills & certificates | `#skills` | Financial & analysis (7), Technical (9), Business (4); four certificates. |
 | Contact | `#contact` | Email, LinkedIn, location, résumé. |
@@ -62,7 +62,7 @@ case studies, experience, education, skills, certificates and contact.
 | `css/tokens.css` | **All** colours (light and dark theme), type sizes, spacing and timings. Loaded first. |
 | `css/base.css` | Reset, element defaults, typography, layout primitives, focus rings, skip link |
 | `css/components.css` | Masthead and menu, buttons, hero, ledger, key figures, case studies, experience, education, skills, contact, footer, 404 |
-| `css/charts.css` | The inline SVG charts and the data table under the valuation chart |
+| `css/charts.css` | The inline SVG charts |
 | `css/motion.css` | All reveal states, chart draw-in, and the single `prefers-reduced-motion` block. Loaded last. |
 | `css/print.css` | `media="print"` only — the one-column CV |
 | `js/app.js` | `defer`. Reveal-on-scroll, chart draw-in, masthead hairline, nav highlighting, mobile-menu closing. Enhancement only. |
@@ -107,26 +107,22 @@ can be restyled from `css/charts.css`.
 They stay readable from 320px to 1440px without sideways scrolling: the outer
 `<svg>` has no `viewBox`, so horizontal positions are **percentages** of the
 width and vertical positions are **pixels**. Text is always drawn at its real
-CSS size. Only the valuation curve sits in a nested, stretched `<svg>`, with
-`vector-effect: non-scaling-stroke` so its line never distorts.
+CSS size.
 
 Each chart carries `role="img"` and a full `aria-label`, **and** the same
-numbers appear as ordinary text next to it — in the note, a data table or the
-case-study copy. Nothing on this site exists only as a picture. No chart
-implies data the résumé does not contain (no Sharpe values, no dashboard
-screenshots).
+numbers appear as ordinary text next to it — in the note, the key facts or
+the case-study copy. Nothing on this site exists only as a picture.
 
-The valuation chart is explicitly labelled *Illustrative*: it is a
-single-stage growth model calibrated to the published figures (`g = 9.84%`,
-implied `$299.87`, `+25.0%` against the `$239.89` prior price, which implies a
-12.0% discount rate). Check the arithmetic with:
+**Every number on the site comes from the résumé.** No chart implies data the
+résumé does not contain: no target price, no discount rate, no sensitivity
+table, no Sharpe values, no dashboard screenshots.
 
-```
-python3 -c "print(5.897*1.0984/(0.12-0.0984))"    # 299.8734…
-```
-
-The portfolio bars are drawn at 30% return = full width, so the bar widths
-are 14.83%, 29.07% and 93.33% for 4.45%, 8.72% and 28%.
+* The Amazon chart shows only the résumé figures: the $239.89 prior price,
+  indexed to 100, and the 25% upside the recommendation rests on (drawn as
+  +25 on that index). The 9.84% implied growth rate is written beside it.
+  It deliberately states no dollar target price.
+* The portfolio bars are drawn at 30% return = full width, so the bar widths
+  are 14.83%, 29.07% and 93.33% for 4.45%, 8.72% and 28%.
 
 ### Light and dark
 
@@ -152,9 +148,8 @@ All motion is transform/opacity only, nothing loops, and
 
 ### No phone number
 
-By design, no phone number appears anywhere on the site — not in the page,
-not in a comment, not in the metadata, not in the JSON-LD. It is only in the
-PDF. Please do not add one.
+By design, the site never shows a phone number — not in the page, not in a
+comment, not in the metadata, not in the JSON-LD. Please do not add one.
 
 ---
 
@@ -185,7 +180,8 @@ xcrun swift tools/make-images.swift
 
 Rewrites `assets/og-image.png` and `assets/apple-touch-icon.png` using the
 colours from `css/tokens.css`. The social image contains the location
-("New York, NY") and the degree date, so rerun it if either changes. It uses
+("New York, NY"), the GPA and the degree dates, so rerun it if any of them
+change. It uses
 only AppKit and CoreGraphics, both of which ship with macOS — nothing is
 downloaded or installed. This is a convenience script, not a build step; the
 site never runs it.

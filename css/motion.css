@@ -9,8 +9,8 @@
    the rules below apply and every element is simply visible in its final
    state. Content cannot go missing.
 
-   Motion only ever explains something: content arriving, a chart being
-   drawn from its baseline. Transform and opacity only. Nothing loops.
+   Motion only ever explains something: content arriving, a chart growing
+   from its baseline. Transform and opacity only. Nothing loops.
    ========================================================================== */
 
 /* ---------------------------------------------------------- section reveal */
@@ -58,21 +58,19 @@ html.js .status__dot::after { animation: ping 1.8s var(--ease-out) 900ms 3; }
 }
 
 /* ------------------------------------------------------------- chart draw
-   The curve carries pathLength="1", so a dasharray of 1 is the whole path
-   whatever its real length. */
-/* 1.5, not 1: with vector-effect: non-scaling-stroke some engines measure
-   the dash in slightly different units from pathLength, and a dash of
-   exactly 1 can stop a few pixels short of the end of the line. */
-html.js .c-curve { stroke-dasharray: 1.5 1.5; stroke-dashoffset: 1.5; }
-html.js .is-drawn .c-curve {
-  stroke-dashoffset: 0;
-  transition: stroke-dashoffset 1300ms var(--ease-out) 100ms;
+   Columns rise from the baseline: the prior price first, then the upside. */
+html.js .c-col {
+  transform: scaleY(0);
+  transform-box: fill-box;
+  transform-origin: center bottom;
 }
-
-html.js .c-area,
-html.js .c-band { opacity: 0; }
-html.js .is-drawn .c-area { opacity: 0.07; transition: opacity 600ms var(--ease-out) 700ms; }
-html.js .is-drawn .c-band { opacity: 1;    transition: opacity 500ms var(--ease-out) 900ms; }
+html.js .is-drawn .c-col {
+  transform: none;
+  transition: transform 700ms var(--ease-out) 80ms;
+}
+html.js .is-drawn .c-col--up { transition-delay: 640ms; transition-duration: 420ms; }
+html.js .c-ref { opacity: 0; }
+html.js .is-drawn .c-ref { opacity: 1; transition: opacity 300ms var(--ease-out) 600ms; }
 
 /* Bars grow from their baseline, lowest risk first. */
 html.js .c-bar {
@@ -110,10 +108,9 @@ html.js .is-drawn .c-late {
   }
   html.js .reveal,
   html.js .hero-in { opacity: 1 !important; transform: none !important; }
-  html.js .c-curve { stroke-dashoffset: 0 !important; }
-  html.js .c-band,
+  html.js .c-ref,
   html.js .c-late { opacity: 1 !important; }
-  html.js .c-area { opacity: 0.07 !important; }
-  html.js .c-bar { transform: none !important; }
+  html.js .c-bar,
+  html.js .c-col { transform: none !important; }
   .status__dot::after { animation: none !important; }
 }

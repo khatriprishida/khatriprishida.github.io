@@ -69,7 +69,8 @@ Each case study has a small label ("01 · Valuation"), a title, one or two
 paragraphs, and then a visual.
 
 * **Case 01** has two "calls" (Lockheed Martin — Buy; Amazon — +25% upside),
-  a row of method tags, and the valuation chart with its table.
+  a row of method tags, and the Amazon chart (prior price vs. 25% upside) with
+  three key facts under it.
 * **Case 02** has three key facts, method tags and the portfolio bar chart.
 * **Cases 03 and 04** have a four-step strip. Each step is one line:
 
@@ -80,7 +81,7 @@ paragraphs, and then a visual.
 **The chart numbers are drawn by hand in the SVG.** If a project figure
 changes, the chart will not follow it automatically. For the portfolio bars,
 each bar's `width` is the return divided by 30, as a percentage (28% → 93.33%);
-the value label next to it uses the same number as its `x`. For the valuation
+the value label next to it uses the same number as its `x`. For the Amazon
 chart, ask whoever built this to redraw it — or delete the whole
 `<figure class="chartfig"> … </figure>` block and keep the words. Deleting a
 chart breaks nothing else.

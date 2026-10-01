@@ -2,8 +2,8 @@
    print.css — loaded with media="print".
 
    Target: a clean, one-column, black-on-white CV. Navigation, buttons, the
-   charts and decoration come off; the numbers stay (the valuation table is
-   kept because it IS the numbers). Colour themes are ignored: paper is
+   charts and decoration come off; the numbers stay, because every chart's
+   figures are also written out as text. Colour themes are ignored: paper is
    always white.
    ========================================================================== */
 
@@ -130,7 +130,8 @@ h1, h2, h3, h4, strong, b { color: #000000 !important; }
   margin-bottom: 3mm;
   border-bottom: 0.5pt solid #CCCCCC !important;
 }
-.verdicts, .keyfacts, .datatable, .flow { break-inside: avoid; }
+.verdicts, .keyfacts, .flow { break-inside: avoid; }
+.keyfacts--fig { display: none !important; }
 .case__kicker { margin-bottom: 1mm; font-size: 8pt; color: #444444 !important; }
 .case__index { color: #444444 !important; }
 .case h3, .case--feature h3 { font-size: 11pt; margin-bottom: 1.5mm; }
@@ -150,9 +151,6 @@ h1, h2, h3, h4, strong, b { color: #000000 !important; }
 .keyfacts dd { font-size: 10.5pt; }
 
 .chartfig { display: block; }
-.datatable { font-size: 8pt; max-width: 110mm; margin-top: 1mm; }
-.datatable th, .datatable td { padding: 0.5mm 1.5mm; }
-.datatable tr.is-base th, .datatable tr.is-base td { font-weight: 700; color: #000000 !important; }
 
 .flow { display: block !important; margin: 1mm 0; }
 .flow li {

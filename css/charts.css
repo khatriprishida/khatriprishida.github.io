@@ -6,10 +6,8 @@
 
    How they stay readable from 320px to 1440px without scrolling: the outer
    <svg> has NO viewBox. Horizontal positions are percentages of its width,
-   vertical positions are pixels. Text therefore stays at its real CSS size
-   at every width. Only the valuation curve itself sits in a nested,
-   stretched <svg> (preserveAspectRatio="none"), and its stroke uses
-   vector-effect: non-scaling-stroke so the line never distorts.
+   vertical positions are pixels, so text is always drawn at its real CSS
+   size at every width.
 
    Every chart also has its numbers written out as text beside it.
    ========================================================================== */
@@ -72,18 +70,10 @@
 .c-grid  { stroke: var(--rule); stroke-width: 1; }
 .c-axis  { stroke: var(--rule-3); stroke-width: 1; }
 .c-ref   { stroke: var(--rule-3); stroke-width: 1.5; stroke-dasharray: 5 4; }
-.c-drop  { stroke: var(--accent); stroke-width: 1; stroke-dasharray: 2 3; opacity: 0.7; }
 
-.c-band  { fill: var(--accent-wash); }
-.c-area  { fill: var(--accent); opacity: 0.07; }
-.c-curve {
-  fill: none;
-  stroke: var(--accent);
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.c-dot   { fill: var(--accent); stroke: var(--surface); stroke-width: 3; }
+
+.c-col--base { fill: var(--series-2); }
+.c-col--up   { fill: var(--series-3); }
 
 .c-bar-1 { fill: var(--series-1); }
 .c-bar-2 { fill: var(--series-2); }
@@ -93,71 +83,23 @@
 /* ---------------------------------------------------------------- text
    Real CSS pixels (the outer SVG is unscaled). */
 .c-label       { font-size: 12px; fill: var(--text-3); }
-.c-label--strong { fill: var(--text-2); font-weight: 600; }
 .c-axistitle   { font-size: 11px; font-weight: 650; letter-spacing: 0.1em; text-transform: uppercase; fill: var(--text-3); }
 .c-name        { font-size: 13px; font-weight: 600; fill: var(--text-2); }
 .c-value       { font-size: 15px; font-weight: 700; fill: var(--text); }
 .c-value--inv  { fill: var(--on-series-3); }
-.c-flagtext    { font-size: 13px; font-weight: 700; fill: var(--accent); }
-.c-annot       { font-size: 13px; fill: var(--text-2); }
-.c-annot-b     { font-size: 13px; font-weight: 700; fill: var(--text); }
+.c-flagtext    { font-size: 15px; font-weight: 700; fill: var(--accent); }
 
 /* Text over the chart gets a halo in the card colour so gridlines and the
    area fill never cut through a label. */
-.c-annot, .c-annot-b, .c-flagtext, .c-label--strong, .c-name {
+.c-flagtext, .c-name {
   paint-order: stroke;
   stroke: var(--surface);
   stroke-width: 4px;
   stroke-linejoin: round;
 }
-.c-flagtext { stroke: var(--accent-wash); }
 
-/* ------------------------------------------------ data table under a chart */
-.datatable { font-size: var(--fs-5); }
-.datatable caption {
-  font-size: var(--fs-6);
-  font-weight: 650;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-3);
-  padding-bottom: var(--s2);
-}
-.datatable th, .datatable td {
-  padding: 0.45rem var(--s2);
-  border-bottom: 1px solid var(--rule);
-}
-.datatable th:first-child { padding-left: 0; }
-.datatable td:last-child { padding-right: 0; }
-.datatable thead th {
-  font-size: var(--fs-6);
-  font-weight: 650;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-3);
-  border-bottom-color: var(--rule-2);
-}
-.datatable thead th + th { text-align: right; }
-.datatable tbody th { font-weight: 500; color: var(--text-2); }
-.datatable td {
-  text-align: right;
-  color: var(--text-2);
-  font-variant-numeric: lining-nums tabular-nums;
-}
-.datatable tr:last-child th, .datatable tr:last-child td { border-bottom: 0; }
-.datatable tr.is-base th, .datatable tr.is-base td {
-  color: var(--accent);
-  font-weight: 700;
-  background: var(--accent-wash);
-}
-.datatable tr.is-base th { padding-left: var(--s2); }
-.datatable tr.is-base td:last-child { padding-right: var(--s2); }
-.datatable__tag {
-  font-size: var(--fs-6);
-  font-weight: 650;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-left: var(--s1);
-}
+/* ---------------------------------------- key facts under the Amazon chart */
+.keyfacts--fig { margin: 0; }
 
 /* ------------------------------------------- unit chart (one mark per item) */
 .unitchart {
